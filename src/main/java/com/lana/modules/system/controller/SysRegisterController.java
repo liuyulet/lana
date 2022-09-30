@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 注册接口
+ *
  * @auther liuyulet
  * @date 2022/9/27 12:54
  */
 @RestController
-@Api(tags="注册接口")
+@Api(tags = "注册接口")
 @ApiSupport(author = "liuyulet")
 @RequestMapping("/sys/reg")
 public class SysRegisterController {
@@ -30,7 +31,7 @@ public class SysRegisterController {
      */
     @ApiOperation(value = "注册用户", notes = "注册用户")
     @PostMapping("/register")
-    public Result login(@RequestBody SysUserEntity form){
+    public Result login(@RequestBody SysUserEntity form) {
 
         sysUserService.saveUser(form);
 

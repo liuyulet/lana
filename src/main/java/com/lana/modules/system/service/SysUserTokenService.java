@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -20,16 +20,16 @@ import com.lana.modules.system.pojo.entity.SysUserTokenEntity;
  */
 public interface SysUserTokenService extends IService<SysUserTokenEntity> {
 
-	/**
-	 * 生成token
-	 * @param userId  用户ID
-	 */
-	Result createToken(long userId);
+    /**
+     * 生成token
+     * @param userId  用户ID
+     */
+    Result createToken(long userId);
 
-	/**
-	 * 退出，修改token值
-	 * @param userId  用户ID
-	 */
-	void logout(long userId);
+    /**
+     * 退出，修改token值
+     * @param userId  用户ID
+     */
+    void logout(long userId);
 
 }

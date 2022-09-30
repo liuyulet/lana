@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lana.modules.system.dao.SysDemanDao">
+
+    <resultMap type="com.lana.modules.system.pojo.entity.SysDeman" id="SysDemanMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="demanName" column="deman_name" jdbcType="VARCHAR"/>
+        <result property="demanNum" column="deman_num" jdbcType="VARCHAR"/>
+        <result property="demanDisclose" column="deman_disclose" jdbcType="VARCHAR"/>
+        <result property="demanConsci" column="deman_consci" jdbcType="VARCHAR"/>
+        <result property="demanDeadline" column="deman_deadline" jdbcType="TIMESTAMP"/>
+        <result property="demanStatus" column="deman_status" jdbcType="INTEGER"/>
+        <result property="demanChange" column="deman_change" jdbcType="INTEGER"/>
+        <result property="demanProject" column="deman_project" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+
+</mapper>
+

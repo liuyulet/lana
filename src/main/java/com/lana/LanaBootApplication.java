@@ -7,11 +7,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
 @Slf4j
 @SpringBootApplication
 public class LanaBootApplication {
 
-    public static void main(String[] args)  throws UnknownHostException {
+    public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(LanaBootApplication.class, args);
         String port = application.getEnvironment().getProperty("server.port");
         String ip = InetAddress.getLocalHost().getHostAddress();

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.modules.system.dao.SysDepartDao">
+
+    <select id="getlist" resultType="com.lana.modules.system.pojo.entity.SysDepart">
+        SELECT  id,
+               parent_id,
+               depart_name,
+               depart_code,
+               depart_status,
+               create_user,
+               create_time
+        FROM sys_depart
+    </select>
+</mapper>

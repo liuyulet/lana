@@ -21,4 +21,17 @@
 		select * from sys_user where username = #{username}
 	</select>
 
+	<select id="queryPages" resultType="java.util.HashMap">
+		SELECT a.*,r.role_name AS roleName FROM
+			(SELECT
+				 u.user_id AS userId,u.fullname,u.email,u.username,u.mobile,u.status,u.depart_ids AS departIds,u.create_user AS createUser,
+				 u.create_time AS createTimer,d.depart_name AS departName,d.id AS departId,ur.role_id AS roleId
+			 FROM sys_user u
+					  LEFT JOIN sys_user_depart ud ON u.user_id = ud.user_id
+					  LEFT JOIN sys_user_role ur ON u.user_id = ur.user_id
+					  LEFT JOIN sys_depart d ON   d.id = ud.depart_id) a
+				LEFT JOIN sys_role r ON r.role_id = a.roleId
+	</select>
+
+
 </mapper>

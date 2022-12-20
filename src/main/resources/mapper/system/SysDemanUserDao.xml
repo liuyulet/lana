@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lana.modules.system.dao.SysDemanUserDao">
+
+    
+    <resultMap type="com.lana.modules.system.pojo.vo.TaskUserDataVO" id="SysRoleMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="demanName" column="deman_name" jdbcType="VARCHAR"/>
+        <result property="demanFileUrl" column="deman_disclose" jdbcType="VARCHAR"/>
+        <result property="demanFileName" column="deman_diso_name" jdbcType="VARCHAR"/>
+        <result property="demanNum" column="deman_num" jdbcType="VARCHAR"/>
+        <result property="demanPersName" column="deman_consci_acoun" jdbcType="VARCHAR"/>
+        <result property="damanEndTime" column="deman_deadline" jdbcType="TIMESTAMP"/>
+        <result property="demanCreateTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="planName" column="plan_name" jdbcType="VARCHAR"/>
+        <result property="planCont" column="plan_cont" jdbcType="VARCHAR"/>
+        <result property="planStatus" column="plan_status" jdbcType="INTEGER"/>
+        <result property="planEndTime" column="plan_deman_end_time" jdbcType="TIMESTAMP"/>
+        <result property="planCreatTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="taskMeStatus" column="user_opinion" jdbcType="INTEGER"/>
+        <result property="taskDataStatus" column="data_type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <update id="overUpdate">
+        update sys_deman_user t set t.data_type = 2
+        where t.paln_item_id=#{palnItemId}
+          and t.step_id=#{stepId}
+    </update>
+    <update id="nextUpdate">
+
+        update sys_deman_user t set t.user_opinion = 3
+        where t.step_id=#{stepId}
+          and t.node_id=#{nodeNext}
+          and t.paln_item_id=#{palnItemId};
+
+    </update>
+    <update id="backUpdate">
+        update sys_deman_user t set t.data_type = 1
+        where t.paln_item_id=#{palnItemId}
+          and t.step_id=#{stepId}
+    </update>
+
+    <select id="getAllOver" resultType="java.util.HashMap">
+
+        SELECT id FROM sys_deman_user WHERE deman_id=#{demanId} and task_status !=2
+
+    </select>
+    <select id="getPageData" resultMap="SysRoleMap">
+        SELECT
+            n.id,
+            d.deman_name,
+            d.deman_disclose,
+            d.deman_diso_name,
+            d.deman_num,
+            d.deman_consci_acoun,
+            d.deman_deadline,
+            d.create_time,
+            p.plan_name,
+            p.plan_cont,
+            p.plan_status,
+            p.plan_deman_end_time,
+            p.create_time,
+            n.user_opinion,
+            n.data_type
+        FROM sys_deman_user n
+                 INNER JOIN  paln_item p ON  p.id = n.paln_item_id
+                 INNER JOIN  sys_deman d ON  d.id = p.plan_deman_id
+        <where>
+            <if test="params.taskStart !=null and params.taskStart != ''">
+                and n.user_opinion = #{params.taskStart}
+            </if>
+        and n.user_id = #{userEntit.userId}
+        </where>
+    </select>
+    <select id="selectdata" resultType="com.lana.modules.system.pojo.entity.SysDemanUserEntity">
+        SELECT * from sys_deman_user where paln_item_id = #{palnItemId}
+    </select>
+
+    <delete id="deleteUserTask">
+        delete from bus_binding where paln_item_id=#{itemDd}
+    </delete>
+    <delete id="deleteBinding">
+        delete from sys_deman_user where paln_item_id=#{itemDd}
+    </delete>
+</mapper>
+

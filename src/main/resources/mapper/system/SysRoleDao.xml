@@ -2,9 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lana.modules.system.dao.SysRoleDao">
-	
+
+
+	<insert id="userForRole">
+		INSERT INTO sys_user_role
+		(role_id,user_id)
+		VALUES
+		<foreach collection ="userList" item="user" separator =",">
+			(#{roleId}, #{user})
+		</foreach >
+	</insert>
+
+	<update id="userUpdatForRole">
+		UPDATE sys_user_role SET role_id=#{roleId}
+		where user_id in
+		<foreach collection="userUpdateList" item="user" index="index" separator="," open="(" close=")">
+			#{user}
+		</foreach>
+	</update>
+
 	<!-- 查询用户创建的角色ID列表 -->
 	<select id="queryRoleIdList" resultType="long">
 		select role_id from sys_role where create_user_id = #{createUserId} 
-	</select> 
+	</select>
+
 </mapper>

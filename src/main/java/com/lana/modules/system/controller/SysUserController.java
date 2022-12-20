@@ -1,16 +1,11 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.lana.modules.system.controller;
 
 
+
+import com.alibaba.fastjson.JSONObject;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
-import com.lana.common.utils.Constant;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
 import com.lana.common.validator.Assert;
@@ -18,12 +13,13 @@ import com.lana.modules.system.pojo.dto.PasswordDTO;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
 import com.lana.modules.system.service.SysUserRoleService;
 import com.lana.modules.system.service.SysUserService;
+import com.lana.modules.system.service.SysUserTokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.Date;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +39,8 @@ public class SysUserController extends AbstractController {
     private SysUserService sysUserService;
     @Autowired
     private SysUserRoleService sysUserRoleService;
-
+    @Autowired
+    private SysUserTokenService sysUserTokenService;
 
     /**
      * 所有用户列表
@@ -55,6 +52,22 @@ public class SysUserController extends AbstractController {
         PageUtils page = sysUserService.queryPage(params);
 
         return Result.ok(page);
+    }
+
+
+    /**
+     * 所有用户列表
+     */
+    @ApiOperation(value = "用户列表", notes = "用户列表")
+    @GetMapping("/getUserAll")
+    public Result getUserAll(@RequestParam Map<String, Object> params) {
+        Result<JSONObject> result = new Result<JSONObject>();
+        JSONObject res = new JSONObject();
+        List<SysUserEntity> page = sysUserService.list();
+        res.put("userData",page);
+        result.setCode(200);
+        result.setResult(res);
+        return result;
     }
 
 
@@ -82,8 +95,11 @@ public class SysUserController extends AbstractController {
 
         //更新密码
         boolean flag = sysUserService.updatePassword(getUserId(), password, newPassword);
+
         if (!flag) {
             return Result.error("原密码不正确");
+        }else {
+            Result resultsss = sysUserTokenService.createToken(getUserId());
         }
 
         return Result.ok();
@@ -110,11 +126,28 @@ public class SysUserController extends AbstractController {
     @ApiOperation(value = "保存用户", notes = "保存用户")
     @PostMapping("/save")
     public Result save(@RequestBody SysUserEntity user) {
-
+        user.setCreateTime(new Date());
         sysUserService.saveUser(user);
 
         return Result.ok();
     }
+
+
+
+    /**
+     * 添加用户
+     */
+    @ApiOperation(value = "保存用户", notes = "保存用户")
+    @PostMapping("/hadlesave")
+    public Result hadlesave(@RequestBody SysUserEntity user) {
+
+        user.setPassword("000000");
+        user.setCreateTime(new Date());
+        sysUserService.saveUser(user);
+
+        return Result.ok();
+    }
+
 
     /**
      * 修改用户
@@ -143,4 +176,6 @@ public class SysUserController extends AbstractController {
         }
 
     }
+
+
 }

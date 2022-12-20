@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 
 package com.lana.modules.system.pojo.entity;
 
@@ -46,9 +39,9 @@ public class SysRoleEntity implements Serializable {
     private String remark;
 
     /**
-     * 创建者ID
+     * 创建者
      */
-    private Long createUserId;
+    private String createUser;
 
     @TableField(exist = false)
     private List<Long> menuIdList;

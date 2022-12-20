@@ -1,18 +1,10 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 
 package com.lana.modules.system.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.lana.common.validator.group.AddGroup;
-import com.lana.common.validator.group.UpdateGroup;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -28,6 +20,7 @@ import java.util.List;
  */
 @Data
 @TableName("sys_user")
+@ApiModel("用户对象")
 public class SysUserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -45,13 +38,13 @@ public class SysUserEntity implements Serializable {
     /**
      * 用户名
      */
-    @NotBlank(message = "用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     /**
      * 密码
      */
-    @NotBlank(message = "密码不能为空", groups = AddGroup.class)
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**
@@ -62,8 +55,8 @@ public class SysUserEntity implements Serializable {
     /**
      * 邮箱
      */
-    @NotBlank(message = "邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
-    @Email(message = "邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
+    @NotBlank(message = "邮箱不能为空")
+    @Email(message = "邮箱格式不正确")
     private String email;
 
     /**
@@ -83,9 +76,14 @@ public class SysUserEntity implements Serializable {
     private List<Long> roleIdList;
 
     /**
+     * 负责部门
+     */
+    private Long departIds;
+
+    /**
      * 创建者ID
      */
-    private Long createUser;
+    private String createUser;
 
     /**
      * 创建时间

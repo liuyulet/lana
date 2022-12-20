@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "注册接口")
 @ApiSupport(author = "liuyulet")
 @RequestMapping("/sys/reg")
-public class SysRegisterController {
+public class SysRegisterController extends AbstractController{
     @Autowired
     private SysUserService sysUserService;
 

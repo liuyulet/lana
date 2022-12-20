@@ -2,20 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lana.modules.system.dao.SysDemanDao">
 
-    <resultMap type="com.lana.modules.system.pojo.entity.SysDeman" id="SysDemanMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+
+    <resultMap type="com.lana.modules.system.pojo.vo.SysDemanVO" id="SysRoleMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
         <result property="demanName" column="deman_name" jdbcType="VARCHAR"/>
         <result property="demanNum" column="deman_num" jdbcType="VARCHAR"/>
-        <result property="demanDisclose" column="deman_disclose" jdbcType="VARCHAR"/>
+        <result property="demanDisclose" column="deman_diso_name" jdbcType="VARCHAR"/>
+        <result property="demanDisoName" column="deman_diso_name" jdbcType="VARCHAR"/>
         <result property="demanConsci" column="deman_consci" jdbcType="VARCHAR"/>
+        <result property="demanConsciAcoun" column="deman_consci_acoun" jdbcType="VARCHAR"/>
         <result property="demanDeadline" column="deman_deadline" jdbcType="TIMESTAMP"/>
         <result property="demanStatus" column="deman_status" jdbcType="INTEGER"/>
+        <result property="progresss" column="progresss" jdbcType="DOUBLE"/>
         <result property="demanChange" column="deman_change" jdbcType="INTEGER"/>
         <result property="demanProject" column="deman_project" jdbcType="VARCHAR"/>
+        <result property="demanProjectNam" column="deman_project_nam" jdbcType="VARCHAR"/>
         <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <insert id="userForDeman">
+        INSERT INTO sys_deman_user
+        (user_id,deman_id,create_time,create_user)
+        VALUES
+        <foreach collection ="userList" item="user" separator =",">
+            (#{user},#{demendId},NOW(),#{userName})
+        </foreach >
+
+    </insert>
+    <select id="getPageData" resultMap="SysRoleMap">
+        SELECT
+            d.id,
+            d.deman_name,
+            d.deman_num,
+            d.deman_disclose,
+            d.deman_diso_name ,
+            d.deman_consci,
+            d.deman_consci_acoun ,
+            d.deman_deadline ,
+            d.deman_status,
+            COALESCE(ROUND( SUM(u.user_opinion=4)/ COUNT(DISTINCT u.id) *100 , 2),0) AS progresss,
+            d.deman_change ,
+            d.deman_project ,
+            d.deman_project_nam,
+            d.create_user,
+            d.create_time
+        FROM sys_deman d
+                 LEFT JOIN paln_item p ON d.id= p.plan_deman_id
+                 LEFT JOIN sys_deman_user u ON u.paln_item_id= p.id
+                 and u.data_type !=1
+        <where>
+            <if test="params.searchSrt !=null and params.searchSrt != ''">
+                and d.deman_name LIKE CONCAT('%',#{params.searchSrt},'%')
+            </if>
+        </where>
+        GROUP BY d.id
+        ORDER BY d.create_time DESC
+    </select>
 
 
 </mapper>

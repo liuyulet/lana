@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lana.modules.system.dao.PalnItemDao">
+
+    <resultMap type="com.lana.modules.system.pojo.entity.PalnItemEntity" id="PalnItemMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="planName" column="plan_name" jdbcType="VARCHAR"/>
+        <result property="planCont" column="plan_cont" jdbcType="VARCHAR"/>
+        <result property="planStatus" column="plan_status" jdbcType="INTEGER"/>
+        <result property="planDemanName" column="plan_deman_name" jdbcType="VARCHAR"/>
+        <result property="planDemanEndTime" column="plan_deman_end_time" jdbcType="TIMESTAMP"/>
+        <result property="planDemanId" column="plan_deman_id" jdbcType="INTEGER"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+
+</mapper>
+

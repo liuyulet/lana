@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lana.modules.system.dao.SysStepNodeDao">
+
+    <resultMap type="com.lana.modules.system.pojo.entity.SysStepNode" id="SysStepNodeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stepId" column="step_id" jdbcType="INTEGER"/>
+        <result property="stepNodeLabel" column="step_node_label" jdbcType="VARCHAR"/>
+        <result property="stepNodeValue" column="step_node_value" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+
+</mapper>
+

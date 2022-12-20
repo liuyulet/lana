@@ -1,14 +1,9 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.lana.modules.system.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
 
@@ -71,26 +66,23 @@ public class SysLoginController extends AbstractController {
      */
     @ApiOperation(value = "登录接口", notes = "登录接口")
     @PostMapping("/sys/login")
-    public Result login(@RequestBody SysLoginDTO form) throws IOException {
+    public Result login(@RequestBody SysLoginDTO form)  {
 		/*boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
 		if(!captcha){
 			return Result.error("验证码不正确");
 		}*/
-
-        //用户信息
         SysUserEntity user = sysUserService.queryByUserName(form.getUsername());
-
-        //账号不存在、密码错误
         if (user == null || !user.getPassword().equals(new Sha256Hash(form.getPassword(), user.getSalt()).toHex())) {
             return Result.error("账号或密码不正确");
         }
-
-        //账号锁定
         if (user.getStatus() == 0) {
             return Result.error("账号已被锁定,请联系管理员");
         }
-        //生成token，并保存到数据库
         Result result = sysUserTokenService.createToken(user.getUserId());
+        JSONObject res= (JSONObject) result.getResult();
+        res.put("userAccount",user.getUsername());
+        res.put("userId",user.getUserId());
+        res.put("userFullname",user.getFullname());
         return result;
     }
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lana.modules.system.dao.SysUserDepartRoleDao">
+
+
+    <resultMap type="com.lana.modules.system.pojo.vo.SysUserDepartRoleVO" id="SysUserDepartRoleMap">
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="fullname" column="fullname" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="dutyIds" column="duty_ids" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createTimer" column="create_timer" jdbcType="TIMESTAMP"/>
+        <result property="departName" column="depart_name" jdbcType="VARCHAR"/>
+        <result property="departId" column="depart_id" jdbcType="BIGINT"/>
+        <result property="roleid" column="roleId" jdbcType="BIGINT"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="departName" column="depart_name" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+<!--这里使用视图，方便一些，视图内容则为getUserData 中的语句内容-->
+    <select id="getstepPage" resultType="java.util.Map">
+        select fullname,username,duty_name as dutyName,depart_name as departName,role_name as roleName from sys_user_depart_role where user_id in
+        <foreach collection="sss" item="user" index="index" separator="," open="(" close=")">
+            #{user}
+        </foreach>
+    </select>
+    <select id="getUserData" resultMap="SysUserDepartRoleMap">
+        SELECT
+            `a`.`user_id` AS `user_id`,
+            `a`.`fullname` AS `fullname`,
+            `a`.`email` AS `email`,
+            `a`.`username` AS `username`,
+            `a`.`mobile` AS `mobile`,
+            `a`.`status` AS `status`,
+            `a`.`duty_ids` AS `duty_ids`,
+            `a`.`create_user` AS `create_user`,
+            `a`.`create_timer` AS `create_timer`,
+            `a`.`depart_name` AS `depart_name`,
+            `a`.`depart_id` AS `depart_id`,
+            `a`.`roleId` AS `roleId`,
+            `r`.`role_name` AS `role_name`,
+            `nd`.`depart_name` AS `duty_name`
+        FROM
+            (
+                SELECT
+                    `u`.`user_id` AS `user_id`,
+                    `u`.`fullname` AS `fullname`,
+                    `u`.`email` AS `email`,
+                    `u`.`username` AS `username`,
+                    `u`.`mobile` AS `mobile`,
+                    `u`.`status` AS `status`,
+                    `u`.`depart_ids` AS `duty_ids`,
+                    `u`.`create_user` AS `create_user`,
+                    `u`.`create_time` AS `create_timer`,
+                    `d`.`depart_name` AS `depart_name`,
+                    `d`.`id` AS `depart_id`,
+                    `ur`.`role_id` AS `roleId`
+                FROM
+                    `sys_user` `u`
+                        LEFT JOIN `sys_user_depart` `ud` ON `u`.`user_id` = `ud`.`user_id`
+                        LEFT JOIN `sys_user_role` `ur` ON `u`.`user_id` = `ur`.`user_id`
+                        LEFT JOIN `sys_depart` `d` ON `d`.`id` = `ud`.`depart_id`
+            ) `a`
+                LEFT JOIN `sys_role` `r` ON `r`.`role_id` = `a`.`roleId`
+                LEFT JOIN `sys_depart` `nd` ON `nd`.`id` = `a`.`duty_ids`
+    </select>
+
+</mapper>
+

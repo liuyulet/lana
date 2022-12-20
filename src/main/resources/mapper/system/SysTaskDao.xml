@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.modules.system.dao.SysTaskDao">
+
+
+    <select id="getLookColla" resultType="com.lana.modules.system.pojo.vo.LookCollaVO">
+        SELECT su.id,
+               su.task_status AS taskStatus,
+               su.task_record AS taskRecord,
+               su.task_start_time AS taskStartTime,
+               su.task_end_time AS taskEndTime,
+               u.fullname,
+               u.username,
+               o.role_name AS roleName
+        FROM sys_deman_user su
+                 LEFT JOIN sys_user u ON su.user_id = u.user_id
+                 LEFT JOIN sys_user_role r ON u.user_id = r.user_id
+                 LEFT JOIN sys_role o ON r.role_id = o.role_id
+        WHERE su.deman_id = #{demanId}
+    </select>
+</mapper>
+

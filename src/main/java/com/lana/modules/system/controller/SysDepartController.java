@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.PageUtils;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.UserForDepartDTO;
 import com.lana.modules.system.pojo.entity.SysDepart;
 import com.lana.modules.system.service.SysDepartService;
 import io.swagger.annotations.Api;
@@ -13,19 +14,21 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 组织机构表(SysDepart)表控制层
  *
- * @author lyl
+ * @author liuyulet
  * @since 2022-09-29 10:02:34
  */
 @Api(tags = "组织机构接口")
 @ApiSupport(author = "liuyulet")
 @RestController
 @RequestMapping("/sysDepart")
-public class SysDepartController extends ApiController {
+public class SysDepartController extends AbstractController {
     /**
      * 服务对象
      */
@@ -65,6 +68,7 @@ public class SysDepartController extends ApiController {
     @ApiOperation(value = "新增组织机构", notes = "新增组织机构")
     @PostMapping("/addDepart")
     public Result addDepart(@RequestBody SysDepart sysDepart) {
+        sysDepart.setCreateTime(new Date());
         sysDepartService.save(sysDepart);
         return Result.ok();
     }
@@ -75,9 +79,9 @@ public class SysDepartController extends ApiController {
      * @return 删除组织机构
      */
     @ApiOperation(value = "删除组织机构", notes = "删除组织机构")
-    @PostMapping("/delDepart")
-    public Result delDepart(@RequestBody Long[] userIds) {
-        sysDepartService.removeByIds(Arrays.asList(userIds));
+    @GetMapping("/delDepart")
+    public Result delDepart(@RequestParam Long userIds) {
+        sysDepartService.removeById(userIds);
         return Result.ok();
     }
 
@@ -90,6 +94,19 @@ public class SysDepartController extends ApiController {
     @PostMapping("/updateDepart")
     public Result updateDepart(@RequestBody SysDepart sysDepart) {
         sysDepartService.updateById(sysDepart);
+        return Result.ok();
+    }
+
+    /**
+     * 机构绑定人员
+     *
+     * @return 机构绑定人员
+     */
+    @ApiOperation(value = "机构绑定人员", notes = "机构绑定人员")
+    @PostMapping("/userForDepart")
+    public Result userForDepart(@RequestBody UserForDepartDTO userForDepartDTO) {
+        //将数据更新到用户和组织机构中间表
+        sysDepartService.userForDepart(userForDepartDTO);
         return Result.ok();
     }
 

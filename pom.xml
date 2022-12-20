@@ -23,7 +23,7 @@
         <mysql.version>8.0.28</mysql.version>
         <mssql.version>4.0</mssql.version>
         <oracle.version>11.2.0.3</oracle.version>
-        <druid.version>1.1.13</druid.version>
+        <druid.version>1.1.22</druid.version>
         <quartz.version>2.3.0</quartz.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.fileupload.version>1.2.2</commons.fileupload.version>
@@ -63,6 +63,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -82,13 +83,27 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- flowable工作流 -->
+<!--        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter</artifactId>
+            <version>6.7.2</version>
+        </dependency>-->
+
+
         <!--mica-mqtt-client-->
 <!--        <dependency>
             <groupId>net.dreamlu</groupId>
             <artifactId>mica-mqtt-client-spring-boot-starter</artifactId>
             <version>2.0.0</version>
         </dependency>-->
+        <!-- mini文件存储服务 -->
 
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.2.1</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

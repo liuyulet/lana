@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
 
 package com.lana.modules.system.service.impl;
 
@@ -29,15 +22,10 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 	@Override
 	public Result createToken(long userId) {
 		Result<JSONObject> result = new Result<JSONObject>();
-		//生成一个token
 		String token = TokenGenerator.generateValue();
-
-		//当前时间
 		Date now = new Date();
-		//过期时间
 		Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
 
-		//判断是否生成过token
 		SysUserTokenEntity tokenEntity = this.getById(userId);
 		if(tokenEntity == null){
 			tokenEntity = new SysUserTokenEntity();
@@ -51,16 +39,14 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 			tokenEntity.setToken(token);
 			tokenEntity.setUpdateTime(now);
 			tokenEntity.setExpireTime(expireTime);
-
-			//更新token
 			this.updateById(tokenEntity);
 		}
 		JSONObject res = new JSONObject();
 		res.put("token", token);
 		res.put("expire", EXPIRE);
-		Result r = Result.ok(res);
+		Result results = Result.ok(res);
 
-		return r;
+		return results;
 	}
 
 	@Override

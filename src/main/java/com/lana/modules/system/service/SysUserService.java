@@ -1,18 +1,14 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 
 package com.lana.modules.system.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lana.common.utils.PageUtils;
 import com.lana.modules.system.pojo.entity.SysUserEntity;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,4 +60,5 @@ public interface SysUserService extends IService<SysUserEntity> {
      * @param newPassword  新密码
      */
     boolean updatePassword(Long userId, String password, String newPassword);
+
 }

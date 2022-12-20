@@ -1,10 +1,4 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
+
 
 package com.lana.auth;
 
@@ -23,7 +17,7 @@ public class TokenGenerator {
         return generateValue(UUID.randomUUID().toString());
     }
 
-    private static final char[] hexCode = "0123456789abcdef".toCharArray();
+    private static final char[] hexCode = "0123456789abcdefghrjklmnopqrstuvwxyz".toCharArray();
 
     public static String toHexString(byte[] data) {
         if(data == null) {

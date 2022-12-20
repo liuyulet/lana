@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.modules.system.dao.SysMenuDao">
+	<insert id="userUpdateForDepart">
+		INSERT INTO sys_role_menu
+		(role_id,menu_id)
+		VALUES
+		<foreach collection ="userUpdateList" item="user" separator =",">
+			(#{roleId}, #{user})
+		</foreach >
+
+	</insert>
+
+    <delete id="deleteRolMen">
+		delete from sys_role_menu where role_id=#{roleId}
+	</delete>
+
+
+    <select id="getNavData" resultType="java.util.HashMap">
+		SELECT m.* FROM sys_menu m
+							RIGHT JOIN sys_role_menu mr ON m.menu_id = mr. menu_id
+							LEFT JOIN sys_role r ON r.role_id = mr.role_id
+							LEFT JOIN sys_user_role ur ON ur.role_id = r.role_id
+		WHERE ur.user_id= #{userid}
+		ORDER BY m.order_num ASC
+	</select>
+	<select id="getMenurole" resultType="java.util.HashMap">
+		SELECT m.id,m.role_id AS roleId, m.menu_id AS menuId FROM sys_role_menu m
+		where m.role_id = #{role}
+	</select>
+</mapper>

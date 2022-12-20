@@ -1,15 +1,10 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 
 package com.lana.modules.system.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lana.common.utils.Result;
+import com.lana.modules.system.pojo.dto.UserForDepartDTO;
+import com.lana.modules.system.pojo.dto.UserForRoleDTO;
 import com.lana.modules.system.pojo.entity.SysRoleEntity;
 import com.lana.modules.system.service.SysRoleService;
 import io.swagger.annotations.Api;
@@ -18,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,6 +60,7 @@ public class SysRoleController extends AbstractController {
     @PostMapping("/update")
     @ApiOperation(value = "修改角色", notes = "修改角色")
     public Result updateRole(@RequestBody SysRoleEntity role) {
+        role.setCreateTime(new Date());
         sysRoleService.updateById(role);
         return Result.ok();
     }
@@ -72,11 +69,26 @@ public class SysRoleController extends AbstractController {
      * 删除角色
      * @return 删除角色
      */
-    @PostMapping("/delRole")
+    @GetMapping("/delRole")
     @ApiOperation(value = "删除角色", notes = "删除角色")
-    public Result delRole(@RequestBody Long[] userIds) {
-        sysRoleService.removeByIds(Arrays.asList(userIds));
+    public Result delRole(@RequestParam Long userIds) {
+        sysRoleService.removeById(userIds);
         return Result.ok();
     }
+
+
+    /**
+     * 机构绑定人员
+     *
+     * @return 机构绑定人员
+     */
+    @ApiOperation(value = "机构绑定人员", notes = "机构绑定人员")
+    @PostMapping("/userForRole")
+    public Result userForRole(@RequestBody UserForRoleDTO userForRoleDTO) {
+        //将数据更新到用户和组织机构中间表
+        sysRoleService.userForRole(userForRoleDTO);
+        return Result.ok();
+    }
+
 
 }

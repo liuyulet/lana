@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lana.modules.system.dao.SysStepDao">
+
+    <resultMap type="com.lana.modules.system.pojo.entity.SysStep" id="SysStepMap">
+        <result property="stepId" column="step_id" jdbcType="INTEGER"/>
+        <result property="stepName" column="step_name" jdbcType="VARCHAR"/>
+        <result property="stepNum" column="step_num" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="saveSysStep" parameterType="com.lana.modules.system.pojo.entity.SysStep"
+            useGeneratedKeys="true" keyProperty="stepId" keyColumn="step_id">
+        INSERT INTO sys_step (step_name, step_num, create_user,create_time)
+        VALUES(#{sysStep.stepName}, #{sysStep.stepNum}, #{sysStep.createUser},#{sysStep.createTime});
+    </insert>
+    <insert id="savess">
+        INSERT INTO sys_step_node_user
+        (step_id,node_id,user_id)
+        VALUES
+        <foreach collection ="users" item="user" separator =",">
+            (#{stepId}, #{value},#{user})
+        </foreach >
+    </insert>
+
+    <select id="getByStep" resultType="java.util.HashMap">
+        SELECT step_node_label AS label,step_node_value AS value FROM sys_step_node WHERE step_id = #{stepId}
+    </select>
+
+    <select id="getByStepPeople" resultType="java.util.HashMap">
+        SELECT node_id AS nodeId,GROUP_CONCAT(user_id) AS userId  from  sys_step_node_user where step_id = #{stepId} GROUP BY nodeId
+    </select>
+
+    <select id="getUserId" resultType="java.lang.Long">
+        SELECT user_id FROM sys_step_node_user WHERE step_id =#{stepId} AND node_id = #{stepNode}
+    </select>
+    <delete id="delStepNode">
+        delete from sys_step_node where step_id=#{stepId}
+    </delete>
+    <delete id="delStepNodeUser">
+        delete from sys_step_node_user where step_id=#{stepId}
+    </delete>
+
+</mapper>
+

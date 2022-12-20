@@ -19,7 +19,13 @@ knife4j:
     enable: false
     username: admin
     password: 123456
-
+# minio配置
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: minioadmin
+  secretKey: Sdls1234@#
+  bucketName: data
+  httppoint: http://127.0.0.1:9000
 
 spring:
   # 环境 dev|uat|prod
@@ -37,7 +43,7 @@ spring:
   redis:
     open: false  # 是否开启redis缓存  true开启   false关闭
     database: 0
-    host: 39.98.127.246
+    host: 127.0.0.1
     port: 5419
     password: Sdls@#$2021 # 密码（默认为空）
     username: admin

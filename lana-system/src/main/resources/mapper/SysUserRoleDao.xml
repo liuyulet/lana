@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysUserRoleDao">
+    <insert id="saveUserRole">
+        insert into sys_user_role(role_id,user_id)
+        values
+        <foreach collection="userRole" item="item" separator=",">
+            (#{item},#{userId})
+        </foreach>
+    </insert>
+    <delete id="deleteByUserIdList">
+        delete from sys_user_role where user_id = #{userId}
+    </delete>
+    <delete id="deleteByUserIdLists">
+        delete from sys_user_role where user_id in
+        <foreach collection="idList" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <delete id="deleteByRoleIdList">
+        delete from sys_user_role where role_id in
+        <foreach collection="roleIdList" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getRoleIdList" resultType="long">
+        select role_id from sys_user_role where user_id = #{userId} and deleted = 0
+    </select>
+
+</mapper>

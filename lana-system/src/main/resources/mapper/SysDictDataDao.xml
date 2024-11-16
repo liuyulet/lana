@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysDictDataDao">
+
+    <select id="getLists" resultType="com.lana.system.entity.vo.result.SysDictDataResult">
+        select *
+        from sys_dict_data a
+        left join sys_dict_type d on d.id = a.dic
+        where d.deleted = 0
+        and a.deleted = 0
+        <if test="query.code != null and query.code.trim() != ''">
+            and d.`code` = #{query.code}
+        </if>
+    </select>
+</mapper>

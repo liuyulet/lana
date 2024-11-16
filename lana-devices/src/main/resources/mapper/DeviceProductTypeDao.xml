@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.device.dao.DeviceProductTypeDao">
+    <insert id="saveDeviceProtocolsMode">
+        insert into device_abutment (
+            agreement_id,
+            product_id,
+            device_type,
+            edge_id
+        )
+        values (
+               #{saveVO.agreementId},
+               #{saveVO.productTypeId},
+               #{saveVO.deviceType},
+               #{saveVO.edgeId}
+               );
+    </insert>
+    <delete id="delDeviceProtocolsMode">
+        delete from device_abutment where product_id = #{productTypeId}
+    </delete>
+
+
+    <select id="getList" resultType="com.lana.device.entity.vo.result.DeviceProductTypeResult">
+
+        SELECT
+        dpt.*,
+        da.device_type AS deviceAbutmentType
+        FROM
+        device_product_type dpt
+        LEFT JOIN device_abutment da ON dpt.id = da.product_id
+        where dpt.deleted = 0
+        <if test="params.label != null and params.label != ''">
+            and dpt.label like concat('%',#{params.label},'%')
+        </if>
+
+    </select>
+<!--    <select id="getProtocolsId" resultType="java.lang.Long">
+        select agreement_id from device_abutment where product_id = #{id}
+    </select>-->
+    <select id="getDeviceProtocolsMode" resultType="com.lana.device.entity.vo.result.ProtocolResult">
+        select id as  `value`,mqtt_name as label from protocols_mqtt where deleted = 0
+    </select>
+    <select id="getProtocolsId" resultType="com.lana.device.entity.DeviceAbutmentEntity">
+        select *
+        from device_abutment where product_id = #{id}
+    </select>
+</mapper>

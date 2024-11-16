@@ -1,0 +1,25 @@
+## script/hello.av
+
+use java.util.*;
+
+let results = new ArrayList();
+
+if (wd &gt; 80) {
+    seq.add(results, "温度大于80: " + wd);
+} else {
+    seq.add(results, "温度小于80: " + wd);
+}
+
+if (sd &gt; 60) {
+    seq.add(results, "湿度大于60: " + sd);
+} else {
+    seq.add(results, "湿度小于60: " + sd);
+}
+
+if (pm25 &gt; 750) {
+    seq.add(results, "PM2.5 大于75: " + pm25);
+} else {
+    seq.add(results, "PM2.5 小于75: " + pm25);
+}
+
+return results;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysUserDao">
+
+	<select id="getById" resultType="com.lana.system.entity.SysUserEntity">
+		select t1.*, (select t2.name from sys_org t2 where t2.id = t1.org_id) orgName from sys_user t1
+			where t1.id = #{id} and t1.deleted = 0
+	</select>
+
+
+	<select id="getLists" resultType="com.lana.system.entity.vo.result.SysUserCopyResult">
+		SELECT us.*, GROUP_CONCAT(DISTINCT ro.role_id) AS roleIdList, GROUP_CONCAT(DISTINCT rg.org_id) AS postIdList
+		FROM sys_user us
+		LEFT JOIN sys_user_role ro ON us.id = ro.user_id
+		LEFT JOIN sys_user_org rg ON us.id = rg.user_id
+		where us.deleted = 0
+			<if test="query.name != null and query.name.trim() != ''">
+				and username like concat('%',#{query.name},'%')
+			</if>
+			<if test="query.groupId != null and query.groupId != ''">
+				and rg.org_id = #{query.groupId}
+			</if>
+		GROUP BY us.id
+	</select>
+    <select id="getUSerIds" resultType="java.lang.Long">
+		SELECT
+		users.id
+		FROM
+		sys_user users
+		LEFT JOIN sys_user_org userorg ON users.id = userorg.user_id
+		where users.deleted = 0
+			<if test="subIdList != null and subIdList.size() > 0">
+				and userorg.org_id in
+				<foreach collection="subIdList" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+	</select>
+	<select id="getOnlyOrgIdList" resultType="java.lang.Long">
+		SELECT
+			users.id
+		FROM
+			sys_user users
+				LEFT JOIN sys_user_org userorg ON users.id = userorg.user_id
+		WHERE userorg.org_id = #{orgId}
+	</select>
+
+
+</mapper>

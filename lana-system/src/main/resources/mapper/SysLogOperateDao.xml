@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysLogOperateDao">
+
+    <insert id="insertTd">
+        ${sql}
+    </insert>
+
+
+    <select id="getLists" resultType="com.lana.system.entity.vo.result.SysLogOperateResult">
+        select * from  sys_log_operate where user_id = #{query.userId} ORDER BY create_time DESC
+    </select>
+
+    <select id="getListsTd" resultType="com.lana.system.entity.vo.result.SysLogOperateResult">
+        select *
+        from  sys_log_operate where user_id = #{query.userId} ORDER BY ts DESC
+    </select>
+
+
+
+</mapper>

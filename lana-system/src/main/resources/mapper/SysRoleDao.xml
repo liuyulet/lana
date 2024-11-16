@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysRoleDao">
+
+
+    <select id="getDataScopeByUserId" resultType="integer">
+        SELECT
+            MIN( role.data_scope ) AS dataScope
+        FROM
+            sys_role role,
+            sys_user_role userrole
+        WHERE
+            role.id = userrole.role_id
+          AND userrole.user_id = #{userId} and role.deleted = 0
+
+    </select>
+
+    <select id="geRoleCodeByUserId" resultType="string">
+        select t1.role_code from sys_role t1, sys_user_role t2
+        where t1.id = t2.role_id and t2.user_id = #{userId} and t1.deleted = 0 and t2.deleted = 0
+    </select>
+    <select id="getLists" resultType="com.lana.system.entity.vo.result.SysRoleResult">
+        select * from sys_role where deleted = 0
+        <if test="model.name != null and model.name.trim() != ''">
+            and name = #{model.name}
+        </if>
+        order by sort asc
+    </select>
+    <select id="getList" resultType="com.lana.system.entity.SysRoleEntity">
+        select * from sys_role where deleted = 0
+        <if test="sysRoleQuery.name != null and sysRoleQuery.name.trim() != ''">
+            and name = #{sysRoleQuery.name}
+        </if>
+    </select>
+
+    <update id="updateRole">
+        update sys_role set data_scope = #{grid} where id = #{roleid}
+    </update>
+</mapper>

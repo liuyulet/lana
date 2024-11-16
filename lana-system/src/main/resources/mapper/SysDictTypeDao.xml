@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysDictTypeDao">
+
+    <select id="getLists" resultType="com.lana.system.entity.vo.result.SysDictTypeResult">
+        select *
+        from sys_dict_type  where deleted = 0
+        <if test="query.dictName != null and query.dictName.trim() != ''">
+            and dict_name = #{query.dictName}
+        </if>
+        <if test="query.dictType != null and query.dictType.trim() != ''">
+            and dict_type = #{query.dictType}
+        </if>
+
+    </select>
+    <select id="getList" resultType="com.lana.system.entity.SysDictTypeEntity">
+        select *
+        from sys_dict_type  where deleted = 0
+    </select>
+</mapper>

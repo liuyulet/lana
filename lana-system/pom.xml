@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lana</groupId>
+        <artifactId>lana</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>lana-system</artifactId>
+    <packaging>jar</packaging>
+    <name>lana-system</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.lana</groupId>
+            <artifactId>lana-base</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,42 @@
+
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!/**/src/test/**
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+*.yml
+
+target
+log
+
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+/log.path_IS_UNDEFINED/
+logs/debug.log
+**/application.yml
+**/application-dev.yml
+**/application-prod.yml
+**/application-test.yml
+

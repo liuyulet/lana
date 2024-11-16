@@ -37,11 +37,6 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
         }
     }
 
-    /**
-     * 暂不使用
-     * @param origin
-     * @return
-     */
     private boolean isValidOrigin(String origin) {
         //   读取白名单
         String[] validDomains = WhiteListConfig.getWhiteList();

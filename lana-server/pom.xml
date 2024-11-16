@@ -20,16 +20,6 @@
             <artifactId>lana-system</artifactId>
             <version>${revision}</version>
         </dependency>
-        <dependency>
-            <groupId>com.lana</groupId>
-            <artifactId>lana-devices</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.lana</groupId>
-            <artifactId>lana-abutment</artifactId>
-            <version>${revision}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -34,36 +34,19 @@ export default {
 			get: async function(params){
 				return await http.get(this.url, params);
 			}
-		}
-
-	},
-	edges:{
-		list: {
-			url: `${config.API_URL}/devices/edgesItem/page`,
-			name: "获取边缘实例列表",
+		},
+		getDeviceProtocolsMode: {
+			url: `${config.API_URL}/abutment/mqtt/getDeviceProtocolsMode`,
+			name: "查询所属协议",
 			get: async function(params){
 				return await http.get(this.url, params);
 			}
 		},
-		save: {
-			url: `${config.API_URL}/devices/edgesItem/save`,
-			name: "新增边缘实例",
+		saveDeviceProtocolsMode: {
+			url: `${config.API_URL}/abutment/mqtt/saveDeviceProtocolsMode`,
+			name: "设备绑定协议",
 			post: async function(data){
 				return await http.post(this.url, data, {});
-			}
-		},
-		update: {
-			url: `${config.API_URL}/devices/edgesItem/update`,
-			name: "修改边缘实例",
-			post: async function(data){
-				return await http.post(this.url, data, {});
-			}
-		},
-		delete: {
-			url: `${config.API_URL}/devices/edgesItem/delete`,
-			name: "删除边缘实例",
-			get: async function(params){
-				return await http.get(this.url, params);
 			}
 		}
 	}

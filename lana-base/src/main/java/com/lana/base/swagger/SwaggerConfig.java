@@ -53,13 +53,13 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         Contact contact = new Contact();
-        contact.setName("Liuyulet");
+        contact.setName("liuyulet");
         return new OpenAPI().info(new Info()
-                .title("Lana接口文档")
-                .description("一款基于java语言的物联网云平台，用于设备接入、设备展示、设备反控等操作的平台。")
+                .title("Lana")
+                .description("Lana")
                 .contact(contact)
                 .version("1.0")
-                .termsOfService("Apache-2.0 license")
-                .license(new License().name("Apache-2.0 license").url("Not ready, please wait")));
+                .termsOfService("Not ready, please wait")
+                .license(new License().name("MIT").url("Not ready, please wait")));
     }
 }

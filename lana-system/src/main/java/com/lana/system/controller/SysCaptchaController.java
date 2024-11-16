@@ -35,8 +35,8 @@ public class SysCaptchaController {
      * @return Result<SysCaptchaResult> 返回验证码结果，其中包含验证码图片的Base64编码。
      */
     @GetMapping("/getCaptcha")
+    @Operation(summary = "验证码")
     public LanaResult<SysCaptchaResult> captcha() {
-
         // 生成并返回验证码
         return LanaResult.ok(sysCaptchaService.generate());
     }

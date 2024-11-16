@@ -2,52 +2,20 @@
 	<div class="login_bg">
 		<div class="login_adv" style="background-image: url(img/auth_banner.jpg);">
 			<div class="login_adv__title">
-				<h2>lana物联网平台</h2>
+				<h2>lana</h2>
 				<h4>{{ $t('login.slogan') }}</h4>
-				<p class="pre-line" v-text="$t('login.describe')"></p>
-				<div>
-<!-- todo 切记以下图标不可商业使用 -->
+				<p>{{ $t('login.describe') }}</p>
+<!--				<div>
 					<span>
-						<img src="img/home/springboot.png" height="50" width="50"/>
+						<el-icon><sc-icon-vue /></el-icon>
 					</span>
 					<span>
 						<el-icon class="add"><el-icon-plus /></el-icon>
 					</span>
 					<span>
-						<img src="img/home/element.png" height="50" width="50"/>
+						<el-icon><el-icon-eleme-filled /></el-icon>
 					</span>
-					<span>
-						<el-icon class="add"><el-icon-plus /></el-icon>
-					</span>
-					<span>
-						<img src="img/home/MinIO.png" height="50" width="50"/>
-					</span>
-<!--					<span>
-						<el-icon class="add"><el-icon-plus /></el-icon>
-					</span>
-					<span>
-						<img src="img/home/MinIO.png" height="50" width="50"/>
-					</span>-->
-					<span>
-						<el-icon class="add"><el-icon-plus /></el-icon>
-					</span>
-					<span>
-						<img src="img/home/Redis.png" height="50" width="50"/>
-					</span>
-					<span>
-						<el-icon class="add"><el-icon-plus /></el-icon>
-					</span>
-					<span>
-						<img src="img/home/mysql.png" height="50" width="50"/>
-					</span>
-					<span>
-						<el-icon class="add"><el-icon-plus /></el-icon>
-					</span>
-					<span>
-						<img src="img/home/TDengine.png" height="50" width="50"/>
-					</span>
-
-				</div>
+				</div>-->
 			</div>
 			<div class="login_adv__mask"></div>
 			<div class="login_adv__bottom">
@@ -182,7 +150,6 @@ export default {
 </script>
 
 <style scoped>
-.pre-line {white-space: pre-line;}
 .login_bg {width: 100%;height: 100%;background: #fff;display: flex;}
 .login_adv {width: 33.33333%;background-color: #555;background-size: cover;background-position: center center;background-repeat: no-repeat;position: relative;}
 .login_adv__title {color: #fff;padding: 40px;position: absolute;top:0px;left:0px;right: 0px;z-index: 2;}

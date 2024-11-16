@@ -48,39 +48,8 @@ export default {
 			post: async function(data){
 				return await http.post(this.url, data, {});
 			}
-		},
-		getDeviceProtocolsMode: {
-			url: `${config.API_URL}/devices/deviceProductType/getDeviceProtocolsMode`,
-			name: "查询所属协议",
-			get: async function(params){
-				return await http.get(this.url, params);
-			}
-		},
-		saveDeviceProtocolsMode: {
-			url: `${config.API_URL}/devices/deviceProductType/saveDeviceProtocolsMode`,
-			name: "设备绑定协议",
-			post: async function(data){
-				return await http.post(this.url, data, {});
-			}
 		}
 	},
-	edgesItem: {
-		saveEdgesItem: {
-			url: `${config.API_URL}/devices/edgesItem/saveDeviceEdgesItem`,
-			name: "新增边缘实例",
-			post: async function(data){
-				return await http.post(this.url, data, {});
-			}
-		},
-		updateEdgesItem: {
-			url: `${config.API_URL}/devices/edgesItem/updateDeviceEdgesItem`,
-			name: "修改边缘实例",
-			post: async function(data){
-				return await http.post(this.url, data, {});
-			}
-		}
-	},
-
 	/**
 	 * 设备类型
 	 */
@@ -120,24 +89,9 @@ export default {
 				return await http.get(this.url, params);
 			}
 		},
-
-		getContoleList: {
-			url: `${config.API_URL}/devices/deviceMode/contoleList`,
-			name: "获取设备物模型控制属性列表",
-			get: async function(params){
-				return await http.get(this.url, params);
-			}
-		},
 		saveDeviceModes: {
 			url: `${config.API_URL}/devices/deviceMode/save`,
 			name: "保存设备物模型",
-			post: async function(data){
-				return await http.post(this.url, data, {});
-			}
-		},
-		saveContoleModel: {
-			url: `${config.API_URL}/devices/deviceMode/saveContoleModel`,
-			name: "保存设备物模型控制属性默认值",
 			post: async function(data){
 				return await http.post(this.url, data, {});
 			}

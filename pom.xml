@@ -22,9 +22,6 @@
         <module>lana-server</module>
         <module>lana-base</module>
         <module>lana-system</module>
-        <module>lana-devices</module>
-        <module>lana-abutment</module>
-        <module>lana-rules</module>
     </modules>
 
 
@@ -45,12 +42,7 @@
         <okio.version>3.3.0</okio.version>
         <jsoup.version>1.16.1</jsoup.version>
         <jjwt.version>0.11.5</jjwt.version>
-        <mqtt.version>2.3.7</mqtt.version>
-        <aviator.version>5.4.3</aviator.version>
-        <caffeine.version>3.1.8</caffeine.version>
-        <commons-version>2.7.0</commons-version>
         <mybatis.spring.version>3.0.3</mybatis.spring.version>
-        <taosdata.version>3.2.5</taosdata.version>
         <transmittable.thread.local.version>2.14.2</transmittable.thread.local.version>
     </properties>
 
@@ -121,44 +113,11 @@
             </dependency>
 
             <dependency>
-                <groupId>com.taosdata.jdbc</groupId>
-                <artifactId>taos-jdbcdriver</artifactId>
-                <version>${taosdata.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-pool2</artifactId>
-                <version>${commons-version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.ben-manes.caffeine</groupId>
-                <artifactId>caffeine</artifactId>
-                <version>${caffeine.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>com.googlecode.aviator</groupId>
-                <artifactId>aviator</artifactId>
-                <version>${aviator.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
             </dependency>
-            <dependency>
-                <groupId>net.dreamlu</groupId>
-                <artifactId>mica-mqtt-client-spring-boot-starter</artifactId>
-                <version>${mqtt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.dreamlu</groupId>
-                <artifactId>mica-mqtt-server-spring-boot-starter</artifactId>
-                <version>${mqtt.version}</version>
-            </dependency>
+
             <dependency>
                 <artifactId>okio</artifactId>
                 <groupId>com.squareup.okio</groupId>

@@ -100,6 +100,7 @@
 
 
 # 图片一览
+![shouye.PNG](doc%2Fimg%2Fshouye.PNG)
 ![shouye2.PNG](doc%2Fimg%2Fshouye2.PNG)
 ![people.PNG](doc%2Fimg%2Fpeople.PNG)
 ![log.PNG](doc%2Fimg%2Flog.PNG)
@@ -109,8 +110,6 @@
 ![dict.PNG](doc%2Fimg%2Fdict.PNG)
 ![menus.PNG](doc%2Fimg%2Fmenus.PNG)
 
-![shouye.PNG](doc%2Fimg%2Fshouye.PNG)
-![shouye2.PNG](doc%2Fimg%2Fshouye2.PNG)
 ![product.png](doc%2Fimg%2Fproduct.png)
 ![productmode.png](doc%2Fimg%2Fproductmode.png)
 ![device.png](doc%2Fimg%2Fdevice.png)

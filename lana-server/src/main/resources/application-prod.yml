@@ -1,0 +1,126 @@
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    custom-code: 500
+    enable-footer-custom: false
+    language: zh_cn
+springdoc:
+  # 默认是false，需要设置为true
+  default-flat-param-object: true
+# 文件存储
+storage:
+  minio:
+    access-key: Y2j5CZqWVsyWsvkTYR
+    secret-key: ro2TfKWjV07JrbuOTXBhT1XEq0Rqp5P
+    end-point: http://127.0.0.1:9000
+    bucket-name: dev
+spring:
+  # 是否开启登录验证码
+  captchaEnabled: true
+  # 数据库连接信心
+  data:
+    redis:
+      database: 1
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+      #timeout: 6000ms  # 连接超时时长（毫秒）
+      stream:
+        core-pool-size: 3 #处理逻辑时线程池的核心线程数
+        max-pool-size: 3  #线程池最大线程数
+        queue-capacity: 500 # 队列容量，默认：500
+        batch-size: 40    #批量消费数量(一次最多获取多少条消息)
+        poll-timeout-seconds: 3 # Stream中没有消息时，等待时间
+        streams:          # 环境运行的时候，请一定要先创建好对应的stream；todo 待优化：为了兼容后面的数据量的问题，可能回增加多级stream，然后创建多级消费者进行处理。不过需要建立完善的监测机制。（比如：二级队列、三级队列等。但是需要考虑到实时性的问题）
+          - name: lana:stream:topic-ruleo  # 设备规则处理stream1
+            group: group-rule1
+          - name: lana:stream:topic-rulet  # 设备规则处理stream2
+            group: group-rule2
+          - name: lana:stream:topic-rulej  # 定时规则处理stream
+            group: group-rulejob
+  datasource:
+    dynamic:
+      hikari: # Hikari 连接池全局配置
+        connection-timeout: 30000     # 等待连接池分配链接的最大时长（毫秒），超过这个时长还没有可用的连接则发生 SQLException，默认：30 秒
+        minimum-idle: 2               # 最小空闲连接数
+        maximum-pool-size: 10         # 最大连接数
+        idle-timeout: 600000          # 连接超时的最大时长（毫秒），超时则被释放（retired），默认：10 分钟
+        max-lifetime: 1800000         # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认： 30 分钟
+        connection-test-query: SELECT 1
+      primary: mysql
+      datasource:
+        mysql:
+          # MySQL8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/lana-boot?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+          username: root
+          password: 123456
+          # TDengine
+        tdengine:
+          #原生链接，需要配置客户端
+          #driver-class-name: com.taosdata.jdbc.TSDBDriver
+          #url: jdbc:TAOS://12am.cn:6041/lana?charset=UTF-8&locale=en_US.UTF-8&timezone=UTC-8
+          #REST 连接
+          driver-class-name: com.taosdata.jdbc.rs.RestfulDriver
+          url: jdbc:TAOS-RS://127.0.0.1:6041/lana?charset=UTF-8&locale=en_US.UTF-8&timezone=UTC-8
+          username: root
+          password: 123456
+
+mqtt:
+  mqtt-message:                # 服务端配置
+    core-size:  2              #  线程池核心线程数
+    queue-capacity: 500        # 队列容量，默认：500
+  server:
+    enabled: true               # 是否开启服务端，默认：true
+    ip: 0.0.0.0            # 服务端 ip 默认为0.0.0.0,即系统所在ip
+    port: 8883                 # 端口，默认：1883
+    name: Mica-Mqtt-Server      # 名称，默认：Mica-Mqtt-Server
+    heartbeat-timeout: 120000   # 心跳超时，单位毫秒，默认: 1000 * 120
+    read-buffer-size: 8KB       # 接收数据的 buffer size，默认：8k
+    max-bytes-in-message: 10MB  # 消息解析最大 bytes 长度，默认：10M
+    auth:
+      enable: true              # 是否开启 mqtt 认证
+      username: admin            # mqtt 认证用户名
+      password: admin1234           # mqtt 认证密码
+    debug: false                # 如果开启 prometheus 指标收集建议关闭
+    stat-enable: false          # 开启指标收集，debug 和 prometheus 开启时需要打开，默认开启，关闭节省内存
+    proxy-protocol-enable: false   # 代理协议支持，nginx 可开启 tcp proxy_protocol on; 时转发源 ip 信息。2.4.1 版本开始支持
+    web-port: 8083             # http、websocket 端口，默认：8083
+    websocket-enable: false      # 是否开启 websocket，默认： true
+    http-enable: false           # 是否开启 http api，默认： false
+    http-basic-auth:
+      enable: false              # 是否开启 http basic auth，默认： false
+      username: admin            # http basic auth 用户名
+      password: admin1234            # http basic auth 密码
+    ssl:                        # mqtt tcp ssl 认证
+      enabled: false            # 是否开启 ssl 认证，2.1.0 开始支持双向认证
+      keystore-path:            # 必须参数：ssl keystore 目录，支持 classpath:/ 路径。
+      keystore-pass:            # 必选参数：ssl keystore 密码
+      truststore-path:          # 可选参数：ssl 双向认证 truststore 目录，支持 classpath:/ 路径。
+      truststore-pass:          # 可选参数：ssl 双向认证 truststore 密码
+      client-auth: none         # 是否需要客户端认证（双向认证），默认：NONE（不需要），REQUIRE（需要）
+    linkType: 0                 # 连接server broker 的方式，默认 0：mqtt监听，1：http接口连接（开发中），2：mq队列转发（开发中）
+  client:
+    enabled: false              # 是否开启客户端，默认：true
+    ip: 127.0.0.1               # 连接的服务端 ip ，默认：127.0.0.1
+    port: 8883                 # 端口：默认：1883
+    name: Mica-Mqtt-Client      # 名称，默认：Mica-Mqtt-Client
+    client-id: ${random.uuid}   # 客户端Id（非常重要，一般为设备 sn，不可重复）
+    user-name: admin             # 认证的用户名
+    password: admin1234              # 认证的密码
+    global-subscribe:           # 全局订阅的 topic，可被全局监听到，保留 session 停机重启，依然可以接受到消息。（2.2.9开始支持）
+    timeout: 5                  # 超时时间，单位：秒，默认：5秒
+    reconnect: true             # 是否重连，默认：true
+    re-interval: 5000           # 重连时间，默认 5000 毫秒
+    version: mqtt_3_1_1         # mqtt 协议版本，可选 MQTT_3_1、mqtt_3_1_1、mqtt_5，默认：mqtt_3_1_1
+    read-buffer-size: 8KB       # 接收数据的 buffer size，默认：8k
+    max-bytes-in-message: 10MB  # 消息解析最大 bytes 长度，默认：10M
+    keep-alive-secs: 60         # keep-alive 时间，单位：秒
+    clean-session: true         # mqtt clean session，默认：true
+    ssl:
+      enabled: false            # 是否开启 ssl 认证，2.1.0 开始支持双向认证
+      keystore-path:            # 可选参数：ssl 双向认证 keystore 目录，支持 classpath:/ 路径。
+      keystore-pass:            # 可选参数：ssl 双向认证 keystore 密码
+      truststore-path:          # 可选参数：ssl 双向认证 truststore 目录，支持 classpath:/ 路径。
+      truststore-pass:          # 可选参数：ssl 双向认证 truststore 密码

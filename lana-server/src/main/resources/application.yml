@@ -1,0 +1,108 @@
+# Tomcat
+server:
+  port: 8888
+  servlet:
+    context-path: /lana
+    session:
+      cookie:
+        http-only: true
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  application:
+    name: lana
+  jackson:
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 400MB
+      max-request-size: 400MB
+  # 任务调度
+  quartz:
+    # 任务存储类型
+    job-store-type: "jdbc"
+    # 关闭时等待任务完成
+    wait-for-jobs-to-complete-on-shutdown: false
+    # 是否覆盖已有的任务
+    overwrite-existing-jobs: true
+    # 是否自动启动计划程序
+    auto-startup: true
+    # 延迟启动
+    startup-delay: 0s
+    jdbc:
+      # 数据库架构初始化模式（never：从不进行初始化；always：每次都清空数据库进行初始化；embedded：只初始化内存数据库（默认值））
+      initialize-schema: "never"
+    # 相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            # 调度器实例名称
+            instanceName: LanaScheduler
+            # 分布式节点ID自动生成
+            instanceId: AUTO
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            # 表前缀
+            tablePrefix: QRTZ_
+            # 是否开启集群
+            isClustered: false
+            # 数据源别名（自定义）
+            dataSource: quartz
+            # 分布式节点有效性检查时间间隔（毫秒）
+            clusterCheckinInterval: 10000
+            useProperties: false
+          # 线程池配置
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+lana:
+  version: '@project.version@'
+  security:
+    # 2小时过期
+    access-token-expire: 43200
+    # 14天过期
+    refresh-token-expire: 1209600
+    #jwt配置
+    secretKey: $qwertyuiopasdfghjklZXCVBNdsfdsfdsMOIUYTREWQdsjkfhdsklfhjsdSADSADSADsdfdsSADASDSAD #密钥
+    aseSecretKey: lanaBootIsVeryNB
+  xss:
+    enabled: true
+  #是否开启日志存储
+  logging-enabled: true
+  #每次消费mqtt数据多少条，默认20条
+  mqtt-data-queue: 100
+  #aviator规则脚本存储位置，如果不设置，则默认为当前程序运行的目录下的：/lana-rules/src/main/resources/script中
+  aviator-path:
+  #规则优先，定时：timing，监听：listening。这里要特别说明一下：如果设置为timing，则定时优先，如果是listening，则监听优先（这种情况发生在同一个设备同时属于定时、监听规则的情况下，并且在相同时间内触发，选择性的执行哪一个）
+  rule-priority: listening  #(timing\listening)
+  #rule配置
+  rule-action:
+    queue-type:  REDIS  # 队列类型(REDIS：已实现,KAFKA:暂无实现，或将放在后期)
+    core-size: 2        # 线程池大小
+    queue-capacity: 500 # 队列大小
+
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  typeAliasesPackage: com.lana.*.entity
+  global-config:
+    db-config:
+      id-type: AUTO
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    banner: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+  configuration-properties:
+    prefix:
+    blobType: BLOB
+    boolValue: TRUE

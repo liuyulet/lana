@@ -98,7 +98,8 @@
 [3.0 版本计划](doc%2Fmd%2Fthree.md)
 
 
-~~~
+
+# 图片一览
 ![shouye2.PNG](doc%2Fimg%2Fshouye2.PNG)
 ![people.PNG](doc%2Fimg%2Fpeople.PNG)
 ![log.PNG](doc%2Fimg%2Flog.PNG)
@@ -107,9 +108,7 @@
 ![post.PNG](doc%2Fimg%2Fpost.PNG)
 ![dict.PNG](doc%2Fimg%2Fdict.PNG)
 ![menus.PNG](doc%2Fimg%2Fmenus.PNG)
-~~~
 
-# 图片一览
 ![shouye.PNG](doc%2Fimg%2Fshouye.PNG)
 ![shouye2.PNG](doc%2Fimg%2Fshouye2.PNG)
 ![product.png](doc%2Fimg%2Fproduct.png)

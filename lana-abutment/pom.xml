@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lana</groupId>
+        <artifactId>lana</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>lana-abutment</artifactId>
+    <packaging>jar</packaging>
+    <name>lana-abutment</name>
+
+    <dependencies>
+
+<!--        <dependency>
+            <groupId>com.lana</groupId>
+            <artifactId>lana-rules</artifactId>
+            <version>${revision}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.lana</groupId>
+            <artifactId>lana-base</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <!--mqtt-->
+        <dependency>
+            <groupId>org.dromara.mica-mqtt</groupId>
+            <artifactId>mica-mqtt-client-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dromara.mica-mqtt</groupId>
+            <artifactId>mica-mqtt-server-spring-boot-starter</artifactId>
+        </dependency>
+
+
+
+<!--        <dependency>
+            <groupId>com.github.xingshuangs</groupId>
+            <artifactId>iot-communication</artifactId>
+            <version>1.5.3</version>
+        </dependency>-->
+
+<!--
+        // modbus-tcp
+        <dependency>
+            <groupId>com.digitalpetri.modbus</groupId>
+            <artifactId>modbus-tcp</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        // modbus-serial
+        <dependency>
+            <groupId>com.digitalpetri.modbus</groupId>
+            <artifactId>modbus-serial</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        // 西门子s7
+        <dependency>
+            <groupId>com.github.s7connector</groupId>
+            <artifactId>s7connector</artifactId>
+            <version>2.1</version>
+        </dependency>
+-->
+
+    </dependencies>
+
+
+</project>

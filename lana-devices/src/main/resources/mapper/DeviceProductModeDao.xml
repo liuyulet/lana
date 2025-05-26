@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.device.dao.DeviceProductModeDao">
+    <insert id="saveDeviceGroup">
+        insert into device_product_mode (
+            mode_name,
+            mode_signs,
+            mode_data_type,
+            mode_data_source,
+            mode_control_att,
+            mode_remark,
+            product_type_id
+        )
+        values
+        <foreach collection="saveVO.deviceProductModeListSave" item="item" separator=",">
+            (
+                #{item.modeName},
+                #{item.modeSigns},
+                #{item.modeDataType},
+                #{item.modeDataSource},
+                #{item.modeControlAtt},
+                #{item.modeRemark},
+                #{saveVO.productTypeId}
+            )
+        </foreach>
+    </insert>
+    <delete id="deleteDeviceGroup">
+        delete from device_product_mode where product_type_id = #{productTypeId}
+    </delete>
+
+    <select id="getProductModePage" resultType="com.lana.device.entity.vo.result.DeviceProductModeResult">
+        select
+            t.id ,
+            t.mode_name as modeName,
+            t.mode_signs as modeSigns,
+            t.mode_data_type as modeDataType,
+            t.mode_remark as modeRemark,
+            t.product_type_id as productTypeId
+        from device_product_mode t
+        where  t.product_type_id = #{id}
+    </select>
+</mapper>

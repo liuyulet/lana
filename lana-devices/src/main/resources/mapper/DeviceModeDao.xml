@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.device.dao.DeviceModeDao">
+
+    <insert id="saveDeviceMode">
+        insert into device_mode (
+            mode_name,
+            mode_signs,
+            mode_data_type,
+            mode_data_source,
+            mode_control_att,
+            mode_remark,
+            device_item_id
+        )
+        values
+        <foreach collection="productModeList" item="item" separator=",">
+            (
+                #{item.modeName},
+                #{item.modeSigns},
+                #{item.modeDataType},
+                1,
+                0,
+                 #{item.modeRemark},
+                 #{id}
+            )
+        </foreach>
+    </insert>
+    <insert id="saveDeviceModes">
+        insert into device_mode (
+            mode_name,
+            mode_signs,
+            mode_data_type,
+            mode_data_source,
+            mode_control_att,
+            mode_remark,
+            device_item_id,
+            defult_value
+        )
+        values
+        <foreach collection="saveVO.deviceModeListSave" item="item" separator=",">
+            (
+            #{item.modeName},
+            #{item.modeSigns},
+            #{item.modeDataType},
+            #{item.modeDataSource},
+            #{item.modeControlAtt},
+            #{item.modeRemark},
+            #{saveVO.deviceItemId},
+             #{item.defultValue}
+            )
+        </foreach>
+    </insert>
+    <insert id="createTdTable">
+        ${sql}
+    </insert>
+    <update id="saveContoleModel">
+        update device_mode
+        set
+            mode_name = #{updataVO.modeName},
+            mode_signs = #{updataVO.modeSigns},
+            mode_data_type = #{updataVO.modeDataType},
+            mode_data_source = #{updataVO.modeDataSource},
+            mode_control_att = #{updataVO.modeControlAtt},
+            mode_remark = #{updataVO.modeRemark},
+            defult_value = #{updataVO.defultValue}
+        where id = #{updataVO.id}
+    </update>
+
+    <delete id="deleteDeviceMode">
+        delete from device_mode where device_item_id = #{deviceItemId}
+    </delete>
+    <delete id="deltTable">
+        ${sql}
+    </delete>
+
+    <select id="getDeviceItemModeList" resultType="com.lana.device.entity.vo.result.DeviceModeResult">
+        select
+            t.id ,
+            t.mode_name as modeName,
+            t.mode_signs as modeSigns,
+            t.mode_data_type as modeDataType,
+            t.mode_data_source as modeDataSource,
+            t.mode_control_att as modeControlAtt,
+            t.mode_remark as modeRemark,
+            t.device_item_id as deviceItemId,
+            t.defult_value as defultValue
+        from device_mode t
+        where  t.device_item_id = #{id}
+    </select>
+    <select id="getDeviceContoleList" resultType="com.lana.device.entity.vo.result.DeviceModeResult">
+        select
+            t.id ,
+            t.mode_name as modeName,
+            t.mode_signs as modeSigns,
+            t.mode_data_type as modeDataType,
+            t.mode_data_source as modeDataSource,
+            t.mode_control_att as modeControlAtt,
+            t.mode_remark as modeRemark,
+            t.device_item_id as deviceItemId,
+            t.defult_value as defultValue
+        from device_mode t
+        where  t.device_item_id = #{id}
+          and mode_control_att = 1
+    </select>
+    <select id="getTableExists" resultType="java.lang.String">
+            ${sql}
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.device.dao.DeviceEdgesItemDao">
+    <update id="delEdgesItem">
+        update device_edges_item set deleted = 1 where edge_product_type_id = #{productTypeId}
+    </update>
+
+    <select id="getEdgesItemEdge" resultType="com.lana.device.entity.vo.result.EdgesItemDataResult">
+        SELECT pro.id AS `value`,pro.label AS label FROM device_abutment abu
+        LEFT JOIN device_product_type pro ON pro.id = abu.product_id
+        WHERE abu.device_type = 2
+        AND abu.edge_id IS NOT NULL
+    </select>
+    <select id="getDeviceEdgesItemPage" resultType="com.lana.device.entity.vo.result.DeviceEdgesItemResult">
+        select dei.*,dpt.label AS edgeProductTypeName  from device_edges_item dei
+        LEFT JOIN device_product_type dpt ON dei.edge_product_type_id = dpt.id
+        where dei.deleted = 0
+        <if test="model.name != null and model.name.trim() != ''">
+            and dei.edge_name like concat('%',#{model.name},'%')
+        </if>
+        order by dei.creator_name DESC
+    </select>
+</mapper>

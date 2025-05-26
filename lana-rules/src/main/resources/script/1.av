@@ -1,0 +1,24 @@
+let m = seq.list();
+if ((deviceId == 36 && wd > 46) && (deviceId == 36 && sd > 54)) {
+let hit = seq.map();
+seq.put(hit, "actionMap", "actionMap1747907309237");
+seq.put(hit, "message", "命中条件：空气站 的 温度 > 46 与 空气站 的 湿度 > 54");
+seq.add(m, hit);
+}
+if(deviceId == 36){
+    if(pm25 < 33){
+    let hit = seq.map();
+    seq.put(hit, "actionMap", "actionMap1747907309349");
+    seq.put(hit, "message", "命中条件：空气站 的 PM25 < 33");
+    seq.add(m, hit);
+    }
+}
+if(deviceId == 36){
+    if(sd < 37){
+    let hit = seq.map();
+    seq.put(hit, "actionMap", "actionMap1747907309349");
+    seq.put(hit, "message", "命中条件：空气站 的 湿度 < 37");
+    seq.add(m, hit);
+    }
+}
+return m;

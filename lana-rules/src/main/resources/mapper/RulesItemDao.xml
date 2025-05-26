@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.rules.dao.RulesItemDao">
+
+
+
+    <update id="deleteRulesItemNode">
+        update rules_item_node set deleted = 1 where rules_id = #{ruleId}
+    </update>
+
+
+<!--    <select id="getRules" resultType="com.lana.rules.entity.vo.result.RulesItemResult">
+        select
+            ri.id as id,
+            ri.as_name as asName,
+            ri.as_type as asType,
+            ri.as_content as asContent,
+            ri.as_path as asPath
+        from rules_device_item rdi
+        left join rules_item ri ON rdi.rules_item_id=ri.id
+        WHERE rdi.device_id = #{queryVO.deviceId}
+        and ri.deleted = 0
+    </select>-->
+    <select id="getRulesPage" resultType="com.lana.rules.entity.vo.result.RulesItemResult">
+        select
+            *
+        from rules_item where deleted = 0
+        <if test="model.name != null and model.name.trim() != ''">
+            and as_name = #{model.name}
+        </if>
+    </select>
+
+    <select id="getRulesItem" resultType="java.lang.Integer">
+        select count(id) from rules_item_node where rules_id = #{ruleId} and deleted = 0
+    </select>
+    <select id="getRulesListenDeviceIdList" resultType="com.lana.rules.entity.RulesListenDeviceIdEntity">
+        select
+            id,
+            device_id as deviceId,
+            rule_id as ruleId
+        from rules_listen_device_id
+    </select>
+
+    <select id="getRulesJobDeviceId" resultType="com.lana.rules.entity.RulesJobDeviceIdEntity">
+        select
+            id,
+            device_id as deviceId,
+            rule_id as ruleId
+        from rules_job_device_id
+    </select>
+    <select id="getRulesJobPushDevice" resultType="com.lana.rules.entity.RulesJobPushDeviceEntity">
+        select
+            id,
+            device_ids as deviceIds,
+            rule_id as ruleId
+        from rules_job_push_device
+    </select>
+    <select id="getDeviceItemIds" resultType="java.lang.Long">
+        SELECT device_item_id FROM device_control_data GROUP BY device_item_id
+    </select>
+    <select id="getDeviceControlList" resultType="com.lana.base.syshandle.entity.DeviceControl"
+            parameterType="java.lang.Long">
+    SELECT
+        id,
+        device_item_id as deviceItemId,
+        control_type as controlType,
+        control_name as controlName,
+        control_mode as controlMode,
+        control_data_type as controlDataType,
+        control_defult_value as controlDefultValue
+    FROM device_control_data
+    WHERE device_item_id = #{deviceItemId}
+    </select>
+    <select id="getDeviceModes" resultType="java.lang.Long">
+        SELECT device_item_id FROM device_mode GROUP BY device_item_id
+    </select>
+    <select id="getDeviceModeList" resultType="java.lang.String" parameterType="java.lang.Long">
+        SELECT mode_signs FROM device_mode WHERE device_item_id = #{deviceItemId}
+    </select>
+    <select id="getActionMapData" resultType="com.lana.rules.entity.RulesActionInstancEntity">
+        select
+            id,
+            ac_code as acCode,
+            ac_instancing as acInstancing,
+            rule_id as ruleId
+        from rules_action_instanc
+    </select>
+    <select id="getUnconditionalCache" resultType="com.lana.rules.entity.RulesActionInstancEntity">
+        SELECT
+            action.id,
+            action.ac_code as acCode,
+            action.ac_instancing as acInstancing,
+            action.rule_id as ruleId
+        FROM rules_item rule
+                 LEFT JOIN rules_action_instanc action ON action.rule_id = rule.id
+        WHERE rule.rule_type !=4
+    </select>
+
+
+</mapper>

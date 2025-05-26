@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.device.dao.DeviceItemDao">
+    <insert id="insertDeviceItemProduct">
+        insert into device_item_product (item_id, product_id)
+        values
+        <foreach collection="productId" item="item" separator=",">
+            (#{itemid},#{item})
+        </foreach>
+    </insert>
+    <insert id="createTdTable">
+        ${sql}
+    </insert>
+
+    <delete id="deleteDeviceItemProduct">
+        delete from device_item_product where item_id = #{itemid}
+    </delete>
+
+
+    <select id="getDeviceItemPage" resultType="com.lana.device.entity.vo.result.DeviceItemGetResult">
+        select
+            d.id,
+            d.name,
+            d.device_number as deviceNumber,
+            d.status,
+            d.remark,
+            d.imgs,
+            d.product_type_id as productTypeId,
+            d.product_type_show AS productTypeShow,
+            d.create_time as createTime,
+            d.update_time as updateTime,
+            d.creator_name as creatorName,
+            d.updater_name as updaterName
+        from device_item d
+        where d.deleted = 0
+        <if test="query.name != null and query.name.trim() != ''">
+            and d.name like concat('%',#{query.name},'%')
+        </if>
+        <if test="query.groupId != null and query.groupId != ''">
+            and FIND_IN_SET(#{query.groupId}, d.product_type_show) > 0
+        </if>
+    </select>
+    <select id="groupDeviceItemList" resultType="com.lana.device.entity.vo.result.GroupDeviceItemResult">
+        select
+        d.id,
+        d.name,
+        d.imgs,
+        d.device_number as deviceNumber,
+        d.status,
+        d.remark,
+        t.label AS productTypeName,
+        d.create_time as createTime,
+        d.creator_name as creatorName
+        from device_item d
+        LEFT JOIN device_product_type t ON d.product_type_id = t.id
+        LEFT JOIN device_item_group g ON g.device_item_id = d.id
+        WHERE d.deleted = 0
+        AND (g.device_group_id IS NULL OR g.device_group_id != #{groupId})
+
+    </select>
+
+
+    <select id="groupDeviceItemPage" resultType="com.lana.device.entity.vo.result.GroupDeviceItemResult">
+        select
+        d.id,
+        d.name,
+        d.imgs,
+        d.device_number as deviceNumber,
+        d.status,
+        d.remark,
+        t.label AS productTypeName,
+        d.create_time as createTime,
+        d.creator_name as creatorName
+        from device_item d
+        LEFT JOIN device_product_type t ON d.product_type_id = t.id
+        LEFT JOIN device_item_group g ON g.device_item_id = d.id
+        WHERE d.deleted = 0
+        <if test="query.groupId != null and query.groupId != ''">
+            and g.device_group_id =  #{query.groupId}
+        </if>
+
+    </select>
+    <select id="getByDeviceType" resultType="java.lang.Long">
+        SELECT
+            count( id )  AS num
+        FROM
+            device_item
+        WHERE
+            product_type_id = 2 and deleted = 0
+    </select>
+</mapper>

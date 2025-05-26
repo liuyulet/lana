@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.rules.dao.DataAnalysisDao">
+<!--    <insert id="save">
+INSERT INTO sbSB32 USING airdetection TAGS (SB32) VALUES('2024-09-13T16:10:21.531597900',70,80,80)
+        INSERT INTO d32 USING airdetection TAGS (32) VALUES ('2018-10-03 15:38:05',15,16,17)
+        INSERT INTO d32 USING airdetection TAGS (32) VALUES(2024-09-12T18:39:31.778733700,20,20,50)
+
+        测试mqtt发送：
+        {
+          "temperature":70,
+          "humidity":80,
+          "pm25":80
+        }
+
+    </insert>-->
+
+    <insert id="save">
+        ${sql}
+    </insert>
+    <select id="getDeviceControlList" resultType="com.lana.rules.entity.DeviceControlEntity">
+        SELECT
+        controls.id,
+        items.`name` AS deviceItemName,
+        controls.device_item_id AS deviceItemId,
+        controls.control_name AS controlName,
+        controls.control_mode AS controlMode,
+        controls.control_defult_value AS controlDefultValue
+        FROM `device_control_data` controls
+        LEFT JOIN device_item items ON controls.device_item_id = items.id
+        where controls.id IN
+        <foreach collection="longs" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

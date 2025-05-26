@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysOrgDao">
+
+	<select id="getList" resultType="com.lana.system.entity.vo.result.SysOrgResult">
+		select *,name as label from sys_org where deleted = 0
+		 <if test="params.name != null and params.name != ''">
+			 and name like concat('%',#{params.name},'%')
+		 </if>
+		 order by sort asc
+	</select>
+
+	<select id="getIdAndPidList" resultType="com.lana.system.entity.SysOrgEntity">
+		select id, pid from sys_org where deleted = 0
+	</select>
+    <select id="getByUserId" resultType="java.lang.Long">
+		SELECT
+			so.id
+		FROM
+			sys_user_org suo
+				LEFT JOIN sys_org so ON suo.org_id = so.id
+		WHERE
+			suo.user_id = #{userId}
+		  AND NOT EXISTS (SELECT 1 FROM sys_org so2 WHERE so2.pid = so.id)
+	</select>
+
+</mapper>

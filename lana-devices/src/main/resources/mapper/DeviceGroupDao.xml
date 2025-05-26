@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.device.dao.DeviceGroupDao">
+    <insert id="saveBindingDevice">
+        insert into device_item_group (device_group_id, device_item_id)
+        values
+        <foreach collection="saveVO.deviceIds" item="item" separator=",">
+            (#{saveVO.groupId},#{item})
+        </foreach>
+    </insert>
+    <delete id="deleteBindingDevice">
+        delete from device_item_group where device_group_id = #{updateVo.groupId} and device_item_id = #{updateVo.deviceId}
+    </delete>
+
+    <select id="getDeviceGroupPage" resultType="com.lana.device.entity.vo.result.DeviceGroupResult">
+        select * from device_group where deleted = 0
+        <if test="model.name != null and model.name.trim() != ''">
+            and name like concat('%',#{model.name},'%')
+        </if>
+        order by sort asc
+    </select>
+    <select id="getDeviceGroupList" resultType="com.lana.device.entity.vo.result.DeviceGroupListResult">
+        select id,`name` as label from device_group where deleted = 0
+    </select>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.rules.dao.RulesItemNodeDao">
+
+    <insert id="addAc">
+        insert into rules_action_instanc (ac_code,ac_instancing,rule_id)
+        values (#{acCode},#{acInstancing},#{ruleId})
+    </insert>
+
+    <delete id="deleteAc" parameterType="long">
+        delete from rules_action_instanc where rule_id=#{rulesId}
+    </delete>
+
+    <select id="getacCodes" resultType="java.lang.String">
+        select ac_code from rules_action_instanc where rule_id=#{rulesId}
+    </select>
+
+    <insert id="addRulesJobDeviceId">
+
+        insert into rules_job_device_id (device_id,rule_id)
+        values
+        <foreach collection="deviceIdList" item="item" separator=",">
+            (#{item},#{rulesId})
+        </foreach>
+
+    </insert>
+
+    <delete id="delRulesJobDeviceId">
+        delete from rules_job_device_id where rule_id= #{rulesId}
+    </delete>
+
+
+    <delete id="delRulesJobPushDevice">
+        delete from rules_job_push_device where rule_id= #{rulesId}
+    </delete>
+
+    <insert id="addRulesJobPushDevice">
+        insert into rules_job_push_device (device_ids,rule_id)
+        values (#{deviceIds},#{rulesId})
+    </insert>
+
+
+    <insert id="addRulesListenDeviceId">
+        insert into rules_listen_device_id (device_id,rule_id)
+        values
+        <foreach collection="timeDeviceIdList" item="item" separator=",">
+            (#{item},#{rulesId})
+        </foreach>
+    </insert>
+    <delete id="delRulesListenDeviceId">
+        delete from rules_listen_device_id where rule_id= #{rulesId}
+    </delete>
+
+</mapper>

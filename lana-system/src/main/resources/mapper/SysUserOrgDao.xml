@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.system.dao.SysUserOrgDao">
+
+    <insert id="saveUserOrg">
+        insert into sys_user_org(user_id, org_id) values
+        <foreach collection="userOrg" item="item" separator=",">
+            (#{userId}, #{item})
+        </foreach>
+    </insert>
+    <delete id="deleteByUserIdLists">
+        delete from sys_user_org where user_id in
+        <foreach collection="idList" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <delete id="deleteByUserIdList">
+        delete from sys_user_org where user_id = #{userId}
+    </delete>
+</mapper>

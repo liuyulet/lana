@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lana.abutment.mqtthandle.dao.ProtocolsMqttDao">
+    <insert id="insertProtocol">
+        INSERT INTO protocols_mqtt (
+                ip,
+            mqtt_name,
+            mqtt_type,
+            tcp_port,
+            websocket_port,
+            auth_enable,
+            username,
+            password,
+            http_enable,
+            http_basic_auth,
+            http_basic_username,
+            http_basic_password,
+            ssl_enabled,
+            keystore_path,
+            keystore_pass,
+            client_auth,
+            truststore_path,
+            truststore_pass,
+            mqtt_enabled,
+            link_type,
+            deleted,
+            creator,
+            create_time,
+            updater,
+            update_time,
+            creator_name,
+            updater_name
+        )
+        VALUES (
+        #{protocolsMqttUpdatate.ip},
+        #{protocolsMqttUpdatate.mqttName},
+        #{protocolsMqttUpdatate.mqttType},
+        #{protocolsMqttUpdatate.tcpPort},
+        #{protocolsMqttUpdatate.websocketPort},
+        #{protocolsMqttUpdatate.authEnable},
+        #{protocolsMqttUpdatate.username},
+        #{protocolsMqttUpdatate.password},
+        #{protocolsMqttUpdatate.httpEnable},
+        #{protocolsMqttUpdatate.httpBasicAuth},
+        #{protocolsMqttUpdatate.httpBasicUsername},
+        #{protocolsMqttUpdatate.httpBasicPassword},
+        #{protocolsMqttUpdatate.sslEnabled},
+        #{protocolsMqttUpdatate.keystorePath},
+        #{protocolsMqttUpdatate.keystorePass},
+        #{protocolsMqttUpdatate.clientAuth},
+        #{protocolsMqttUpdatate.truststorePath},
+        #{protocolsMqttUpdatate.truststorePass},
+        #{protocolsMqttUpdatate.mqttEnabled},
+        #{protocolsMqttUpdatate.linkType},
+        0,
+        1,
+        #{protocolsMqttUpdatate.createTime},
+        1,
+        #{protocolsMqttUpdatate.updateTime},
+        #{protocolsMqttUpdatate.creatorName},
+        #{protocolsMqttUpdatate.updaterName}
+        );
+    </insert>
+<!--    <insert id="initializeTdengine">
+        ${sql}
+    </insert>-->
+    <update id="updateByProtocol">
+        update protocols_mqtt set
+                ip = #{protocolsMqttUpdatate.ip},
+                mqtt_name = #{protocolsMqttUpdatate.mqttName},
+                mqtt_type = #{protocolsMqttUpdatate.mqttType},
+                tcp_port = #{protocolsMqttUpdatate.tcpPort},
+                websocket_port = #{protocolsMqttUpdatate.websocketPort},
+                auth_enable = #{protocolsMqttUpdatate.authEnable},
+                username = #{protocolsMqttUpdatate.username},
+                password = #{protocolsMqttUpdatate.password},
+                http_enable	= #{protocolsMqttUpdatate.httpEnable},
+                http_basic_auth = #{protocolsMqttUpdatate.httpBasicAuth},
+                http_basic_username	 = #{protocolsMqttUpdatate.httpBasicUsername},
+                http_basic_password	= #{protocolsMqttUpdatate.httpBasicPassword},
+                ssl_enabled = #{protocolsMqttUpdatate.sslEnabled},
+                keystore_path= #{protocolsMqttUpdatate.keystorePath},
+                keystore_pass = #{protocolsMqttUpdatate.keystorePass},
+                client_auth = #{protocolsMqttUpdatate.clientAuth},
+                truststore_path = #{protocolsMqttUpdatate.truststorePath},
+                truststore_pass = #{protocolsMqttUpdatate.truststorePass},
+                mqtt_enabled = #{protocolsMqttUpdatate.mqttEnabled},
+                link_type = #{protocolsMqttUpdatate.linkType},
+                deleted = 0,
+                creator = 1,
+                create_time = #{protocolsMqttUpdatate.createTime},
+                updater = 1,
+                update_time = #{protocolsMqttUpdatate.updateTime},
+                creator_name = #{protocolsMqttUpdatate.creatorName},
+                updater_name = #{protocolsMqttUpdatate.updaterName}
+        where id = #{protocolsMqttUpdatate.id}
+
+    </update>
+
+    <select id="getMqttGroupPage" resultType="com.lana.abutment.mqtthandle.entity.vo.result.ProtocolsMqttResult">
+        select * from protocols_mqtt where deleted = 0
+        <if test="model.name != null and model.name.trim() != ''">
+            and mqtt_name like concat('%',#{model.name},'%')
+        </if>
+        order by create_time asc
+    </select>
+
+    <select id="getMqttGroupList"
+            resultType="com.lana.abutment.mqtthandle.entity.vo.result.RuleProtocolsMqttResult">
+        select id,mqtt_name as label from protocols_mqtt where deleted = 0 order by create_time asc
+    </select>
+
+
+    <select id="getProtocolsId" resultType="java.lang.Long">
+        select agreement_id from device_abutment where product_id = #{id}
+    </select>
+    <select id="getDevicveeModeList"
+            resultType="com.lana.abutment.mqtthandle.initializer.cacheproties.DeviceItemModeCacheSave">
+        SELECT
+            device_item_id,
+            GROUP_CONCAT( mode_signs ) AS mode_signs
+        FROM
+            device_mode
+        GROUP BY
+            device_item_id
+    </select>
+
+    <!--    <select id="getTdengineTable" resultType="java.lang.Boolean">
+            SELECT table_name FROM information_schema.ins_tables WHERE db_name = 'lana' AND table_name = 'airdetectionName'
+        </select>-->
+
+
+</mapper>

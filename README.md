@@ -21,12 +21,16 @@
 ~~~
 ## 3、项目所使用的技术栈
 
+后端程序学习并参考了： [ruoyi](https://gitee.com/y_project/RuoYi)
+
+前端项目基于scui修改：[scui](https://gitee.com/lolicode/scui)
+
 
 | 序号 | 项目架构        | 架构描述                                                                                                                                                                                                                                                           | 
 |----|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | 后端          | springboot3.3 + SpringSecurity6.2 + Mybatis-Plus3.5.5 + jwt0.11 + java17  + minio8.5.1 + mysql8 + TDengine3.2 + redis7.0 + caffeine3.1.8 + knife4j4.3 + mapstruct1.5.5 + dynamic4.2 + AviatorScript5.4.3 + mica-mqtt2.4.4 |
-| 2  | 前端          | Vue3 + Element-Plus（由scui项目进行修改开发，项目地址：https://gitee.com/lolicode/scui ）                                                                                                                                                                                       |
-
+| 1  | 后端技术栈          | [springboot3.3](https://github.com/spring-projects/spring-boot) + [springSecurity6.2](https://github.com/spring-projects/spring-security) + [Mybatis-Plus3.5.5](https://github.com/baomidou/mybatis-plus) + [jwt0.11](https://github.com/jwtk/jjwt)  + [caffeine3.1.8](https://github.com/ben-manes/caffeine) + [knife4j4.3](https://github.com/xiaoymin/knife4j) + [mapstruct1.5.5](https://github.com/mapstruct/mapstruct) + [dynamic4.2](https://github.com/baomidou/dynamic-datasource) + [AviatorScript5.4.3](https://github.com/killme2008/aviatorscript) + [mica-mqtt2.4.4](https://gitee.com/dromara/mica-mqtt) |
+| 2  | 必要的服务          |  mysql8 + TDengine3.2 + redis7.0 + minio8.5.1 + jdk17 + node.js |
+| 3  | 前端技术栈          | Vue3 + Element-Plus（由[scui](https://gitee.com/lolicode/scui)项目进行修改开发）                                                                                                                                                                                       |
 
 ### 在此感谢各位大佬们、前辈们的开源！为我点燃了前进的航路！
 

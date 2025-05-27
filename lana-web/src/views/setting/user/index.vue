@@ -47,11 +47,11 @@
 						<el-table-column label="操作" fixed="right" align="right" width="250">
 							<template #default="scope">
 								<el-button-group>
-									<el-button text type="primary" size="small" @click="table_show(scope.row, scope.$index)">查看</el-button>
+									<el-button text type="primary" size="small"  @click="table_show(scope.row, scope.$index)">查看</el-button>
 									<el-button text type="primary" size="small" v-auth="'sys:user:update'" @click="table_edit(scope.row, scope.$index)">编辑</el-button>
 									<el-popconfirm title="确定删除吗？" v-auth="'sys:user:delete'" @confirm="table_del(scope.row, scope.$index)">
 										<template #reference>
-											<el-button text type="primary" size="small">删除</el-button>
+											<el-button text type="primary" v-auth="'sys:user:delete'" size="small">删除</el-button>
 										</template>
 									</el-popconfirm>
 									<el-button text type="primary" size="small" v-auth="'sys:user:password'" @click="reset_password(scope.row.id)">重置密码</el-button>

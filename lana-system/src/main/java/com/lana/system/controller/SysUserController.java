@@ -53,7 +53,7 @@ public class SysUserController {
     @GetMapping("/page")
     @Operation(summary = "分页")
     @OptLog(type = OperateTypeEnum.QUERY)
-    @PreAuthorize("hasAuthority('sys:user:page')")
+    //@PreAuthorize("hasAuthority('sys:user:page')")
     public LanaResult<LanaPage<SysUserResult>> page(@ParameterObject @Valid SysUserQuery query) {
         LanaPage<SysUserResult> lanaPage = sysUserService.page(query);
         return LanaResult.ok(lanaPage);
@@ -62,7 +62,7 @@ public class SysUserController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    @PreAuthorize("hasAuthority('sys:user:save')")
+    //@PreAuthorize("hasAuthority('sys:user:save')")
     public LanaResult<String> save(@RequestBody @Valid SysUserSave vo) {
         // 新增密码不能为空
         if (StrUtil.isBlank(vo.getPassword())) {
@@ -79,7 +79,7 @@ public class SysUserController {
     @PostMapping("/resetPassword")
     @Operation(summary = "重置为默认密码")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:user:password')")
+    //@PreAuthorize("hasAuthority('sys:user:password')")
     public LanaResult<String> password(@RequestBody @Valid SysUserPasswordResult vo) {
         SysUserEntity sysUserEntity = sysUserService.getByIdUser(vo.getId());
         sysUserEntity.setPassword(passwordEncoder.encode("123456"));
@@ -94,7 +94,7 @@ public class SysUserController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:user:update')")
+    //@PreAuthorize("hasAuthority('sys:user:update')")
     public LanaResult<String> update(@RequestBody @Valid SysUserUpdate vo) {
         // 如果密码不为空，则进行加密处理
         if (StrUtil.isBlank(vo.getPassword())) {
@@ -111,7 +111,7 @@ public class SysUserController {
     @PostMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    @PreAuthorize("hasAuthority('sys:user:delete')")
+    //@PreAuthorize("hasAuthority('sys:user:delete')")
     public LanaResult<String> delete(@RequestBody List<Long> idList) {
         Long userId = SecurityUser.getUserId();
         if (idList.contains(userId)) {

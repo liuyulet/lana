@@ -66,14 +66,14 @@ export default {
 	},
 	edgesItem: {
 		saveEdgesItem: {
-			url: `${config.API_URL}/devices/edgesItem/saveDeviceEdgesItem`,
+			url: `${config.API_URL}/devices/edgesItem/save`,
 			name: "新增边缘实例",
 			post: async function(data){
 				return await http.post(this.url, data, {});
 			}
 		},
 		updateEdgesItem: {
-			url: `${config.API_URL}/devices/edgesItem/updateDeviceEdgesItem`,
+			url: `${config.API_URL}/devices/edgesItem/update`,
 			name: "修改边缘实例",
 			post: async function(data){
 				return await http.post(this.url, data, {});

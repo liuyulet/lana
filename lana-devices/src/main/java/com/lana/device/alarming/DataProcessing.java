@@ -41,7 +41,7 @@ public class DataProcessing {
 
     @PostConstruct
     @Scheduled(fixedDelay = 10000)
-    // 设备数据存储
+    // todo 设备数据存储，近期将更换为quartz操作
     public void saveJsonToDb() {
         try {
             String key = CacheKeyBuilder.mqttScript();

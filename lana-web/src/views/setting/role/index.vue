@@ -35,7 +35,7 @@
 							<el-button text type="primary" size="small" v-auth="'sys:role:update'" @click="table_edit(scope.row, scope.$index)">编辑</el-button>
 							<el-popconfirm title="确定删除吗？" v-auth="'sys:role:delete'" @confirm="table_del(scope.row, scope.$index)">
 								<template #reference>
-									<el-button text type="primary" size="small">删除</el-button>
+									<el-button text type="primary" v-auth="'sys:role:delete'" size="small">删除</el-button>
 								</template>
 							</el-popconfirm>
 						</el-button-group>

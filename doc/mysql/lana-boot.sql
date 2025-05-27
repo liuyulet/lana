@@ -11,7 +11,7 @@
  Target Server Version : 80033 (8.0.33)
  File Encoding         : 65001
 
- Date: 26/05/2025 17:37:32
+ Date: 27/05/2025 18:11:32
 */
 
 SET NAMES utf8mb4;
@@ -241,8 +241,8 @@ CREATE TABLE `QRTZ_TRIGGERS`  (
 -- ----------------------------
 -- Records of QRTZ_TRIGGERS
 -- ----------------------------
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始14', 'lana_trigger_group', '开始14', 'lana_job_group', NULL, 1748252220000, 1748252160000, 5, 'WAITING', 'CRON', 1748245307000, 0, NULL, 0, '');
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始3', 'lana_trigger_group', '开始3', 'lana_job_group', NULL, 1748253600000, 1748250000000, 5, 'WAITING', 'CRON', 1747907333000, 0, NULL, 0, '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始14', 'lana_trigger_group', '开始14', 'lana_job_group', NULL, 1748340720000, 1748340660000, 5, 'WAITING', 'CRON', 1748245307000, 0, NULL, 0, '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始3', 'lana_trigger_group', '开始3', 'lana_job_group', NULL, 1748343600000, 1748340000000, 5, 'WAITING', 'CRON', 1747907333000, 0, NULL, 0, '');
 
 -- ----------------------------
 -- Table structure for device_abutment
@@ -255,14 +255,14 @@ CREATE TABLE `device_abutment`  (
   `device_type` int NULL DEFAULT NULL COMMENT '设备接入的方式，1直链设备，2边缘计算设备，3边缘计算子设备',
   `edge_id` bigint NULL DEFAULT NULL COMMENT '如果是边缘子设备，则这里就是关联的边缘计算产品实例的id；如果是边缘计算，这里就是边缘计算的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '接入管理' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '接入管理' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of device_abutment
 -- ----------------------------
-INSERT INTO `device_abutment` VALUES (45, 1, 1, 2, 9);
 INSERT INTO `device_abutment` VALUES (46, 1, 2, 3, 1);
 INSERT INTO `device_abutment` VALUES (47, 1, 3, 1, NULL);
+INSERT INTO `device_abutment` VALUES (50, 1, 1, 2, 10);
 
 -- ----------------------------
 -- Table structure for device_control_data
@@ -327,13 +327,14 @@ CREATE TABLE `device_edges_item`  (
   `creator_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人，格式：[姓名:账号]',
   `updater_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改人，格式：[姓名:账号]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '边缘计算实体' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '边缘计算实体' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of device_edges_item
 -- ----------------------------
 INSERT INTO `device_edges_item` VALUES (7, 'zhgd', '智慧工地边缘计算设备', NULL, 'miyaokey', 'miyaoid', '12', '12', '1', 1, 1, '2024-11-12 20:17:27', 1, '2024-11-12 20:17:27', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `device_edges_item` VALUES (9, 'zhgd', '智慧工地边缘计算设备', NULL, 'miyaokey', 'miyaoid', '12', '12', '1', 0, 1, '2024-11-12 20:51:44', 1, '2024-11-12 20:51:44', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `device_edges_item` VALUES (9, 'zhgd', '智慧工地边缘计算设备', NULL, 'miyaokey', 'miyaoid', '12', '12', '1', 1, 1, '2024-11-12 20:51:44', 1, '2024-11-12 20:51:44', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `device_edges_item` VALUES (10, 'q', 'q', NULL, 'q', '1', '1', '1', '1', 0, 1, '2025-05-27 16:32:59', NULL, NULL, '[超级管理员:admin]', NULL);
 
 -- ----------------------------
 -- Table structure for device_group
@@ -594,7 +595,7 @@ CREATE TABLE `protocols_mqtt`  (
 -- ----------------------------
 -- Records of protocols_mqtt
 -- ----------------------------
-INSERT INTO `protocols_mqtt` VALUES (1, '0.0.0.0', 'Lana-Mqtt-Server', 1, '18883', '18083', 1, 'lanaMqttIsNB!%#...', 'lanaMqttIsNB!%#...', 0, 0, 'lanaMqttIsNB!%#...', 'lanaMqttIsNB!%#...', 0, '', '', 'none', '', '', 1, '0', 0, 1, '2025-05-26 17:17:12', 1, '2025-05-26 17:17:12', '系统初始化', '系统初始化');
+INSERT INTO `protocols_mqtt` VALUES (1, '0.0.0.0', 'Lana-Mqtt-Server', 1, '18883', '18083', 1, 'lanaMqttIsNB!%#...', 'lanaMqttIsNB!%#...', 0, 0, 'lanaMqttIsNB!%#...', 'lanaMqttIsNB!%#...', 0, '', '', 'none', '', '', 1, '0', 0, 1, '2025-05-27 15:08:52', 1, '2025-05-27 15:08:52', '系统初始化', '系统初始化');
 INSERT INTO `protocols_mqtt` VALUES (2, '12am.cn', '其他emqx代理', 2, '1884', '8084', 1, 'admin', 'admin1234!@#$', 0, NULL, '', '', 0, '', '', 'NONE', '', '', 0, '0', 1, 1, '2024-12-03 16:51:28', 1, '2024-09-04 18:21:41', '[超级管理员:admin]', '[超级管理员:admin]');
 
 -- ----------------------------
@@ -922,7 +923,7 @@ CREATE TABLE `sys_menus`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `creator_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人，格式：[姓名:账号]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 242 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 253 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menus
@@ -931,7 +932,7 @@ INSERT INTO `sys_menus` VALUES (75, NULL, 'home', '/home', 'home', NULL, NULL, N
 INSERT INTO `sys_menus` VALUES (76, 75, 'dashboard', '/dashboard', 'home', NULL, NULL, NULL, 2, 1, '[超级管理员:admin]', 0, '控制台', NULL, NULL, 'el-icon-menu', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2024-05-10 23:26:08', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (77, 75, 'userCenter', '/usercenter', 'userCenter', NULL, NULL, NULL, 3, 1, '[超级管理员:admin]', 0, '帐号信息', NULL, NULL, 'el-icon-avatar', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2024-05-09 10:09:43', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (78, NULL, 'setting', '/setting', 'setting', NULL, NULL, NULL, 2, 1, '[超级管理员:admin]', 0, '系统设置', NULL, NULL, 'el-icon-setting', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:08:42', 1, '2024-05-09 10:03:51', '[超级管理员:admin]');
-INSERT INTO `sys_menus` VALUES (79, 78, 'log', '/setting/log', 'setting/log', NULL, NULL, NULL, 9, 1, '[超级管理员:admin]', 0, '日志管理', NULL, NULL, 'el-icon-user', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2024-05-09 10:04:54', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (79, 78, 'logs', '/setting/logs', 'setting/logs', NULL, NULL, NULL, 9, 1, '[超级管理员:admin]', 0, '日志管理', NULL, NULL, 'el-icon-user', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2025-05-27 15:24:33', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (80, 78, 'user', '/setting/user', 'setting/user', NULL, NULL, NULL, 1, 1, '[超级管理员:admin]', 0, '用户管理', NULL, NULL, 'el-icon-user', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2024-05-09 10:04:54', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (81, 78, 'role', '/setting/role', 'setting/role', NULL, NULL, NULL, 2, 1, '[超级管理员:admin]', 0, '角色管理', NULL, NULL, 'el-icon-operation', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2024-05-09 10:06:57', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (82, 78, 'dept', '/setting/dept', 'setting/dept', NULL, NULL, NULL, 3, 1, '[超级管理员:admin]', 0, '部门管理', NULL, NULL, 'sc-icon-organization', NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-03 17:30:09', 1, '2024-05-09 10:08:11', '[超级管理员:admin]');
@@ -973,13 +974,13 @@ INSERT INTO `sys_menus` VALUES (213, 81, 'role.save', '', '', NULL, 'sys:role:sa
 INSERT INTO `sys_menus` VALUES (214, 81, 'role.update', '', '', NULL, 'sys:role:update', 'api/sys/role/update', NULL, 1, '[超级管理员:admin]', 0, '修改', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (215, 81, 'role.delete', '', '', NULL, 'sys:role:delete', 'api/sys/role/delete', NULL, 1, '[超级管理员:admin]', 0, '删除', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (216, 81, 'role.page', '', '', NULL, 'sys:role:page', 'api/sys/role/page', NULL, 1, '[超级管理员:admin]', 0, '列表', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
-INSERT INTO `sys_menus` VALUES (217, 80, 'user.page', '', '', NULL, 'sys:user:page', 'api/sys/user/page', NULL, 1, '[超级管理员:admin]', 0, '保存', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (217, 80, 'user.page', '', '', NULL, 'sys:user:page', 'api/sys/user/page', NULL, 1, '[超级管理员:admin]', 0, '保存用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2025-05-27 15:36:04', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (218, 81, 'role.roleLinkMenus', '', '', NULL, 'sys:role:roleLinkMenus', 'api/sys/role/roleLinkMenus', NULL, 1, '[超级管理员:admin]', 0, '权限设置', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (219, 80, 'user.save', '', '', NULL, 'sys:user:save', 'api/sys/user/save', NULL, 1, '[超级管理员:admin]', 0, '新增用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (220, 80, 'user.update', '', '', NULL, 'sys:user:update', 'api/sys/user/update', NULL, 1, '[超级管理员:admin]', 0, '修改用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (221, 80, 'user.delete', '', '', NULL, 'sys:user:delete', 'api/sys/user/delete', NULL, 1, '[超级管理员:admin]', 0, '删除用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
-INSERT INTO `sys_menus` VALUES (222, 80, 'user.resetPassword', '', '', NULL, 'sys:user:password', 'api/sys/user/resetPassword', NULL, 1, '[超级管理员:admin]', 0, '重置默认密码', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
-INSERT INTO `sys_menus` VALUES (223, 80, 'user.page', '', '', NULL, 'sys:user:password', 'api/sys/user/page', NULL, 1, '[超级管理员:admin]', 0, '用户列表', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (222, 80, 'user.resetPassword', '', '', NULL, 'sys:user:password', 'api/sys/user/resetPassword', NULL, 1, '[超级管理员:admin]', 0, '重置密码', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2025-05-27 15:36:17', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (223, 80, 'user.page', '', '', NULL, 'sys:user:page', 'api/sys/user/page', NULL, 1, '[超级管理员:admin]', 0, '用户列表', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2025-05-27 15:35:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (224, 83, 'dict.page', '', '', NULL, 'sys:dic:page', 'api/sys/dic/page', NULL, 1, '[超级管理员:admin]', 0, '字典子项列表', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:58:35', 1, '2024-05-08 18:00:00', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (225, 83, 'dict.save', '', '', NULL, 'sys:dic:save', 'api/sys/dic/save', NULL, 1, '[超级管理员:admin]', 0, '字典子项新增', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:58:35', 1, '2024-05-08 18:00:00', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (226, 83, 'dict.update', '', '', NULL, 'sys:dic:update', 'api/sys/dic/update', NULL, 1, '[超级管理员:admin]', 0, '字典子项修改', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:58:35', 1, '2024-05-08 18:00:00', '[超级管理员:admin]');
@@ -996,6 +997,16 @@ INSERT INTO `sys_menus` VALUES (236, 89, 'deviceGroup.page', '', '', NULL, 'devi
 INSERT INTO `sys_menus` VALUES (237, 89, 'deviceGroup.save', '', '', NULL, 'devices:deviceGroup:save', 'api/devices/deviceGroup/save', NULL, 1, '[超级管理员:admin]', 0, '新增', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (238, 89, 'deviceGroup.update', '', '', NULL, 'devices:deviceGroup:update', 'api/devices/deviceGroup/update', NULL, 1, '[超级管理员:admin]', 0, '修改', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (239, 89, 'deviceGroup.delete', '', '', NULL, 'devices:deviceGroup:delete', 'api/devices/deviceGroup/delete', NULL, 1, '[超级管理员:admin]', 0, '删除', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (243, 94, 'deviceProductType.detail', '', '', NULL, 'devices:deviceProductType:detail', 'devices/deviceProductType/detail', NULL, 1, '[超级管理员:admin]', 0, '产品详情', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 16:15:01', 1, '2025-05-27 17:07:15', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (244, 94, 'deviceProductType.model', '', '', NULL, 'devices:deviceProductType:model', 'devices/deviceProductMode/save', NULL, 1, '[超级管理员:admin]', 0, '产品详情-产品物模型修改', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 16:20:27', 1, '2025-05-27 17:07:10', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (245, 94, 'deviceProductType.abutment', '', '', NULL, 'devices:deviceProductType:abutment', 'devices/deviceProductType/abutment', NULL, 1, '[超级管理员:admin]', 0, '产品详情-接入管理', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 16:24:28', 1, '2025-05-27 17:07:02', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (246, 88, 'devices.deviceDetail', '', '', NULL, 'devices:deviceDetail:detail', 'devices/deviceDetail/detail', NULL, 1, '[超级管理员:admin]', 0, '设备详情', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:26:20', 1, '2025-05-27 17:36:51', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (247, 88, 'deviceDetail.modelSave', '', '', NULL, 'devices:deviceDetail:modelSave', 'devices/deviceDetail/modelSave', NULL, 1, '[超级管理员:admin]', 0, '设备详情-物模型-保存', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:28:30', 1, '2025-05-27 17:48:14', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (248, 88, 'deviceDetail.serveAdd', '', '', NULL, 'devices:deviceDetail:serveAdd', 'devices/deviceDetail/serveAdd', NULL, 1, '[超级管理员:admin]', 0, '设备详情-设备功能-保存', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:31:56', 1, '2025-05-27 17:33:03', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (249, 88, 'deviceDetail.serveDel', '', '', NULL, 'devices:deviceDetail:serveDel', 'devices:deviceDetail:serveDel', NULL, 1, '[超级管理员:admin]', 0, '设备详情-设备功能-删除', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:33:32', 1, '2025-05-27 17:34:16', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (250, 89, 'deviceGroup.binding', '', '', NULL, 'devices:deviceGroup:binding', 'devices/deviceGroup/binding', NULL, 1, '[超级管理员:admin]', 0, '绑定设备', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:52:54', 1, '2025-05-27 18:00:14', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (251, 89, 'deviceGroup.unbind', '', '', NULL, 'devices:deviceGroup:unbind', 'devices/deviceGroup/unbind', NULL, 1, '[超级管理员:admin]', 0, '取消绑定', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:57:46', 1, '2025-05-27 17:59:06', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (252, 89, 'deviceGroup.bindSava', '', '', NULL, 'devices:deviceGroup:bindSava', 'devices/deviceGroup/bindSava', NULL, 1, '[超级管理员:admin]', 0, '绑定设备-保存', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 18:00:46', 1, '2025-05-27 18:01:43', '[超级管理员:admin]');
 
 -- ----------------------------
 -- Table structure for sys_org
@@ -1074,67 +1085,27 @@ CREATE TABLE `sys_role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_role_id`(`role_id` ASC) USING BTREE,
   INDEX `idx_menu_id`(`menu_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 663 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 790 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES (607, 10, 75);
-INSERT INTO `sys_role_menu` VALUES (608, 10, 76);
-INSERT INTO `sys_role_menu` VALUES (609, 10, 77);
-INSERT INTO `sys_role_menu` VALUES (610, 10, 78);
-INSERT INTO `sys_role_menu` VALUES (611, 10, 80);
-INSERT INTO `sys_role_menu` VALUES (612, 10, 81);
-INSERT INTO `sys_role_menu` VALUES (613, 10, 82);
-INSERT INTO `sys_role_menu` VALUES (614, 10, 83);
-INSERT INTO `sys_role_menu` VALUES (615, 10, 85);
-INSERT INTO `sys_role_menu` VALUES (616, 10, 86);
-INSERT INTO `sys_role_menu` VALUES (617, 10, 88);
-INSERT INTO `sys_role_menu` VALUES (618, 10, 89);
-INSERT INTO `sys_role_menu` VALUES (619, 10, 90);
-INSERT INTO `sys_role_menu` VALUES (620, 10, 92);
-INSERT INTO `sys_role_menu` VALUES (621, 10, 93);
-INSERT INTO `sys_role_menu` VALUES (622, 10, 94);
-INSERT INTO `sys_role_menu` VALUES (623, 10, 95);
-INSERT INTO `sys_role_menu` VALUES (624, 10, 200);
-INSERT INTO `sys_role_menu` VALUES (625, 10, 201);
-INSERT INTO `sys_role_menu` VALUES (626, 10, 202);
-INSERT INTO `sys_role_menu` VALUES (627, 10, 203);
-INSERT INTO `sys_role_menu` VALUES (628, 10, 205);
-INSERT INTO `sys_role_menu` VALUES (629, 10, 206);
-INSERT INTO `sys_role_menu` VALUES (630, 10, 207);
-INSERT INTO `sys_role_menu` VALUES (631, 10, 208);
-INSERT INTO `sys_role_menu` VALUES (632, 10, 209);
-INSERT INTO `sys_role_menu` VALUES (633, 10, 210);
-INSERT INTO `sys_role_menu` VALUES (634, 10, 211);
-INSERT INTO `sys_role_menu` VALUES (635, 10, 212);
-INSERT INTO `sys_role_menu` VALUES (636, 10, 213);
-INSERT INTO `sys_role_menu` VALUES (637, 10, 214);
-INSERT INTO `sys_role_menu` VALUES (638, 10, 215);
-INSERT INTO `sys_role_menu` VALUES (639, 10, 216);
-INSERT INTO `sys_role_menu` VALUES (640, 10, 217);
-INSERT INTO `sys_role_menu` VALUES (641, 10, 218);
-INSERT INTO `sys_role_menu` VALUES (642, 10, 219);
-INSERT INTO `sys_role_menu` VALUES (643, 10, 220);
-INSERT INTO `sys_role_menu` VALUES (644, 10, 221);
-INSERT INTO `sys_role_menu` VALUES (645, 10, 222);
-INSERT INTO `sys_role_menu` VALUES (646, 10, 223);
-INSERT INTO `sys_role_menu` VALUES (647, 10, 224);
-INSERT INTO `sys_role_menu` VALUES (648, 10, 225);
-INSERT INTO `sys_role_menu` VALUES (649, 10, 226);
-INSERT INTO `sys_role_menu` VALUES (650, 10, 227);
-INSERT INTO `sys_role_menu` VALUES (651, 10, 228);
-INSERT INTO `sys_role_menu` VALUES (652, 10, 229);
-INSERT INTO `sys_role_menu` VALUES (653, 10, 230);
-INSERT INTO `sys_role_menu` VALUES (654, 10, 231);
-INSERT INTO `sys_role_menu` VALUES (655, 10, 232);
-INSERT INTO `sys_role_menu` VALUES (656, 10, 233);
-INSERT INTO `sys_role_menu` VALUES (657, 10, 234);
-INSERT INTO `sys_role_menu` VALUES (658, 10, 235);
-INSERT INTO `sys_role_menu` VALUES (659, 10, 236);
-INSERT INTO `sys_role_menu` VALUES (660, 10, 237);
-INSERT INTO `sys_role_menu` VALUES (661, 10, 238);
-INSERT INTO `sys_role_menu` VALUES (662, 10, 239);
+INSERT INTO `sys_role_menu` VALUES (774, 10, 75);
+INSERT INTO `sys_role_menu` VALUES (775, 10, 76);
+INSERT INTO `sys_role_menu` VALUES (776, 10, 77);
+INSERT INTO `sys_role_menu` VALUES (777, 10, 78);
+INSERT INTO `sys_role_menu` VALUES (778, 10, 80);
+INSERT INTO `sys_role_menu` VALUES (779, 10, 81);
+INSERT INTO `sys_role_menu` VALUES (780, 10, 82);
+INSERT INTO `sys_role_menu` VALUES (781, 10, 83);
+INSERT INTO `sys_role_menu` VALUES (782, 10, 85);
+INSERT INTO `sys_role_menu` VALUES (783, 10, 203);
+INSERT INTO `sys_role_menu` VALUES (784, 10, 208);
+INSERT INTO `sys_role_menu` VALUES (785, 10, 212);
+INSERT INTO `sys_role_menu` VALUES (786, 10, 216);
+INSERT INTO `sys_role_menu` VALUES (787, 10, 217);
+INSERT INTO `sys_role_menu` VALUES (788, 10, 223);
+INSERT INTO `sys_role_menu` VALUES (789, 10, 224);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1165,9 +1136,9 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', '{bcrypt}$2a$10$CeGTpWTHMcUTYYiBmA8ZHOd3lnPCuU2IRwCIsUQoUYTI1cUMq4qZ.', '超级管理员', 'http://121.5.79.252:9000/dev/20240618/08089446ef247a095eb42885453c7adc_65902.jpeg', 1, 'lyl@163.com', '13245677645', '三月来百草开 盈香满袖万物苏\n虫鸣和着欢笑 心事舒', 1, 1, 0, 10000, '2024-01-10 06:13:37', 1, '2024-11-16 18:36:52', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `sys_user` VALUES (2, 'lana', '{bcrypt}$2a$10$tYOCklSDyBDMdV1T/IGYKeS7z.f4yHn4tZnxxjtwZ1GR6jfMcyT9G', 'lana0101', 'http://121.5.79.252:9000/dev/20240903/开发迭代流程_79618.png', 2, 'lyl@163.com', '13245677646', '牛马干活\\韭菜施肥\\蘸料上色', 0, 1, 0, 10000, '2024-07-22 09:49:43', 1, '2025-04-10 16:44:15', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `sys_user` VALUES (10006, 'test', '{bcrypt}$2a$10$IjToP406QrLlpW/RpSL.RumkMqKsNUTr.4wD1wA3DeB8ImGU/e02W', '测试用户1', 'http://121.5.79.252:9000/dev/20241126/3_62705.png', NULL, NULL, NULL, NULL, 0, 1, 0, 1, '2024-11-26 17:25:34', NULL, NULL, '[超级管理员:admin]', NULL);
+INSERT INTO `sys_user` VALUES (1, 'admin', '{bcrypt}$2a$10$CeGTpWTHMcUTYYiBmA8ZHOd3lnPCuU2IRwCIsUQoUYTI1cUMq4qZ.', '超级管理员', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54870.jpg', 1, 'lyl@163.com', '13245677645', '三月来百草开 盈香满袖万物苏\n虫鸣和着欢笑 心事舒', 1, 1, 0, 10000, '2024-01-10 06:13:37', 1, '2025-05-27 15:14:33', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `sys_user` VALUES (2, 'lana', '{bcrypt}$2a$10$uQqDRj4ewO9Qo0TpX6BCWeu/TfsKL9h7jd9yuFbz.UNJNxyYqhC/K', 'lana0101', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54853.jpg', 2, 'lyl@163.com', '13245677646', '牛马干活\\韭菜施肥\\蘸料上色', 0, 1, 0, 10000, '2024-07-22 09:49:43', 1, '2025-05-27 15:33:27', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `sys_user` VALUES (10006, 'test', '{bcrypt}$2a$10$IjToP406QrLlpW/RpSL.RumkMqKsNUTr.4wD1wA3DeB8ImGU/e02W', '测试用户1', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54878.jpg', NULL, NULL, NULL, NULL, 0, 1, 1, 1, '2024-11-26 17:25:34', 1, '2025-05-27 15:33:31', '[超级管理员:admin]', '[超级管理员:admin]');
 
 -- ----------------------------
 -- Table structure for sys_user_org
@@ -1180,16 +1151,14 @@ CREATE TABLE `sys_user_org`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_user_id`(`user_id` ASC) USING BTREE,
   INDEX `idx_post_id`(`org_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户组织关系' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户组织关系' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user_org
 -- ----------------------------
-INSERT INTO `sys_user_org` VALUES (42, 1, 1);
-INSERT INTO `sys_user_org` VALUES (52, 10006, 1);
-INSERT INTO `sys_user_org` VALUES (53, 10006, 4);
-INSERT INTO `sys_user_org` VALUES (61, 2, 1);
-INSERT INTO `sys_user_org` VALUES (62, 2, 3);
+INSERT INTO `sys_user_org` VALUES (67, 1, 1);
+INSERT INTO `sys_user_org` VALUES (70, 2, 1);
+INSERT INTO `sys_user_org` VALUES (71, 2, 2);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -1202,14 +1171,13 @@ CREATE TABLE `sys_user_role`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_role_id`(`role_id` ASC) USING BTREE,
   INDEX `idx_user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户角色关系' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户角色关系' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-INSERT INTO `sys_user_role` VALUES (34, 7, 1);
-INSERT INTO `sys_user_role` VALUES (40, 10, 10006);
-INSERT INTO `sys_user_role` VALUES (44, 10, 2);
+INSERT INTO `sys_user_role` VALUES (47, 7, 1);
+INSERT INTO `sys_user_role` VALUES (49, 10, 2);
 
 -- ----------------------------
 -- Table structure for sys_user_token
@@ -1229,7 +1197,7 @@ CREATE TABLE `sys_user_token`  (
 -- ----------------------------
 -- Records of sys_user_token
 -- ----------------------------
-INSERT INTO `sys_user_token` VALUES (1, 1, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODI1MTMwNSwiZXhwIjoxNzQ4MjUxMzQ4fQ.s-MiphV6ZOt6ABSHo3lNUCrJIo8mCT8UUoyUxLtU8gA', '2025-05-27 05:21:45', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODI1MTMwNSwiZXhwIjoxNzQ4MjUyNTE0fQ.hEUYYB1IAc4sPpVmyCxJM7HqxqvA5gzP5T0KcJBPRbo', '2025-06-09 17:21:45', '2024-01-10 14:40:57');
-INSERT INTO `sys_user_token` VALUES (2, 2, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ0Mjc0NzE0LCJleHAiOjE3NDQyNzQ3NTd9.PUhslYWFmUQbP2KRZFSdgRT7iZFhBwWVeNzjtCCsUeQ', '2025-04-11 04:45:14', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ0Mjc0NzE0LCJleHAiOjE3NDQyNzU5MjN9.bo4acRKEOf6Zg_m8vsxXIuay3fT5QAqI0zJvDzwwPFQ', '2025-04-24 16:45:14', '2024-01-10 15:38:18');
+INSERT INTO `sys_user_token` VALUES (1, 1, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODM0MDM2MSwiZXhwIjoxNzQ4MzQwNDA1fQ.5OWa2kk2BzBroatq65ZtJ5AdX5DZCpRJERp5oE8Vq0E', '2025-05-28 06:06:02', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODM0MDM2MSwiZXhwIjoxNzQ4MzQxNTcxfQ.E2zGnSrEnEQ0AhrMBn1ZL97FTXPw1D0ZV_bmUr5-14I', '2025-06-10 18:06:02', '2024-01-10 14:40:57');
+INSERT INTO `sys_user_token` VALUES (2, 2, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ4MzMyNDY1LCJleHAiOjE3NDgzMzI1MDh9.KSuhb99Fs5qzXmrrpmncPCO3e_fJquSkxptQBurK1p0', '2025-05-28 03:54:26', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ4MzMyNDY1LCJleHAiOjE3NDgzMzM2NzV9.9fefnKfrCDVTYT8pW_rMrbJm2f_5fUp5cnzmfcydyPo', '2025-06-10 15:54:26', '2024-01-10 15:38:18');
 
 SET FOREIGN_KEY_CHECKS = 1;

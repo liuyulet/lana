@@ -39,7 +39,7 @@
 		</el-container>
 		<template #footer>
 			<el-button @click="visible=false" >取 消</el-button>
-			<el-button v-if="mode!='show'" type="primary" :loading="isSaveing" @click="submit()">保 存</el-button>
+			<el-button v-if="mode!='show'" type="primary" :loading="isSaveing" v-auth="'devices:deviceGroup:bindSava'" @click="submit()">保 存</el-button>
 		</template>
 	</sc-dialog>
 </template>

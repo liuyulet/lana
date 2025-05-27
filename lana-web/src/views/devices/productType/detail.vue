@@ -32,7 +32,7 @@
 						</sc-form-table>
 						<dev  class="custom-margin-top align-right">
 							<el-button @click="resetForm">重置</el-button>
-							<el-button type="primary" @click="saveProductTypeMode">保存</el-button>
+							<el-button type="primary" v-auth="'devices:deviceProductType:model'" @click="saveProductTypeMode">保存</el-button>
 						</dev>
 					</el-form>
 				</el-card>
@@ -125,13 +125,13 @@
 				</el-form>
 				<!--//1:直连设备,2:边缘计算设备,3:边缘计算子设备-->
 				<dev  class="custom-margin-top align-right" v-show="abutment.link.deviceType == 1">
-					<el-button type="primary" @click="saveDevice" >保存</el-button>
+					<el-button type="primary" v-auth="'devices:deviceProductType:abutment'" @click="saveDevice" >保存</el-button>
 				</dev>
 				<dev  class="custom-margin-top align-right" v-show="abutment.link.deviceType == 2">
-					<el-button type="primary" @click="saveEdgeDevice" >保存</el-button>
+					<el-button type="primary" v-auth="'devices:deviceProductType:abutment'" @click="saveEdgeDevice" >保存</el-button>
 				</dev>
 				<dev  class="custom-margin-top align-right" v-show="abutment.link.deviceType == 3">
-					<el-button type="primary" @click="saveEdgeSubDevice" >保存</el-button>
+					<el-button type="primary" v-auth="'devices:deviceProductType:abutment'" @click="saveEdgeSubDevice" >保存</el-button>
 				</dev>
 
 			</el-tab-pane>

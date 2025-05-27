@@ -48,7 +48,7 @@ public class DeviceGroupController {
     @GetMapping("/page")
     @Operation(summary = "分页查询")
     @OptLog(type = OperateTypeEnum.QUERY)
-    @PreAuthorize("hasAuthority('devices:deviceGroup:page')")
+    //@PreAuthorize("hasAuthority('devices:deviceGroup:page')")
     public LanaResult<LanaPage<DeviceGroupResult>> getDeviceGroupPage(@ParameterObject @Valid DeviceGroupQuery query) {
         LanaPage<DeviceGroupResult> lanaPage = deviceGroupService.getDeviceGroupPage(query);
         return LanaResult.ok(lanaPage);
@@ -107,7 +107,7 @@ public class DeviceGroupController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    @PreAuthorize("hasAuthority('devices:deviceGroup:save')")
+    //@PreAuthorize("hasAuthority('devices:deviceGroup:save')")
     public LanaResult saveDeviceGroup(@RequestBody @Valid DeviceGroupSave saveVO) {
         deviceGroupService.saveDeviceGroup(saveVO);
         return LanaResult.ok();
@@ -116,7 +116,7 @@ public class DeviceGroupController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('devices:deviceGroup:update')")
+    //@PreAuthorize("hasAuthority('devices:deviceGroup:update')")
     public LanaResult<String> updateDeviceGroup(@RequestBody @Valid DeviceGroupUpdate updateVo) {
         deviceGroupService.updateDeviceGroup(updateVo);
         return LanaResult.ok();
@@ -125,7 +125,7 @@ public class DeviceGroupController {
     @GetMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    @PreAuthorize("hasAuthority('devices:deviceGroup:delete')")
+    //@PreAuthorize("hasAuthority('devices:deviceGroup:delete')")
     public LanaResult<String> deleteDeviceGroup(@RequestParam("id") List<Long> idList) {
         deviceGroupService.deleteDeviceGroup(idList);
         return LanaResult.ok();

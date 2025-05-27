@@ -37,7 +37,7 @@ public class DeviceProductTypeController {
     @GetMapping("/list")
     @Operation(summary = "列表")
     @OptLog(type = OperateTypeEnum.QUERY)
-    @PreAuthorize("hasAuthority('devices:deviceProductType:list')")
+    //@PreAuthorize("hasAuthority('devices:deviceProductType:list')")
     public LanaResult<List<DeviceProductTypeResult>> list(@ParameterObject @Valid DeviceProductTypeQuery query) {
         List<DeviceProductTypeResult> list = deviceProductTypeService.getList(query);
 
@@ -47,7 +47,7 @@ public class DeviceProductTypeController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    @PreAuthorize("hasAuthority('devices:deviceProductType:save')")
+    //@PreAuthorize("hasAuthority('devices:deviceProductType:save')")
     public LanaResult<String> save(@RequestBody @Valid DeviceProductTypeSave saveVO) {
         deviceProductTypeService.saveDeviceProductType(saveVO);
         return LanaResult.ok();
@@ -56,7 +56,7 @@ public class DeviceProductTypeController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('devices:deviceProductType:update')")
+    //@PreAuthorize("hasAuthority('devices:deviceProductType:update')")
     public LanaResult<String> update(@RequestBody @Valid DeviceProductTypeUpdate updateVO) {
         deviceProductTypeService.updateDeviceProductType(updateVO);
 
@@ -66,7 +66,7 @@ public class DeviceProductTypeController {
     @GetMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    @PreAuthorize("hasAuthority('devices:deviceProductType:delete')")
+    //@PreAuthorize("hasAuthority('devices:deviceProductType:delete')")
     public LanaResult<String> delete(@RequestParam("id") Long id) {
         deviceProductTypeService.deleteDeviceProductType(id);
 

@@ -28,7 +28,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sys/role")
 @Tag(name = "角色管理")
-public class SysRoleController {
+public class    SysRoleController {
 
     @Resource
     private SysRoleService sysRoleService;
@@ -39,7 +39,7 @@ public class SysRoleController {
     @GetMapping("/page")
     @Operation(summary = "分页")
     @OptLog(type = OperateTypeEnum.QUERY)
-    @PreAuthorize("hasAuthority('sys:role:page')")
+    //@PreAuthorize("hasAuthority('sys:role:page')")
     public LanaResult<LanaPage<SysRoleResult>> page(@ParameterObject @Valid SysRoleQuery query) {
         LanaPage<SysRoleResult> lanaPage = sysRoleService.page(query);
         return LanaResult.ok(lanaPage);
@@ -56,7 +56,7 @@ public class SysRoleController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    @PreAuthorize("hasAuthority('sys:role:save')")
+    //@PreAuthorize("hasAuthority('sys:role:save')")
     public LanaResult<String> save(@RequestBody @Valid SysRoleSave saveVO) {
         sysRoleService.save(saveVO);
         return LanaResult.ok();
@@ -65,7 +65,7 @@ public class SysRoleController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:role:update')")
+    //@PreAuthorize("hasAuthority('sys:role:update')")
     public LanaResult<String> update(@RequestBody @Valid SysRoleUpdate updateVo) {
         sysRoleService.update(updateVo);
         return LanaResult.ok();
@@ -77,7 +77,7 @@ public class SysRoleController {
     @Operation(summary = "角色绑定菜单、数据权限、首页模块权限")
     //@OperateLog(type = OperateTypeEnum.UPDATE)
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:role:roleLinkMenus')")
+    //@PreAuthorize("hasAuthority('sys:role:roleLinkMenus')")
     public LanaResult<String> roleLinkMenus(@RequestBody @Valid SysRoleMenusUpdate sysRoleMenusUpdate) {
         sysRoleService.roleLinkMenus(sysRoleMenusUpdate);
         return LanaResult.ok();
@@ -95,7 +95,7 @@ public class SysRoleController {
     @GetMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    @PreAuthorize("hasAuthority('sys:role:delete')")
+    //@PreAuthorize("hasAuthority('sys:role:delete')")
     public LanaResult<String> delete(@RequestParam("id") List<Long> idList) {
         sysRoleService.delete(idList);
 

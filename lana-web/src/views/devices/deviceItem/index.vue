@@ -57,7 +57,7 @@
 											<el-button text type="primary" v-auth="'devices:deviceItem:delete'" size="small">删除</el-button>
 										</template>
 									</el-popconfirm>
-									<el-button text type="primary" size="small"  @click="device_detil(scope.row, scope.$index)">设备详情</el-button>
+									<el-button text type="primary" size="small" v-auth="'devices:deviceDetail:detail'" @click="device_detil(scope.row, scope.$index)">设备详情</el-button>
 								</el-button-group>
 							</template>
 						</el-table-column>

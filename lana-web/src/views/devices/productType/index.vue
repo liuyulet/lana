@@ -41,14 +41,13 @@
 									<el-button text type="primary" v-auth="'devices:deviceProductType:delete'" size="small">删除</el-button>
 								</template>
 							</el-popconfirm>
-							<el-button text type="primary" size="small" @click="product_detil(scope.row, scope.$index)">产品详情</el-button>
+							<el-button text type="primary" size="small" v-auth="'devices:deviceProductType:detail'" @click="product_detil(scope.row, scope.$index)">产品详情</el-button>
 						</el-button-group>
 					</template>
 				</el-table-column>
 			</scTable>
 		</el-main>
 	</el-container>
-
 	<save-dialog v-if="dialog.save" ref="saveDialog" @success="handleSaveSuccess" @closed="dialog.save=false"></save-dialog>
 	<detail-dialog v-if="dialog.detailDialogSta" ref="detailDialog" @success="handleDetailSaveSuccess" @closed="dialog.detailDialogSta=false"></detail-dialog>
 

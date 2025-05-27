@@ -23,12 +23,4 @@ CREATE STABLE sys_log_operate (ts timestamp,
     status INT,
     real_name NCHAR(50)
     ) TAGS (user_id BIGINT);
-/*
- 创建预警超级表
-*/
 
-
-
-/*
- 创建其他消息超级表
-*/

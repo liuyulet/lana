@@ -23,7 +23,7 @@
 				</el-main>
 				<el-footer style="height:51px;">
 					<el-button type="primary" size="small" icon="el-icon-plus" v-auth="'sys:menus:save'" @click="add()"></el-button>
-					<el-button type="danger" size="small" plain icon="el-icon-delete" v-auth="'menus.delete'" @click="delMenu"></el-button>
+					<el-button type="danger" size="small" plain icon="el-icon-delete" v-auth="'sys:menus:delete'" @click="delMenu"></el-button>
 				</el-footer>
 			</el-container>
 		</el-aside>

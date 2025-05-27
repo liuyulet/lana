@@ -39,7 +39,7 @@ public class SysDictDataController {
     @GetMapping("/page")
     @Operation(summary = "分页")
     @OptLog(type = OperateTypeEnum.QUERY)
-    @PreAuthorize("hasAuthority('sys:dic:page')")
+    //@PreAuthorize("hasAuthority('sys:dic:page')")
     public LanaResult<LanaPage<SysDictDataResult>> page(@ParameterObject @Valid SysDictDataQuery query) {
         // 调用服务进行分页查询
         LanaPage<SysDictDataResult> lanaPage = sysDictDataService.page(query);
@@ -51,7 +51,7 @@ public class SysDictDataController {
     @PostMapping("/saveDicData")
     @Operation(summary = "新增")
     @OptLog(type = OperateTypeEnum.INSERT)
-    @PreAuthorize("hasAuthority('sys:dic:save')")
+    //@PreAuthorize("hasAuthority('sys:dic:save')")
     public LanaResult<String> save(@RequestBody @Valid SysDictDataSave saveVO) {
         sysDictDataService.save(saveVO);
         return LanaResult.ok();
@@ -66,7 +66,7 @@ public class SysDictDataController {
     @PostMapping("/updateDicData")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:dic:update')")
+    //@PreAuthorize("hasAuthority('sys:dic:update')")
     public LanaResult<String> update(@RequestBody @Valid SysDictDataUpdate uodateVO) {
         SysDictDataEntity entity = SysDictDataConvert.INSTANCE.convert(uodateVO);
         sysDictDataService.updateById(entity);
@@ -76,7 +76,7 @@ public class SysDictDataController {
     @GetMapping("/deletDicData")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    @PreAuthorize("hasAuthority('sys:dic:delete')")
+    //@PreAuthorize("hasAuthority('sys:dic:delete')")
     public LanaResult<String> delete(@RequestParam("id") Long id) {
         // 调用服务层方法，执行删除操作
         sysDictDataService.removeById(id);

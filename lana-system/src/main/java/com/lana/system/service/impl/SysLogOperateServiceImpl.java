@@ -71,9 +71,10 @@ public class SysLogOperateServiceImpl extends BaseServiceImpl<SysLogOperateDao, 
     }
 
 
-    // todo 后期基于修改为Quartz
+
     @PostConstruct
     @Scheduled(fixedDelay = 10000)
+    // todo 近期将更换为quartz操作
     public void saveLog() {
         if (loggingEnabled) {
             try {

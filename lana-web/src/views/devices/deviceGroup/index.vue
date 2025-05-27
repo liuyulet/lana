@@ -42,7 +42,7 @@
 											<el-button text type="primary" size="small">删除</el-button>
 										</template>
 									</el-popconfirm>
-									<el-button text type="primary" size="small" @click.stop="device_binding(scope.row, scope.$index)">绑定设备</el-button>
+									<el-button text type="primary" size="small" v-auth="'devices:deviceGroup:binding'" @click.stop="device_binding(scope.row, scope.$index)">绑定设备</el-button>
 								</el-button-group>
 							</template>
 						</el-table-column>
@@ -79,7 +79,7 @@
 					<el-table-column label="操作"  width="100">
 						<template #default="scope">
 							<el-button-group>
-								<el-button text type="primary" size="small" v-show="this.groupId!=null" @click.stop="device_un_binding(scope.row, scope.$index)">取消绑定</el-button>
+								<el-button text type="primary" size="small" v-show="this.groupId!=null" v-auth="'devices:deviceGroup:unbind'" @click.stop="device_un_binding(scope.row, scope.$index)">取消绑定</el-button>
 							</el-button-group>
 						</template>
 					</el-table-column>

@@ -45,7 +45,7 @@
 				</sc-form-table>
 				<div class="custom-margin-top align-right">
 					<el-button @click="resetForm">重置</el-button>
-					<el-button type="primary" @click="saveDeviceMode">保存</el-button>
+					<el-button type="primary" v-auth="'devices:deviceDetail:modelSave'" @click="saveDeviceMode">保存</el-button>
 				</div>
 			</el-form>
 		</el-card>

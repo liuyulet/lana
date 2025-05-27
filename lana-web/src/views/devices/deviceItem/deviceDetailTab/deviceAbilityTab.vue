@@ -52,11 +52,11 @@
 			<el-table-column label="操作" fixed="right" width="200">
 				<template #default="scope">
 					<el-button-group>
-						<el-button @click="table_edit(scope.row)" text type="primary" size="small">{{scope.row.isSet?'保存':"修改"}}</el-button>
+						<el-button @click="table_edit(scope.row)" text type="primary" v-auth="'devices:deviceDetail:serveAdd'" size="small">{{scope.row.isSet?'保存':"修改"}}</el-button>
 						<el-button v-if="scope.row.isSet" @click=cancels() text type="primary" size="small">取消</el-button>
 						<el-popconfirm v-if="!scope.row.isSet" title="确定删除吗？" @confirm="table_del(scope.row, scope.$index)">
 							<template #reference>
-								<el-button text type="primary" size="small">删除</el-button>
+								<el-button text type="primary" v-auth="'devices:deviceDetail:serveDel'" size="small">删除</el-button>
 							</template>
 						</el-popconfirm>
 					</el-button-group>

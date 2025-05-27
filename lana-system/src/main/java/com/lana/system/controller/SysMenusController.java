@@ -48,7 +48,7 @@ public class SysMenusController {
     @Operation(summary = "菜单列表")
     @Parameter(name = "type")
     @OptLog(type = OperateTypeEnum.QUERY)
-    @PreAuthorize("hasAuthority('sys:menus:list')")
+    //@PreAuthorize("hasAuthority('sys:menus:list')")
     public LanaResult<List<SysMenusResult>> list(Integer type) {
         UserDetail user = SecurityUser.getUser();
         List<SysMenusResult> menu = sysMenusService.getMenuList(user);
@@ -58,7 +58,7 @@ public class SysMenusController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    @PreAuthorize("hasAuthority('sys:menus:save')")
+    //@PreAuthorize("hasAuthority('sys:menus:save')")
     public LanaResult save(@RequestBody @Valid SysMenusSave saveVO) {
         SysMenusEntity sysMenusEntity = sysMenusService.saveMenu(saveVO);
         return LanaResult.ok(sysMenusEntity.getId());
@@ -71,7 +71,7 @@ public class SysMenusController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:menus:update')")
+    //@PreAuthorize("hasAuthority('sys:menus:update')")
     public LanaResult<String> update(@RequestBody @Valid SysMenusUpdate uodateVO) {
         sysMenusService.updateByData(uodateVO);
         return LanaResult.ok();
@@ -86,7 +86,7 @@ public class SysMenusController {
     @PostMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    @PreAuthorize("hasAuthority('sys:menus:delete')")
+    //@PreAuthorize("hasAuthority('sys:menus:delete')")
     public LanaResult<String> delete(@RequestBody SysMenusDeleteDTO sysMenusDeleteDTO) {
         sysMenusService.delete(sysMenusDeleteDTO.getIds());
         return LanaResult.ok();

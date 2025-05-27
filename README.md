@@ -4,7 +4,7 @@
 [整体设计说明（会不断地修改完善）](doc%2Fmd%2Fproject.md)
 
 
-### 演示地址：正在筹备中
+### 演示地址：正在筹备中...
 
 ### 使用该项目请查看[使用说明](https://github.com/liuyulet/lana/wiki)
 

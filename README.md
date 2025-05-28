@@ -6,13 +6,7 @@
 
 ### 演示地址：
 
-http://120.48.56.39:8081
-
-用户名：lana
-
-密码：lana.password
-
-请不要恶意攻击
+筹备中....
 
 
 ### 使用该项目请查看[使用说明](https://github.com/liuyulet/lana/wiki)

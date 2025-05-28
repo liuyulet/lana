@@ -12,6 +12,7 @@
 
 请不要恶意攻击！
 
+如果觉着不错请给个star鼓励一下吧!
 
 ### 使用该项目请查看[使用说明](https://github.com/liuyulet/lana/wiki)
 

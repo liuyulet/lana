@@ -32,8 +32,13 @@
 								<template #dropdown>
 									<el-dropdown-menu>
 										<el-dropdown-item  v-if="item.mqttType !=1" @click="edit(item)">编辑</el-dropdown-item>
-										<el-dropdown-item @click="logs(item)">日志</el-dropdown-item>
-										<el-dropdown-item @click="del(item)" divided>删除</el-dropdown-item>
+										<div v-auth="'abutment:protocols:logs'">
+											<el-dropdown-item  @click="logs(item)">日志</el-dropdown-item>
+										</div>
+										<div v-auth="'abutment:protocols:del'">
+											<el-dropdown-item  @click="del(item)" divided>删除</el-dropdown-item>
+										</div>
+
 									</el-dropdown-menu>
 								</template>
 							</el-dropdown>
@@ -122,6 +127,7 @@
 					this.list = res.data;
 				}else{
 					this.$alert(res.msg, "提示", {type: 'error'})
+
 				}
 
 			},
@@ -131,7 +137,8 @@
 				this.$nextTick(() => {
 					this.$refs.saveDialog.open()
 				})*/
-				this.$alert("初版暂不支持添加代理接入协议", "提示", {type: 'warning'})
+				/*this.$alert("初版暂不支持添加代理接入协议", "提示", {type: 'warning'})*/
+				this.$message.error("初版暂不支持添加代理接入协议");
 			},
 			show(item){
 				this.dialog.save = true

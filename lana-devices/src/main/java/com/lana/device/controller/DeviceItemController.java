@@ -55,7 +55,7 @@ public class DeviceItemController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    //@PreAuthorize("hasAuthority('devices:deviceItem:save')")
+    @PreAuthorize("hasAuthority('devices:deviceItem:save')")
     public LanaResult saveDeviceItem(@RequestBody @Valid DeviceItemSave vo) {
         deviceItemService.saveDeviceItem(vo);
         return LanaResult.ok();
@@ -64,7 +64,7 @@ public class DeviceItemController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    //@PreAuthorize("hasAuthority('devices:deviceItem:update')")
+    @PreAuthorize("hasAuthority('devices:deviceItem:update')")
     public LanaResult update(@RequestBody @Valid DeviceItemUpdate vo) {
         deviceItemService.updateByUserId(vo);
         return LanaResult.ok();
@@ -74,7 +74,7 @@ public class DeviceItemController {
     @PostMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    //@PreAuthorize("hasAuthority('devices:deviceItem:delete')")
+    @PreAuthorize("hasAuthority('devices:deviceItem:delete')")
     public LanaResult<String> delete(@RequestBody List<Long> idList) {
         deviceItemService.deleteDeviceItem(idList);
         return LanaResult.ok();

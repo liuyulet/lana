@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,7 +32,7 @@ public class RulesItemNodeController {
     @PostMapping("/saveAndUpdate")
     @Operation(summary = "规则信息设置")
     @OptLog(type = OperateTypeEnum.INSERT)
-    //@PreAuthorize("hasAuthority('rules:rulesItem:save')")
+    @PreAuthorize("hasAuthority('rules:rules:updateAndSave')")
     public LanaResult saveRulesItemNodeSave(@RequestBody @Valid RulesItemNodeSave saveRulesItemNodeSaveVO) {
         return rulesItemNodeService.SaveAndUpdate(saveRulesItemNodeSaveVO);
     }

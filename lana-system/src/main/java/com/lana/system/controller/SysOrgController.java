@@ -44,7 +44,7 @@ public class SysOrgController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    //@PreAuthorize("hasAuthority('sys:org:save')")
+    @PreAuthorize("hasAuthority('sys:org:save')")
     public LanaResult<String> save(@RequestBody @Valid SysOrgSave saveVO) {
         sysOrgService.save(saveVO);
 
@@ -54,7 +54,7 @@ public class SysOrgController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    //@PreAuthorize("hasAuthority('sys:org:update')")
+    @PreAuthorize("hasAuthority('sys:org:update')")
     public LanaResult<String> update(@RequestBody @Valid SysOrgUpdate updateVO) {
         sysOrgService.update(updateVO);
 
@@ -64,7 +64,7 @@ public class SysOrgController {
     @GetMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    //@PreAuthorize("hasAuthority('sys:org:delete')")
+    @PreAuthorize("hasAuthority('sys:org:delete')")
     public LanaResult<String> delete(@RequestParam("id") Long id) {
         sysOrgService.delete(id);
 

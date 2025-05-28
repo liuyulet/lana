@@ -39,7 +39,7 @@
 <!--									这里不做处理，如果要删除分组，右侧要展示出来对应的设备，以便于先解绑设备，再进行删除-->
 									<el-popconfirm title="确定删除吗？" v-auth="'devices:deviceGroup:delete'" @confirm="table_del(scope.row, scope.$index)">
 										<template #reference>
-											<el-button text type="primary" size="small">删除</el-button>
+											<el-button text type="primary" v-auth="'devices:deviceGroup:delete'" size="small">删除</el-button>
 										</template>
 									</el-popconfirm>
 									<el-button text type="primary" size="small" v-auth="'devices:deviceGroup:binding'" @click.stop="device_binding(scope.row, scope.$index)">绑定设备</el-button>

@@ -46,7 +46,7 @@ public class SysDictTypeController {
     @PostMapping("/save")
     @Operation(summary = "新增")
     @OptLog(type = OperateTypeEnum.INSERT)
-    //@PreAuthorize("hasAuthority('sys:dict:save')")
+    @PreAuthorize("hasAuthority('sys:dict:save')")
     public LanaResult<String> save(@RequestBody @Valid SysDictTypeSave saveVO) {
         sysDictTypeService.save(saveVO);
         return LanaResult.ok();
@@ -60,7 +60,7 @@ public class SysDictTypeController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    //@PreAuthorize("hasAuthority('sys:dict:update')")
+    @PreAuthorize("hasAuthority('sys:dict:update')")
     public LanaResult<String> update(@RequestBody @Valid SysDictTypeUpdate uodateVO) {
         SysDictTypeEntity entity = SysDictTypeConvert.INSTANCE.convert(uodateVO);
         sysDictTypeService.updateById(entity);
@@ -71,7 +71,7 @@ public class SysDictTypeController {
     @GetMapping("/deletDicType")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    //@PreAuthorize("hasAuthority('sys:dict:delete')")
+    @PreAuthorize("hasAuthority('sys:dict:delete')")
     public LanaResult<String> delete(@RequestParam("id") Long id) {
         // 调用服务层方法，执行删除操作
         sysDictTypeService.removeDictType(id);

@@ -2,7 +2,7 @@
 	<el-container>
 		<el-header>
 			<div class="left-panel">
-				<el-button type="primary" icon="el-icon-plus" v-auth="'sys:role:save'" @click="add">新增规则</el-button>
+				<el-button type="primary" icon="el-icon-plus" v-auth="'rules:rules:save'" @click="add">新增规则</el-button>
 			</div>
 			<div class="right-panel">
 				<div class="right-panel-search">
@@ -35,11 +35,11 @@
 				<el-table-column label="操作" fixed="right" align="right" width="220">
 					<template #default="scope">
 						<el-button-group>
-							<el-button text type="primary" size="small" @click="rulesSeting(scope.row, scope.$index)">规则设置</el-button>
-							<el-button text type="primary" size="small" v-auth="'sys:role:update'" @click="table_edit(scope.row, scope.$index)">编辑</el-button>
-							<el-popconfirm title="确定删除吗？" v-auth="'sys:role:delete'" @confirm="table_del(scope.row, scope.$index)">
+							<el-button text type="primary" size="small" v-auth="'rules:rules:setRule'" @click="rulesSeting(scope.row, scope.$index)">规则设置</el-button>
+							<el-button text type="primary" size="small" v-auth="'rules:rules:update'" @click="table_edit(scope.row, scope.$index)">编辑</el-button>
+							<el-popconfirm title="确定删除吗？"  @confirm="table_del(scope.row, scope.$index)">
 								<template #reference>
-									<el-button text type="primary" size="small">删除</el-button>
+									<el-button text type="primary" v-auth="'rules:rules:delete'" size="small">删除</el-button>
 								</template>
 							</el-popconfirm>
 						</el-button-group>

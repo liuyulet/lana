@@ -29,7 +29,7 @@
 				<el-input v-model="form.signature" type="textarea"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="save()">保存</el-button>
+				<el-button type="primary" v-auth="'serve:user:save'" @click="save()">保存</el-button>
 			</el-form-item>
 		</el-form>
 	</el-card>

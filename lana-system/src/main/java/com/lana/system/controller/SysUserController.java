@@ -62,7 +62,7 @@ public class SysUserController {
     @PostMapping("/save")
     @Operation(summary = "保存")
     @OptLog(type = OperateTypeEnum.INSERT)
-    //@PreAuthorize("hasAuthority('sys:user:save')")
+    @PreAuthorize("hasAuthority('sys:user:save')")
     public LanaResult<String> save(@RequestBody @Valid SysUserSave vo) {
         // 新增密码不能为空
         if (StrUtil.isBlank(vo.getPassword())) {
@@ -94,7 +94,7 @@ public class SysUserController {
     @PostMapping("/update")
     @Operation(summary = "修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
-    //@PreAuthorize("hasAuthority('sys:user:update')")
+    @PreAuthorize("hasAuthority('sys:user:update')")
     public LanaResult<String> update(@RequestBody @Valid SysUserUpdate vo) {
         // 如果密码不为空，则进行加密处理
         if (StrUtil.isBlank(vo.getPassword())) {
@@ -111,7 +111,7 @@ public class SysUserController {
     @PostMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
-    //@PreAuthorize("hasAuthority('sys:user:delete')")
+    @PreAuthorize("hasAuthority('sys:user:delete')")
     public LanaResult<String> delete(@RequestBody List<Long> idList) {
         Long userId = SecurityUser.getUserId();
         if (idList.contains(userId)) {
@@ -125,6 +125,7 @@ public class SysUserController {
     @PostMapping("/updateMySelf")
     @Operation(summary = "修改个人用户信息")
     @OptLog(type = OperateTypeEnum.UPDATE)
+    @PreAuthorize("hasAuthority('serve:user:save')")
     public LanaResult updateMySelf(@RequestBody @Valid SysUserUpdate sysUserUpdate) {
         SysUserResult sysUserResult = sysUserService.updateMySelf(sysUserUpdate);
         return LanaResult.ok();
@@ -133,6 +134,8 @@ public class SysUserController {
     @PostMapping("/updateMySelfPassword")
     @Operation(summary = "修改个人密码")
     @OptLog(type = OperateTypeEnum.UPDATE)
+
+    @PreAuthorize("hasAuthority('serve:password:save')")
     public LanaResult<String> password(@RequestBody @Valid SysUserUpdatePassword sysUserUpdatePassword) {
         // 修改密码
         String result = sysUserService.updateMySelfPassword(sysUserUpdatePassword);

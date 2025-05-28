@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -41,7 +42,7 @@ public class RulesItemController {
     @PostMapping("/save")
     @Operation(summary = "规则实例新增")
     @OptLog(type = OperateTypeEnum.INSERT)
-    //@PreAuthorize("hasAuthority('rules:rulesItem:save')")
+    @PreAuthorize("hasAuthority('rules:rules:save')")
     public LanaResult saveRulesItem(@RequestBody @Valid RulesItemSave saveVO) {
         rulesItemService.saveRulesItem(saveVO);
         return LanaResult.ok();
@@ -51,6 +52,7 @@ public class RulesItemController {
     @Operation(summary = "规则实例修改")
     @OptLog(type = OperateTypeEnum.UPDATE)
     //@PreAuthorize("hasAuthority('rules:rulesItem:save')")
+    @PreAuthorize("hasAuthority('rules:rules:update')")
     public LanaResult updateRulesItem(@RequestBody @Valid RulesItemUpdate updateVO) {
         rulesItemService.updateRulesItem(updateVO);
         return LanaResult.ok();
@@ -59,6 +61,7 @@ public class RulesItemController {
     @GetMapping("/delete")
     @Operation(summary = "规则实例删除")
     @OptLog(type = OperateTypeEnum.DELETE)
+    @PreAuthorize("hasAuthority('rules:rules:delete')")
     public LanaResult deleteRulesItem(@RequestParam("id") Long id) {
         rulesItemService.deleteRulesItem(id);
         return LanaResult.ok();

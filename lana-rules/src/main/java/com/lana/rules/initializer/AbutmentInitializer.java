@@ -1,9 +1,9 @@
 package com.lana.rules.initializer;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
 import com.lana.abutment.mqtthandle.initializer.proties.ProtocolsMqttProperties;
@@ -141,12 +141,12 @@ public class AbutmentInitializer {
 
         try {
             List<RulesActionInstancEntity> actionInstancList = rulesItemDao.getActionMapData();
-            ObjectMapper objectMapper = new ObjectMapper();
             for (RulesActionInstancEntity actionInstancEntity : actionInstancList){
                 Object data = redisCacheOps.get(actionInstancEntity.getAcCode());
                 if (data != null) {
                 } else {
-                    Map<String, Object> restoredMap = objectMapper.readValue(actionInstancEntity.getAcInstancing(), new TypeReference<Map<String, Object>>() {});
+                    Map<String, Object> restoredMap = JSON.parseObject(actionInstancEntity.getAcInstancing());
+
                     redisCacheOps.set(actionInstancEntity.getAcCode(),restoredMap);
                 }
             }

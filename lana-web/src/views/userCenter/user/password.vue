@@ -15,7 +15,7 @@
 				<el-input v-model="form.confirmNewPassword" type="password" show-password placeholder="请再次输入新密码"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="save">保存密码</el-button>
+				<el-button type="primary" v-auth="'serve:password:save'" @click="save">保存密码</el-button>
 			</el-form-item>
 		</el-form>
 	</el-card>

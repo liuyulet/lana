@@ -12,7 +12,7 @@
 			<el-container>
 				<el-header style="display: flex; justify-content: space-between; align-items: center;">
 					<span><h3>规则编排</h3></span>
-					<el-button type="primary" :loading="isSaveing" @click="saveRule">保存规则信息</el-button>
+					<el-button type="primary" :loading="isSaveing"    @click="saveRule">保存规则信息</el-button>
 				</el-header>
 				<el-main>
 					<sc-workflow v-model="data.nodeConfig"></sc-workflow>

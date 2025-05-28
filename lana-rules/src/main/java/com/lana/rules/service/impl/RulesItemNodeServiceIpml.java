@@ -1,10 +1,10 @@
 package com.lana.rules.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
 import com.lana.base.cacheops.CacheKeyBuilder;
@@ -213,7 +213,7 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
      * 生成规则脚本
      * @param jsonObject
      */
-    public void GenerateRulesScript(JSONObject jsonObject,long rulesId) throws IOException {
+    public void GenerateRulesScript(JSONObject jsonObject,long rulesId) throws Exception {
 
         baseMapper.delRulesJobDeviceId(rulesId);
         baseMapper.delRulesJobPushDevice(rulesId);
@@ -291,7 +291,7 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
      * @param setType
      */
     // todo 这块后期优化一下，提高整体的代码质量。
-    public List<Map<String, Object>> HandleConditionNodesList(JSONObject childNodeData,long rulesId,int setType) throws JsonProcessingException {
+    public List<Map<String, Object>> HandleConditionNodesList(JSONObject childNodeData,long rulesId,int setType) throws Exception {
 
         log.info("开始删除-----------------------------------------------------");
         //删除
@@ -467,8 +467,8 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
                                     //设备--定时规则关联关系（采集规则），这个设备所属的定时规则
                                     String key = CacheKeyBuilder.actionMap(epochMilli);
                                     //以json的方式进行持久化
-                                    ObjectMapper objectMapper = new ObjectMapper();
-                                    String json = objectMapper.writeValueAsString(actionMapData);
+
+                                    String json = JSON.toJSONString(actionMapData, SerializerFeature.WriteClassName);
                                     baseMapper.addAc(key, json, rulesId);
                                     //缓存数据
                                     CaffeineCacheManager.deleteKey("RulesActionMap",  rulesId);
@@ -539,8 +539,7 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
                 //设备--定时规则关联关系（采集规则），这个设备所属的定时规则
                 String key = CacheKeyBuilder.actionMap(epochMilli);
                 //以json的方式进行持久化
-                ObjectMapper objectMapper = new ObjectMapper();
-                String json = objectMapper.writeValueAsString(actionMapData);
+                String json = JSON.toJSONString(actionMapData, SerializerFeature.WriteClassName);
                 baseMapper.addAc(key, json, rulesId);
                 Object data = redisCacheOps.get(key);
                 //入缓存
@@ -568,8 +567,7 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
                 //设备--定时规则关联关系（采集规则），这个设备所属的定时规则
                 String key = CacheKeyBuilder.actionMap(epochMilli);
                 //以json的方式进行持久化
-                ObjectMapper objectMapper = new ObjectMapper();
-                String json = objectMapper.writeValueAsString(actionMapData);
+                String json = JSON.toJSONString(actionMapData, SerializerFeature.WriteClassName);
                 baseMapper.addAc(key, json, rulesId);
                 Object data = redisCacheOps.get(key);
                 //入缓存

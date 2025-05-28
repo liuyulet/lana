@@ -17,6 +17,7 @@ import com.lana.abutment.mqtthandle.entity.vo.update.ProtocolsMqttUpdate;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,6 +72,7 @@ public class ProtocolsMqttController {
     @GetMapping("/delete")
     @Operation(summary = "删除")
     @OptLog(type = OperateTypeEnum.DELETE)
+    @PreAuthorize("hasAuthority('abutment:protocols:del')")
     public LanaResult<String> deleteProtocolsMqtt(@RequestParam("id") Long id) {
         protocolsMqttService.deleteProtocolsMqtt(id);
         return LanaResult.ok();

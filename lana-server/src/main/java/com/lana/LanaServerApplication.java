@@ -25,7 +25,8 @@ public class LanaServerApplication extends SpringBootServletInitializer {
             InetAddress localHost = InetAddress.getLocalHost();
             log.info("\n----------------------------------------------------------------------------\n\t" +
                     "Application Lana-Server is running!  :\n\t" +
-                    "本地接口文档：http://{}:8888/lana/doc.html\n" +
+                    "本地接口文档：http://{}:8888/lana/doc.html\n\t" +
+                    "如果不能访问，请去IgnoreUrlsConfig文件中放开url拦截\n" +
                     "----------------------------------------------------------------------------",localHost.getHostAddress());
         }catch (UnknownHostException e) {
             // 处理无法获取主机信息的情况

@@ -8,9 +8,7 @@
 
 [演示地址](http://120.48.56.39:8081)
 
-用户名：lana
-
-密码：lana.password
+登录信息：lana/lana.password
 
 请不要恶意攻击！
 

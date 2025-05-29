@@ -14,7 +14,7 @@ public interface SchedulerService {
      * @param jobClassName      任务类名
      * @return
      */
-    boolean addCronJob(String jobName, String cron, String jobClassName);
+    boolean addCronJob(String jobName, String cron, String jobGroup,String triggerGroup, String jobClassName);
 
 
     /**
@@ -36,7 +36,10 @@ public interface SchedulerService {
      * @param jobClassName      任务类名
      * @return
      */
-    void executeImmediately(String jobName, String jobClassName);
+    void executeImmediately(String jobName,String jobGroup, String triggerGroup, String jobClassName);
 
 
+    boolean createLogJob(String jobName, String cron, String jobGroup,String triggerGroup,String jobClassName);
+
+    boolean createDeviceJob(String jobName, String cron, String jobGroup,String triggerGroup,String jobClassName);
 }

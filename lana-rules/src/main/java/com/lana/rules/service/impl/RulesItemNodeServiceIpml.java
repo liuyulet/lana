@@ -102,9 +102,9 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public LanaResult SaveAndUpdate(RulesItemNodeSave saveRulesItemNodeSaveVO) {
+        int handleType = 0;
         try{
             // todo 强制，要求开始节点下只能添加条件
-
             //查询是否已经有规则了
             RulesItemNodeEntity rulesItemNodeEntity = baseMapper.selectOne(new QueryWrapper<RulesItemNodeEntity>().eq("rules_id", saveRulesItemNodeSaveVO.getRulesId()).eq("deleted",0));
             if(rulesItemNodeEntity!=null){
@@ -125,16 +125,23 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
                 //开始处理每一个规则要做的动作
                 JSONObject jsonObject = JSONObject.parseObject(saveRulesItemNodeSaveVO.getNodeConfig());
                 if (jsonObject!=null) {
-
                     //开始处理每一个规则要做的动作
                     HandleRulesNode(jsonObject,saveRulesItemNodeSaveVO.getRulesId(),HandleTypeEnum.ADDITIONAL.getValue());
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
+            handleType =1;
             throw new LanaException("规则处理失败");
+        }finally {
+            if (handleType==1){
+                return LanaResult.error("规则处理失败,请查看后台日志");
+            }else {
+                return LanaResult.ok();
+            }
+
         }
-        return LanaResult.ok();
+
     }
 
 
@@ -144,19 +151,22 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
      * 处理规则，并将规则生成为脚本
      * @param jsonObject
      */
-    public void HandleRulesNode(JSONObject jsonObject,long rulesId,int HandleType) throws Exception{
+    public void HandleRulesNode(JSONObject jsonObject,long rulesId,int HandleType){
+
+        try {
+            Long quartzGroup = Instant.now().toEpochMilli();
             //新增规则
             if(HandleType==HandleTypeEnum.ADDITIONAL.getValue()){
                 //监听设备
                 if(jsonObject.getInteger("setType")== RuleValueEnum.TRIGGERLISTENINGDEVICES.getValue()){
                     // 处理规则
                     GenerateRulesScript(jsonObject,rulesId);
-                //定时任务
+                    //定时任务
                 }else if(jsonObject.getInteger("setType")==RuleValueEnum.TRIGGERSCHEDULEDTASKS.getValue()){
-                    boolean flag = schedulerService.addCronJob(jsonObject.getString("nodeName")+rulesId,jsonObject.getString("cron"), QuartzEnum.JOB_CLASS_NAME.getValue());
+                    boolean flag = schedulerService.addCronJob(jsonObject.getString("nodeName")+rulesId,jsonObject.getString("cron"),quartzGroup.toString(),quartzGroup.toString(), QuartzEnum.RULES_CLASS_NAME.getValue());
                     //新增成功
                     if(flag){
-                        RulesItemQuratzEntity rulesItemQuratzEntity = getRulesItemQuratzEntity(jsonObject, rulesId);
+                        RulesItemQuratzEntity rulesItemQuratzEntity = getRulesItemQuratzEntity(jsonObject, rulesId,quartzGroup.toString(),quartzGroup.toString());
                         rulesItemQuratzService.addRulesItemQuratz(rulesItemQuratzEntity);
                         // 处理规则
                         GenerateRulesScript(jsonObject,rulesId);
@@ -175,21 +185,27 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
                     RulesItemQuratzEntity rulesItemQuratzEntity = rulesItemQuratzService.getRulesItemQuratz(rulesId);
 
                     //删除任务调度
+                    if(rulesItemQuratzEntity!=null){
                     schedulerService.deleteCronJob(jsonObject.getString("nodeName") + rulesId, rulesItemQuratzEntity.getJobGroup(), rulesItemQuratzEntity.getTriggerName(), rulesItemQuratzEntity.getTriggerGroup());
                     //删除关联关系
                     rulesItemQuratzService.deleteRulesItemQuratz(rulesId);
+                    }
 
                     //新增任务调度
-                    boolean flag = schedulerService.addCronJob(jsonObject.getString("nodeName") + rulesId, jsonObject.getString("cron"), QuartzEnum.JOB_CLASS_NAME.getValue());
+                    boolean flag = schedulerService.addCronJob(jsonObject.getString("nodeName") + rulesId, jsonObject.getString("cron"),quartzGroup.toString(),quartzGroup.toString(), QuartzEnum.RULES_CLASS_NAME.getValue());
                     //新增定时任务绑定关系
                     if (flag) {
-                        RulesItemQuratzEntity rulesItemQuratz = getRulesItemQuratzEntity(jsonObject, rulesId);
+                        RulesItemQuratzEntity rulesItemQuratz = getRulesItemQuratzEntity(jsonObject, rulesId,quartzGroup.toString(),quartzGroup.toString());
                         rulesItemQuratzService.addRulesItemQuratz(rulesItemQuratz);
                         // 处理规则
                         GenerateRulesScript(jsonObject,rulesId);
                     }
                 }
             }
+        }catch (Exception e){
+            throw new LanaException("规则生成为脚本处理失败");
+        }
+
 
     }
 
@@ -199,13 +215,13 @@ public class RulesItemNodeServiceIpml extends BaseServiceImpl<RulesItemNodeDao, 
      * @param rulesId
      * @return
      */
-    public RulesItemQuratzEntity getRulesItemQuratzEntity(JSONObject jsonObject,long rulesId){
+    public RulesItemQuratzEntity getRulesItemQuratzEntity(JSONObject jsonObject,long rulesId,String jobGroup,String triggerGroup){
         RulesItemQuratzEntity rulesItemQuratzEntity = new RulesItemQuratzEntity();
         rulesItemQuratzEntity.setRulesId(rulesId);
         rulesItemQuratzEntity.setCron(jsonObject.getString("cron"));
-        rulesItemQuratzEntity.setJobGroup(QuartzEnum.DEFAULT_JOB_GROUP.getValue());
+        rulesItemQuratzEntity.setJobGroup(jobGroup);
         rulesItemQuratzEntity.setTriggerName(QuartzEnum.TRIGGER_PRE.getValue() + jsonObject.getString("nodeName")+rulesId);
-        rulesItemQuratzEntity.setTriggerGroup(QuartzEnum.DEFAULT_TRIGGER_GROUP.getValue());
+        rulesItemQuratzEntity.setTriggerGroup(triggerGroup);
         return rulesItemQuratzEntity;
     }
 

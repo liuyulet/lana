@@ -72,10 +72,18 @@ lana:
     aseSecretKey: lanaBootIsVeryNB
   xss:
     enabled: true
-  #是否开启日志存储
+
+
+  #是否开启日志存储（该项与logging-enabled项都关闭后可弃用TDengine）
   logging-enabled: true
-  #每次消费mqtt数据多少条，默认20条
-  mqtt-data-queue: 100
+  #是否开启设备数据存储
+  devicedata-enabled: true
+  # 日志每次存储条数(建议根据实际配置、实际操作数量修改)
+  log-save-speed: 20
+  # 设备存储每次存储条数（建议根据实际配置、实际操作数量修改）
+  device-data-speed: 20
+
+
   #aviator规则脚本存储位置，如果不设置，则默认为当前程序运行的目录下的：/lana-rules/src/main/resources/script中
   aviator-path:
   #规则优先，定时：timing，监听：listening。这里要特别说明一下：如果设置为timing，则定时优先，如果是listening，则监听优先（这种情况发生在同一个设备同时属于定时、监听规则的情况下，并且在相同时间内触发，选择性的执行哪一个）

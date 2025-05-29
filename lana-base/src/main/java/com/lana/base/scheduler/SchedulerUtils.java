@@ -20,10 +20,10 @@ public class SchedulerUtils {
     private org.quartz.Scheduler scheduler;
 
 
-    public boolean addCronJob(String jobName, String cron, String jobClassName) {
+    public boolean addCronJob(String jobName, String cron,String jobGroup,String triggerGroup, String jobClassName,String triggerPre) {
         try {
             // 当前任务不存在才进行添加
-            JobKey jobKey = JobKey.jobKey(jobName, QuartzEnum.DEFAULT_JOB_GROUP.getValue());
+            JobKey jobKey = JobKey.jobKey(jobName, jobGroup);
             if (scheduler.checkExists(jobKey)) {
                 log.info("[添加定时任务]已存在该作业，jobkey为：{}", jobKey);
                 return false;
@@ -35,8 +35,9 @@ public class SchedulerUtils {
             CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
             // 构建 Trigger
             Trigger trigger = TriggerBuilder.newTrigger()
-                    .withIdentity(TriggerKey.triggerKey(QuartzEnum.TRIGGER_PRE.getValue() + jobName, QuartzEnum.DEFAULT_TRIGGER_GROUP.getValue()))
+                    .withIdentity(TriggerKey.triggerKey(triggerPre+ jobName, triggerGroup))
                     .withSchedule(cronScheduleBuilder).build();
+
             // 启动调度器
             scheduler.scheduleJob(job, trigger);
             scheduler.start();
@@ -77,14 +78,14 @@ public class SchedulerUtils {
         return (Job) classTemp.newInstance();
     }
 
-    public void executeImmediately(String jobName, String jobClassName) {
+    public void executeImmediately(String jobName,String jobGroup,String triggerGroup, String jobClassName) {
         try {
-            JobKey jobKey = JobKey.jobKey(jobName, QuartzEnum.DEFAULT_JOB_GROUP.getValue());
+            JobKey jobKey = JobKey.jobKey(jobName, jobGroup);
             JobDetail job = JobBuilder.newJob(getClass(jobClassName).getClass())
                     .withIdentity(jobKey).build();
 
             Trigger trigger = TriggerBuilder.newTrigger()
-                    .withIdentity(TriggerKey.triggerKey(QuartzEnum.TRIGGER_PRE.getValue() + jobName, QuartzEnum.DEFAULT_TRIGGER_GROUP.getValue()))
+                    .withIdentity(TriggerKey.triggerKey(QuartzEnum.TRIGGER_PRE.getValue() + jobName, triggerGroup))
                     .build();
 
             // 启动调度器

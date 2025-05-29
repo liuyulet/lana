@@ -15,6 +15,7 @@ import com.lana.rules.executes.action.RulesActionHandler;
 import com.lana.rules.service.RulesItemQuratzService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -32,6 +33,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@DisallowConcurrentExecution
 public class SchedulerJob implements Job {
 
     @Resource
@@ -50,7 +52,7 @@ public class SchedulerJob implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
 
-        log.info("\n\t----------------------------------------------------------------------------\n\t" +
+/*        log.info("\n\t----------------------------------------------------------------------------\n\t" +
                 "=========================定时任务调度，执行业务逻辑====================:\n\t" +
                 "jobName:{}\n\t" +
                 "jobGroup:{}\n\t" +
@@ -71,7 +73,7 @@ public class SchedulerJob implements Job {
                 DateUtil.formatDateTime(context.getNextFireTime()),
                 DateUtil.formatDateTime(context.getScheduledFireTime()),
                 "规则引擎，定时操作设备规则"
-                );
+                );*/
         //todo 考虑将定时任务对应的规则id中，要推送的设备id缓存进入redis，然后再使用的时候根据context.getTrigger().getKey().getName()进行查询
         Long ruleId = rulesItemQuratzService.getRuleJobPushDevice(context.getTrigger().getKey().getName());
 

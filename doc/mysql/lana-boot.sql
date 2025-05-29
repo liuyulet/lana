@@ -11,7 +11,7 @@
  Target Server Version : 80033 (8.0.33)
  File Encoding         : 65001
 
- Date: 27/05/2025 18:11:32
+ Date: 29/05/2025 18:06:05
 */
 
 SET NAMES utf8mb4;
@@ -66,8 +66,9 @@ CREATE TABLE `QRTZ_CRON_TRIGGERS`  (
 -- ----------------------------
 -- Records of QRTZ_CRON_TRIGGERS
 -- ----------------------------
-INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始14', 'lana_trigger_group', '0 * * * * ?', 'Asia/Shanghai');
-INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始3', 'lana_trigger_group', '0 0 * * * ?', 'Asia/Shanghai');
+INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_device_deviceDataSave', '1748511457883', '0/20 * * * * ?', 'Asia/Shanghai');
+INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_log_logsDataSave', '1748511357883', '0/20 * * * * ?', 'Asia/Shanghai');
+INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始3', '1748512720741', '0 0 * * * ?', 'Asia/Shanghai');
 
 -- ----------------------------
 -- Table structure for QRTZ_FIRED_TRIGGERS
@@ -93,6 +94,7 @@ CREATE TABLE `QRTZ_FIRED_TRIGGERS`  (
 -- ----------------------------
 -- Records of QRTZ_FIRED_TRIGGERS
 -- ----------------------------
+INSERT INTO `QRTZ_FIRED_TRIGGERS` VALUES ('LanaScheduler', 'NON_CLUSTERED1748512819902', 'Trigger_device_deviceDataSave', '1748511457883', 'NON_CLUSTERED', 1748513161757, 1748513180000, 5, 'ACQUIRED', NULL, NULL, '0', '0');
 
 -- ----------------------------
 -- Table structure for QRTZ_JOB_DETAILS
@@ -115,8 +117,9 @@ CREATE TABLE `QRTZ_JOB_DETAILS`  (
 -- ----------------------------
 -- Records of QRTZ_JOB_DETAILS
 -- ----------------------------
-INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('LanaScheduler', '开始14', 'lana_job_group', NULL, 'com.lana.rules.executes.job.SchedulerJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
-INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('LanaScheduler', '开始3', 'lana_job_group', NULL, 'com.lana.rules.executes.job.SchedulerJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
+INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('LanaScheduler', 'deviceDataSave', '1748511457883', NULL, 'com.lana.device.job.DeviceDataJob', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
+INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('LanaScheduler', 'logsDataSave', '1748511357883', NULL, 'com.lana.system.job.LogOperateJob', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
+INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('LanaScheduler', '开始3', '1748512720741', NULL, 'com.lana.rules.executes.job.SchedulerJob', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
 
 -- ----------------------------
 -- Table structure for QRTZ_LOCKS
@@ -164,7 +167,6 @@ CREATE TABLE `QRTZ_SCHEDULER_STATE`  (
 -- ----------------------------
 -- Records of QRTZ_SCHEDULER_STATE
 -- ----------------------------
-INSERT INTO `QRTZ_SCHEDULER_STATE` VALUES ('QuartzScheduler', 'DESKTOP-D3GOFVL1741048600408', 1741051494520, 10000);
 
 -- ----------------------------
 -- Table structure for QRTZ_SIMPLE_TRIGGERS
@@ -241,8 +243,9 @@ CREATE TABLE `QRTZ_TRIGGERS`  (
 -- ----------------------------
 -- Records of QRTZ_TRIGGERS
 -- ----------------------------
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始14', 'lana_trigger_group', '开始14', 'lana_job_group', NULL, 1748340720000, 1748340660000, 5, 'WAITING', 'CRON', 1748245307000, 0, NULL, 0, '');
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始3', 'lana_trigger_group', '开始3', 'lana_job_group', NULL, 1748343600000, 1748340000000, 5, 'WAITING', 'CRON', 1747907333000, 0, NULL, 0, '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_device_deviceDataSave', '1748511457883', 'deviceDataSave', '1748511457883', NULL, 1748513180000, 1748513160000, 5, 'ACQUIRED', 'CRON', 1748512626000, 0, NULL, 0, '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_log_logsDataSave', '1748511357883', 'logsDataSave', '1748511357883', NULL, 1748513180000, 1748513160000, 5, 'WAITING', 'CRON', 1748512687000, 0, NULL, 0, '');
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('LanaScheduler', 'Trigger_开始3', '1748512720741', '开始3', '1748512720741', NULL, 1748516400000, 1748512800000, 5, 'WAITING', 'CRON', 1748512721000, 0, NULL, 0, '');
 
 -- ----------------------------
 -- Table structure for device_abutment
@@ -595,7 +598,7 @@ CREATE TABLE `protocols_mqtt`  (
 -- ----------------------------
 -- Records of protocols_mqtt
 -- ----------------------------
-INSERT INTO `protocols_mqtt` VALUES (1, '0.0.0.0', 'Lana-Mqtt-Server', 1, '18883', '18083', 1, 'lanaMqttIsNB!%#...', 'lanaMqttIsNB!%#...', 0, 0, 'lanaMqttIsNB!%#...', 'lanaMqttIsNB!%#...', 0, '', '', 'none', '', '', 1, '0', 0, 1, '2025-05-27 15:08:52', 1, '2025-05-27 15:08:52', '系统初始化', '系统初始化');
+INSERT INTO `protocols_mqtt` VALUES (1, '0.0.0.0', 'Mqtt-broker(测试环境不开放端口)', 1, '1883', '8083', 1, 'MqttNB!%#...', 'MqttNB!%#...', 0, 1, 'MqttNB!%#...', 'MqttNB!%#...', 0, '', '', 'none', '', '', 1, '0', 0, 1, '2025-05-29 18:00:21', 1, '2025-05-29 18:00:21', '系统初始化', '系统初始化');
 INSERT INTO `protocols_mqtt` VALUES (2, '12am.cn', '其他emqx代理', 2, '1884', '8084', 1, 'admin', 'admin1234!@#$', 0, NULL, '', '', 0, '', '', 'NONE', '', '', 0, '0', 1, 1, '2024-12-03 16:51:28', 1, '2024-09-04 18:21:41', '[超级管理员:admin]', '[超级管理员:admin]');
 
 -- ----------------------------
@@ -608,16 +611,16 @@ CREATE TABLE `rules_action_instanc`  (
   `ac_instancing` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '动作内容',
   `rule_id` bigint NULL DEFAULT NULL COMMENT '规则id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 210 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '规则引擎--动作内容实例化存储（一般使用是存在redis中）' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 239 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '规则引擎--动作内容实例化存储（一般使用是存在redis中）' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rules_action_instanc
 -- ----------------------------
-INSERT INTO `rules_action_instanc` VALUES (203, 'actionMap1747907309237', '{\"nodeName\":\"数据流转\",\"timeoutExecution\":0,\"seqExecute\":1,\"pushPlatformInformation\":[{\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushTopic\":\"1744968415820\",\"controlActionType\":3,\"userName\":\"[超级管理员:admin]\",\"userId\":1,\"actionType\":1,\"controlType\":1,\"pushData\":\"哈哈哈哈\",\"deviceList\":[{\"controlDeviceAbilityLabel\":[\"开\"],\"controlType\":1,\"isSet\":false,\"name\":\"加湿器\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":22,\"id\":37},{\"controlDeviceAbilityLabel\":[\"开启\"],\"controlType\":1,\"isSet\":false,\"name\":\"空气站\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":15,\"id\":36}],\"sendType\":2,\"controlGroupId\":[]}', 1);
-INSERT INTO `rules_action_instanc` VALUES (204, 'actionMap1747907309349', '{\"nodeName\":\"数据流转\",\"pushPlatformInformation\":[{\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushData\":\"你好你好你好你好\",\"pushTopic\":\"1737208800901\",\"sendType\":1,\"userName\":\"[超级管理员:admin]\",\"userId\":1}', 1);
-INSERT INTO `rules_action_instanc` VALUES (205, 'actionMap1747907334234', '{\"nodeName\":\"数据流转\",\"pushPlatformInformation\":[{\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushData\":\"预警预警预警\",\"pushTopic\":\"123456\",\"sendType\":1,\"userName\":\"[超级管理员:admin]\",\"userId\":1}', 3);
-INSERT INTO `rules_action_instanc` VALUES (206, 'actionMap1747907334600', '{\"nodeName\":\"数据流转\",\"timeoutExecution\":0,\"seqExecute\":1,\"pushPlatformInformation\":[{\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushTopic\":\"1747041922896\",\"controlActionType\":3,\"userName\":\"[超级管理员:admin]\",\"userId\":1,\"actionType\":1,\"controlType\":1,\"pushData\":\"解除解除解除\",\"deviceList\":[{\"controlDeviceAbilityLabel\":[\"开启\"],\"controlType\":1,\"isSet\":false,\"name\":\"空气检测设备\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":9,\"id\":32},{\"controlDeviceAbilityLabel\":[\"关\"],\"controlType\":1,\"isSet\":false,\"name\":\"加湿器\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":23,\"id\":37}],\"sendType\":2,\"controlGroupId\":[]}', 3);
-INSERT INTO `rules_action_instanc` VALUES (209, 'actionMap1748245308289', '{\"nodeName\":\"数据流转\",\"timeoutExecution\":1,\"seqExecute\":1,\"pushPlatformInformation\":[{\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushTopic\":\"1748233295012\",\"controlActionType\":3,\"userName\":\"[超级管理员:admin]\",\"userId\":1,\"actionType\":1,\"controlType\":1,\"pushData\":\"空气检测设备预警了\",\"deviceList\":[{\"controlDeviceAbilityLabel\":[\"开启\"],\"controlType\":1,\"isSet\":true,\"name\":\"空气检测设备\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":9,\"id\":32}],\"sendType\":1,\"controlGroupId\":[]}', 14);
+INSERT INTO `rules_action_instanc` VALUES (218, 'actionMap1748413869626', '{\"@type\":\"java.util.HashMap\",\"nodeName\":\"数据流转\",\"timeoutExecution\":0,\"seqExecute\":1,\"pushPlatformInformation\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushTopic\":\"1744968415820\",\"controlActionType\":3,\"userName\":\"[超级管理员:admin]\",\"userId\":1L,\"actionType\":1,\"controlType\":1,\"pushData\":\"哈哈哈哈\",\"deviceList\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"controlDeviceAbilityLabel\":[\"开\"],\"controlType\":1,\"isSet\":false,\"name\":\"加湿器\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":22,\"id\":37},{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"controlDeviceAbilityLabel\":[\"开启\"],\"controlType\":1,\"isSet\":false,\"name\":\"空气站\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":15,\"id\":36}],\"sendType\":2,\"controlGroupId\":[]}', 1);
+INSERT INTO `rules_action_instanc` VALUES (219, 'actionMap1748413869758', '{\"@type\":\"java.util.HashMap\",\"nodeName\":\"数据流转\",\"pushPlatformInformation\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushData\":\"你好你好你好你好\",\"pushTopic\":\"1737208800901\",\"sendType\":1,\"userName\":\"[超级管理员:admin]\",\"userId\":1L}', 1);
+INSERT INTO `rules_action_instanc` VALUES (222, 'actionMap1748413879742', '{\"@type\":\"java.util.HashMap\",\"nodeName\":\"数据流转\",\"timeoutExecution\":1,\"seqExecute\":1,\"pushPlatformInformation\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushTopic\":\"1748233295012\",\"controlActionType\":3,\"userName\":\"[超级管理员:admin]\",\"userId\":1L,\"actionType\":1,\"controlType\":1,\"pushData\":\"空气检测设备预警了\",\"deviceList\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"controlDeviceAbilityLabel\":[\"开启\"],\"controlType\":1,\"isSet\":true,\"name\":\"空气检测设备\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":9,\"id\":32}],\"sendType\":1,\"controlGroupId\":[]}', 14);
+INSERT INTO `rules_action_instanc` VALUES (237, 'actionMap1748512722383', '{\"@type\":\"java.util.HashMap\",\"nodeName\":\"数据流转\",\"pushPlatformInformation\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushData\":\"预警预警预警\",\"pushTopic\":\"123456\",\"sendType\":1,\"userName\":\"[超级管理员:admin]\",\"userId\":1L}', 3);
+INSERT INTO `rules_action_instanc` VALUES (238, 'actionMap1748512722787', '{\"@type\":\"java.util.HashMap\",\"nodeName\":\"数据流转\",\"timeoutExecution\":0,\"seqExecute\":1,\"pushPlatformInformation\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"name\":\"Lana-Mqtt-Server\",\"id\":1}],\"pushTopic\":\"1747041922896\",\"controlActionType\":3,\"userName\":\"[超级管理员:admin]\",\"userId\":1L,\"actionType\":1,\"controlType\":1,\"pushData\":\"解除解除解除\",\"deviceList\":[{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"controlDeviceAbilityLabel\":[\"开启\"],\"controlType\":1,\"isSet\":false,\"name\":\"空气检测设备\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":9,\"id\":32},{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"controlDeviceAbilityLabel\":[\"关\"],\"controlType\":1,\"isSet\":false,\"name\":\"加湿器\",\"controlDataTypeLabel\":[\"控制功能\"],\"controlAbility\":23,\"id\":37}],\"sendType\":2,\"controlGroupId\":[]}', 3);
 
 -- ----------------------------
 -- Table structure for rules_item
@@ -645,9 +648,9 @@ CREATE TABLE `rules_item`  (
 -- ----------------------------
 -- Records of rules_item
 -- ----------------------------
-INSERT INTO `rules_item` VALUES (1, '测试监听', 3, 'let m = seq.list();\r\nif ((deviceId == 36 && wd > 46) && (deviceId == 36 && sd > 54)) {\r\nlet hit = seq.map();\r\nseq.put(hit, \"actionMap\", \"actionMap1747907309237\");\r\nseq.put(hit, \"message\", \"命中条件：空气站 的 温度 > 46 与 空气站 的 湿度 > 54\");\r\nseq.add(m, hit);\r\n}\r\nif(deviceId == 36){\r\n    if(pm25 < 33){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1747907309349\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 PM25 < 33\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nif(deviceId == 36){\r\n    if(sd < 37){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1747907309349\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 湿度 < 37\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nreturn m;\r\n', NULL, '规则规则规则', 1, 4, 0, 1, '2024-09-24 14:46:53', 1, '2025-05-08 13:33:22', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `rules_item` VALUES (3, '测试定时', 3, 'let m = seq.list();\r\nif ((deviceId == 32 && wd > 45) && (deviceId == 32 && sd > 55)) {\r\nlet hit = seq.map();\r\nseq.put(hit, \"actionMap\", \"actionMap1747907334234\");\r\nseq.put(hit, \"message\", \"命中条件：空气检测设备 的 温度 > 45 与 空气检测设备 的 湿度 > 55\");\r\nseq.add(m, hit);\r\n}\r\nif(deviceId == 36){\r\n    if(wd == 34){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1747907334600\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 温度 == 34\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nif(deviceId == 36){\r\n    if(sd > 43){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1747907334600\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 湿度 > 43\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nreturn m;\r\n', NULL, '规则规则规则', 1, 4, 0, 1, '2024-09-25 14:46:30', 1, '2025-05-08 13:33:29', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `rules_item` VALUES (14, '测试动作', 3, 'let m = seq.list();\r\nreturn m;\r\n', NULL, '直接触发动作', 1, 1, 0, 1, '2025-05-24 14:50:05', 1, '2025-05-24 14:50:24', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `rules_item` VALUES (1, '测试监听', 3, 'let m = seq.list();\r\nif ((deviceId == 36 && wd > 46) && (deviceId == 36 && sd > 54)) {\r\nlet hit = seq.map();\r\nseq.put(hit, \"actionMap\", \"actionMap1748413869626\");\r\nseq.put(hit, \"message\", \"命中条件：空气站 的 温度 > 46 与 空气站 的 湿度 > 54\");\r\nseq.add(m, hit);\r\n}\r\nif(deviceId == 36){\r\n    if(pm25 < 33){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1748413869758\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 PM25 < 33\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nif(deviceId == 36){\r\n    if(sd < 37){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1748413869758\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 湿度 < 37\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nreturn m;\r\n', 'D:\\iot\\lana\\lana-rules\\src\\main\\resources\\script\\1.av', '规则规则规则', 1, 4, 0, 1, '2024-09-24 14:46:53', 1, '2025-05-08 13:33:22', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `rules_item` VALUES (3, '测试定时', 3, 'let m = seq.list();\r\nif ((deviceId == 32 && wd > 45) && (deviceId == 32 && sd > 55)) {\r\nlet hit = seq.map();\r\nseq.put(hit, \"actionMap\", \"actionMap1748512722383\");\r\nseq.put(hit, \"message\", \"命中条件：空气检测设备 的 温度 > 45 与 空气检测设备 的 湿度 > 55\");\r\nseq.add(m, hit);\r\n}\r\nif(deviceId == 36){\r\n    if(wd == 34){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1748512722787\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 温度 == 34\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nif(deviceId == 36){\r\n    if(sd > 43){\r\n    let hit = seq.map();\r\n    seq.put(hit, \"actionMap\", \"actionMap1748512722787\");\r\n    seq.put(hit, \"message\", \"命中条件：空气站 的 湿度 > 43\");\r\n    seq.add(m, hit);\r\n    }\r\n}\r\nreturn m;\r\n', 'D:\\iot\\lana\\lana-rules\\src\\main\\resources\\script\\3.av', '规则规则规则', 1, 4, 0, 1, '2024-09-25 14:46:30', 1, '2025-05-08 13:33:29', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `rules_item` VALUES (14, '测试动作', 3, 'let m = seq.list();\r\nreturn m;\r\n', 'D:\\iot\\lana\\lana-rules\\src\\main\\resources\\script\\14.av', '直接触发动作', 1, 1, 0, 1, '2025-05-24 14:50:05', 1, '2025-05-24 14:50:24', '[超级管理员:admin]', '[超级管理员:admin]');
 
 -- ----------------------------
 -- Table structure for rules_item_node
@@ -696,13 +699,12 @@ CREATE TABLE `rules_item_quratz`  (
   `updater_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改人，格式：[姓名:账号]',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_rules_id`(`rules_id` ASC, `trigger_name` ASC) USING BTREE COMMENT '每个规则只能有一个对应的关联关系'
-) ENGINE = InnoDB AUTO_INCREMENT = 66 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '规则-任务调度关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '规则-任务调度关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rules_item_quratz
 -- ----------------------------
-INSERT INTO `rules_item_quratz` VALUES (57, 3, '0 0 * * * ?', 'lana_job_group', 'Trigger_开始3', 'lana_trigger_group', 0, 1, '2025-05-22 17:48:54', NULL, NULL, '[超级管理员:admin]', NULL);
-INSERT INTO `rules_item_quratz` VALUES (65, 14, '0 * * * * ?', 'lana_job_group', 'Trigger_开始14', 'lana_trigger_group', 0, 1, '2025-05-26 15:41:48', NULL, NULL, '[超级管理员:admin]', NULL);
+INSERT INTO `rules_item_quratz` VALUES (75, 3, '0 0 * * * ?', '1748512720741', 'Trigger_开始3', '1748512720741', 0, 1, '2025-05-29 17:58:42', NULL, NULL, '[超级管理员:admin]', NULL);
 
 -- ----------------------------
 -- Table structure for rules_job_device_id
@@ -713,13 +715,13 @@ CREATE TABLE `rules_job_device_id`  (
   `device_id` bigint NULL DEFAULT NULL COMMENT '定时任务中的设备id',
   `rule_id` bigint NULL DEFAULT NULL COMMENT '规则id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '定时规则中每个设备对应的规则信息，用于规则执行的时候的检索' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '定时规则中每个设备对应的规则信息，用于规则执行的时候的检索' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rules_job_device_id
 -- ----------------------------
-INSERT INTO `rules_job_device_id` VALUES (29, 32, 3);
-INSERT INTO `rules_job_device_id` VALUES (30, 36, 3);
+INSERT INTO `rules_job_device_id` VALUES (47, 32, 3);
+INSERT INTO `rules_job_device_id` VALUES (48, 36, 3);
 
 -- ----------------------------
 -- Table structure for rules_job_push_device
@@ -730,13 +732,13 @@ CREATE TABLE `rules_job_push_device`  (
   `device_ids` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '定时任务中，会存在多少',
   `rule_id` bigint NULL DEFAULT NULL COMMENT '规则id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '定时任务中，要主动发起采集指令的设备列表信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '定时任务中，要主动发起采集指令的设备列表信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rules_job_push_device
 -- ----------------------------
-INSERT INTO `rules_job_push_device` VALUES (30, '32', 3);
-INSERT INTO `rules_job_push_device` VALUES (31, '36', 3);
+INSERT INTO `rules_job_push_device` VALUES (48, '32', 3);
+INSERT INTO `rules_job_push_device` VALUES (49, '36', 3);
 
 -- ----------------------------
 -- Table structure for rules_listen_device_id
@@ -747,15 +749,15 @@ CREATE TABLE `rules_listen_device_id`  (
   `device_id` bigint NULL DEFAULT NULL COMMENT '监听任务中的设备id',
   `rule_id` bigint NULL DEFAULT NULL COMMENT '规则id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '监听规则中，设备与规则的对应关系' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '监听规则中，设备与规则的对应关系' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rules_listen_device_id
 -- ----------------------------
-INSERT INTO `rules_listen_device_id` VALUES (15, 32, 1);
-INSERT INTO `rules_listen_device_id` VALUES (16, 36, 1);
 INSERT INTO `rules_listen_device_id` VALUES (21, 32, 14);
 INSERT INTO `rules_listen_device_id` VALUES (22, 36, 14);
+INSERT INTO `rules_listen_device_id` VALUES (31, 32, 1);
+INSERT INTO `rules_listen_device_id` VALUES (32, 36, 1);
 
 -- ----------------------------
 -- Table structure for sys_dict_data
@@ -923,7 +925,7 @@ CREATE TABLE `sys_menus`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `creator_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人，格式：[姓名:账号]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 253 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 264 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menus
@@ -974,7 +976,7 @@ INSERT INTO `sys_menus` VALUES (213, 81, 'role.save', '', '', NULL, 'sys:role:sa
 INSERT INTO `sys_menus` VALUES (214, 81, 'role.update', '', '', NULL, 'sys:role:update', 'api/sys/role/update', NULL, 1, '[超级管理员:admin]', 0, '修改', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (215, 81, 'role.delete', '', '', NULL, 'sys:role:delete', 'api/sys/role/delete', NULL, 1, '[超级管理员:admin]', 0, '删除', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (216, 81, 'role.page', '', '', NULL, 'sys:role:page', 'api/sys/role/page', NULL, 1, '[超级管理员:admin]', 0, '列表', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2024-05-08 17:57:05', '[超级管理员:admin]');
-INSERT INTO `sys_menus` VALUES (217, 80, 'user.page', '', '', NULL, 'sys:user:page', 'api/sys/user/page', NULL, 1, '[超级管理员:admin]', 0, '保存用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2025-05-27 15:36:04', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (217, 80, 'user.save', '', '', NULL, 'sys:user:save', 'api/sys/user/page', NULL, 1, '[超级管理员:admin]', 0, '保存用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 17:01:06', 1, '2025-05-28 15:36:36', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (218, 81, 'role.roleLinkMenus', '', '', NULL, 'sys:role:roleLinkMenus', 'api/sys/role/roleLinkMenus', NULL, 1, '[超级管理员:admin]', 0, '权限设置', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (219, 80, 'user.save', '', '', NULL, 'sys:user:save', 'api/sys/user/save', NULL, 1, '[超级管理员:admin]', 0, '新增用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (220, 80, 'user.update', '', '', NULL, 'sys:user:update', 'api/sys/user/update', NULL, 1, '[超级管理员:admin]', 0, '修改用户', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2024-05-08 20:28:01', 1, '2024-05-08 20:28:55', '[超级管理员:admin]');
@@ -1007,6 +1009,17 @@ INSERT INTO `sys_menus` VALUES (249, 88, 'deviceDetail.serveDel', '', '', NULL, 
 INSERT INTO `sys_menus` VALUES (250, 89, 'deviceGroup.binding', '', '', NULL, 'devices:deviceGroup:binding', 'devices/deviceGroup/binding', NULL, 1, '[超级管理员:admin]', 0, '绑定设备', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:52:54', 1, '2025-05-27 18:00:14', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (251, 89, 'deviceGroup.unbind', '', '', NULL, 'devices:deviceGroup:unbind', 'devices/deviceGroup/unbind', NULL, 1, '[超级管理员:admin]', 0, '取消绑定', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 17:57:46', 1, '2025-05-27 17:59:06', '[超级管理员:admin]');
 INSERT INTO `sys_menus` VALUES (252, 89, 'deviceGroup.bindSava', '', '', NULL, 'devices:deviceGroup:bindSava', 'devices/deviceGroup/bindSava', NULL, 1, '[超级管理员:admin]', 0, '绑定设备-保存', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-27 18:00:46', 1, '2025-05-27 18:01:43', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (253, 92, 'protocols.del', '', '', NULL, 'abutment:protocols:del', 'abutment/protocols/del', NULL, 1, '[超级管理员:admin]', 0, '删除', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:10:22', 1, '2025-05-28 11:21:03', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (254, 92, 'protocols.logs', '', '', NULL, 'abutment:protocols:logs', 'abutment/protocols/logs', NULL, 1, '[超级管理员:admin]', 0, '日志', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:16:25', 1, '2025-05-28 11:17:21', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (255, 100, 'rules.save', '', '', NULL, 'rules:rules:save', 'rules/rules/save', NULL, 1, '[超级管理员:admin]', 0, '新增', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:30:15', 1, '2025-05-28 11:38:14', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (256, 100, 'rules.update', '', '', NULL, 'rules:rules:update', 'rules/rules/update', NULL, 1, '[超级管理员:admin]', 0, '编辑', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:39:55', 1, '2025-05-28 11:40:22', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (257, 100, 'rules.delete', '', '', NULL, 'rules:rules:delete', 'rules/rules/delete', NULL, 1, '[超级管理员:admin]', 0, '删除', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:40:58', 1, '2025-05-28 11:44:23', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (258, 100, 'rules.setRule', '', '', NULL, 'rules:rules:setRule', 'rules/rules/setRule', NULL, 1, '[超级管理员:admin]', 0, '规则设置', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:42:14', 1, '2025-05-28 11:47:03', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (259, 100, 'rules.updateAndSave', '', '', NULL, 'rules:rules:updateAndSave', 'rules/rules/updateAndSave', NULL, 1, '[超级管理员:admin]', 0, '保存规则信息', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 11:45:44', 1, '2025-05-28 11:47:11', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (260, 77, 'password.save', '', '', NULL, 'serve:password:save', 'serve/password/save', NULL, 1, '[超级管理员:admin]', 0, '保存密码', NULL, NULL, NULL, 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 14:56:54', 1, '2025-05-28 15:01:24', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (261, 77, 'user.save', '', '', NULL, 'serve:user:save', 'serve/user/save', NULL, 1, '[超级管理员:admin]', 0, '保存账号信息', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 15:01:49', 1, '2025-05-28 15:06:25', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (262, 77, 'user.show', '', '', NULL, 'serve:user:show', 'serve/user/show', NULL, 1, '[超级管理员:admin]', 0, '查看', NULL, NULL, '', 'button', NULL, NULL, NULL, NULL, NULL, '2025-05-28 15:04:19', 1, '2025-05-28 15:05:32', '[超级管理员:admin]');
+INSERT INTO `sys_menus` VALUES (263, 77, '1', '', '', NULL, 'qw', '', NULL, 1, '[超级管理员:admin]', 1, 'test', NULL, NULL, '', 'menu', NULL, NULL, NULL, NULL, NULL, '2025-05-28 15:06:41', 1, '2025-05-28 15:06:52', '[超级管理员:admin]');
 
 -- ----------------------------
 -- Table structure for sys_org
@@ -1072,7 +1085,7 @@ INSERT INTO `sys_role` VALUES (3, '研发组长', 'TL', '开发leader啊', 3, NU
 INSERT INTO `sys_role` VALUES (4, '小运维', 'OM', '运维人员', 3, NULL, 4, 1, 1, 1, '2024-01-10 15:32:03', 1, '2024-07-25 17:38:21', NULL, '[超级管理员:admin]');
 INSERT INTO `sys_role` VALUES (5, '小产品', 'PM', '是个小产品啊', 3, NULL, 5, 1, 1, 1, '2024-01-10 15:32:51', 1, '2024-07-25 17:38:21', NULL, '[超级管理员:admin]');
 INSERT INTO `sys_role` VALUES (7, '管理员', 'Administrators', '1', 0, NULL, 1, 1, 0, 1, '2024-05-11 13:29:30', 1, '2024-07-16 15:59:13', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `sys_role` VALUES (10, '测试', 'cs', '', 2, NULL, 8, 1, 0, 1, '2024-07-16 17:34:26', 1, '2024-07-16 17:34:26', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `sys_role` VALUES (10, '测试', 'cs', '', 0, NULL, 8, 1, 0, 1, '2024-07-16 17:34:26', 1, '2024-07-16 17:34:26', '[超级管理员:admin]', '[超级管理员:admin]');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -1085,27 +1098,52 @@ CREATE TABLE `sys_role_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_role_id`(`role_id` ASC) USING BTREE,
   INDEX `idx_menu_id`(`menu_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 790 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 871 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES (774, 10, 75);
-INSERT INTO `sys_role_menu` VALUES (775, 10, 76);
-INSERT INTO `sys_role_menu` VALUES (776, 10, 77);
-INSERT INTO `sys_role_menu` VALUES (777, 10, 78);
-INSERT INTO `sys_role_menu` VALUES (778, 10, 80);
-INSERT INTO `sys_role_menu` VALUES (779, 10, 81);
-INSERT INTO `sys_role_menu` VALUES (780, 10, 82);
-INSERT INTO `sys_role_menu` VALUES (781, 10, 83);
-INSERT INTO `sys_role_menu` VALUES (782, 10, 85);
-INSERT INTO `sys_role_menu` VALUES (783, 10, 203);
-INSERT INTO `sys_role_menu` VALUES (784, 10, 208);
-INSERT INTO `sys_role_menu` VALUES (785, 10, 212);
-INSERT INTO `sys_role_menu` VALUES (786, 10, 216);
-INSERT INTO `sys_role_menu` VALUES (787, 10, 217);
-INSERT INTO `sys_role_menu` VALUES (788, 10, 223);
-INSERT INTO `sys_role_menu` VALUES (789, 10, 224);
+INSERT INTO `sys_role_menu` VALUES (830, 10, 75);
+INSERT INTO `sys_role_menu` VALUES (831, 10, 76);
+INSERT INTO `sys_role_menu` VALUES (832, 10, 77);
+INSERT INTO `sys_role_menu` VALUES (833, 10, 78);
+INSERT INTO `sys_role_menu` VALUES (834, 10, 79);
+INSERT INTO `sys_role_menu` VALUES (835, 10, 80);
+INSERT INTO `sys_role_menu` VALUES (836, 10, 81);
+INSERT INTO `sys_role_menu` VALUES (837, 10, 82);
+INSERT INTO `sys_role_menu` VALUES (838, 10, 83);
+INSERT INTO `sys_role_menu` VALUES (839, 10, 85);
+INSERT INTO `sys_role_menu` VALUES (840, 10, 86);
+INSERT INTO `sys_role_menu` VALUES (841, 10, 88);
+INSERT INTO `sys_role_menu` VALUES (842, 10, 89);
+INSERT INTO `sys_role_menu` VALUES (843, 10, 90);
+INSERT INTO `sys_role_menu` VALUES (844, 10, 92);
+INSERT INTO `sys_role_menu` VALUES (845, 10, 94);
+INSERT INTO `sys_role_menu` VALUES (846, 10, 95);
+INSERT INTO `sys_role_menu` VALUES (847, 10, 96);
+INSERT INTO `sys_role_menu` VALUES (848, 10, 98);
+INSERT INTO `sys_role_menu` VALUES (849, 10, 99);
+INSERT INTO `sys_role_menu` VALUES (850, 10, 100);
+INSERT INTO `sys_role_menu` VALUES (851, 10, 101);
+INSERT INTO `sys_role_menu` VALUES (852, 10, 102);
+INSERT INTO `sys_role_menu` VALUES (853, 10, 103);
+INSERT INTO `sys_role_menu` VALUES (854, 10, 104);
+INSERT INTO `sys_role_menu` VALUES (855, 10, 203);
+INSERT INTO `sys_role_menu` VALUES (856, 10, 208);
+INSERT INTO `sys_role_menu` VALUES (857, 10, 212);
+INSERT INTO `sys_role_menu` VALUES (858, 10, 216);
+INSERT INTO `sys_role_menu` VALUES (859, 10, 217);
+INSERT INTO `sys_role_menu` VALUES (860, 10, 223);
+INSERT INTO `sys_role_menu` VALUES (861, 10, 224);
+INSERT INTO `sys_role_menu` VALUES (862, 10, 231);
+INSERT INTO `sys_role_menu` VALUES (863, 10, 232);
+INSERT INTO `sys_role_menu` VALUES (864, 10, 236);
+INSERT INTO `sys_role_menu` VALUES (865, 10, 243);
+INSERT INTO `sys_role_menu` VALUES (866, 10, 246);
+INSERT INTO `sys_role_menu` VALUES (867, 10, 250);
+INSERT INTO `sys_role_menu` VALUES (868, 10, 254);
+INSERT INTO `sys_role_menu` VALUES (869, 10, 258);
+INSERT INTO `sys_role_menu` VALUES (870, 10, 262);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1136,8 +1174,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', '{bcrypt}$2a$10$CeGTpWTHMcUTYYiBmA8ZHOd3lnPCuU2IRwCIsUQoUYTI1cUMq4qZ.', '超级管理员', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54870.jpg', 1, 'lyl@163.com', '13245677645', '三月来百草开 盈香满袖万物苏\n虫鸣和着欢笑 心事舒', 1, 1, 0, 10000, '2024-01-10 06:13:37', 1, '2025-05-27 15:14:33', '[超级管理员:admin]', '[超级管理员:admin]');
-INSERT INTO `sys_user` VALUES (2, 'lana', '{bcrypt}$2a$10$uQqDRj4ewO9Qo0TpX6BCWeu/TfsKL9h7jd9yuFbz.UNJNxyYqhC/K', 'lana0101', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54853.jpg', 2, 'lyl@163.com', '13245677646', '牛马干活\\韭菜施肥\\蘸料上色', 0, 1, 0, 10000, '2024-07-22 09:49:43', 1, '2025-05-27 15:33:27', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `sys_user` VALUES (1, 'admin', '{bcrypt}$2a$10$2yok2VFnZqt1wYSnR0XU1e4Ut7z/AlO3.BDPyG7clRcjBM.RNh3ee', '超级管理员', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54870.jpg', 1, 'lyl@163.com', '13245677645', '三月来百草开 盈香满袖万物苏\n虫鸣和着欢笑 心事舒', 1, 1, 0, 10000, '2024-01-10 06:13:37', 1, '2025-05-27 15:14:33', '[超级管理员:admin]', '[超级管理员:admin]');
+INSERT INTO `sys_user` VALUES (2, 'lana', '{bcrypt}$2a$10$9u1PD9leVDpJEeIFb4jbo.GwD403Zobjg82HBzxJfYPVpHtvJu2xK', 'lana0101', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54853.jpg', 2, 'lyl@163.com', '13245677656', '牛马干活\\韭菜施肥\\蘸料上色', 0, 1, 0, 10000, '2024-07-22 09:49:43', 1, '2025-05-27 15:33:27', '[超级管理员:admin]', '[超级管理员:admin]');
 INSERT INTO `sys_user` VALUES (10006, 'test', '{bcrypt}$2a$10$IjToP406QrLlpW/RpSL.RumkMqKsNUTr.4wD1wA3DeB8ImGU/e02W', '测试用户1', 'http://8.139.4.114:9000/dev/20250527/1748330038908_54878.jpg', NULL, NULL, NULL, NULL, 0, 1, 1, 1, '2024-11-26 17:25:34', 1, '2025-05-27 15:33:31', '[超级管理员:admin]', '[超级管理员:admin]');
 
 -- ----------------------------
@@ -1197,7 +1235,7 @@ CREATE TABLE `sys_user_token`  (
 -- ----------------------------
 -- Records of sys_user_token
 -- ----------------------------
-INSERT INTO `sys_user_token` VALUES (1, 1, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODM0MDM2MSwiZXhwIjoxNzQ4MzQwNDA1fQ.5OWa2kk2BzBroatq65ZtJ5AdX5DZCpRJERp5oE8Vq0E', '2025-05-28 06:06:02', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODM0MDM2MSwiZXhwIjoxNzQ4MzQxNTcxfQ.E2zGnSrEnEQ0AhrMBn1ZL97FTXPw1D0ZV_bmUr5-14I', '2025-06-10 18:06:02', '2024-01-10 14:40:57');
-INSERT INTO `sys_user_token` VALUES (2, 2, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ4MzMyNDY1LCJleHAiOjE3NDgzMzI1MDh9.KSuhb99Fs5qzXmrrpmncPCO3e_fJquSkxptQBurK1p0', '2025-05-28 03:54:26', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ4MzMyNDY1LCJleHAiOjE3NDgzMzM2NzV9.9fefnKfrCDVTYT8pW_rMrbJm2f_5fUp5cnzmfcydyPo', '2025-06-10 15:54:26', '2024-01-10 15:38:18');
+INSERT INTO `sys_user_token` VALUES (1, 1, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODUxMDg1NSwiZXhwIjoxNzQ4NTEwODk5fQ.p1LI5KK7JsO12IdWJAAD3tcdnva3ryOuHOSBh5pzWTE', '2025-05-30 05:27:36', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0ODUxMDg1NSwiZXhwIjoxNzQ4NTEyMDY1fQ.kCtNcBNG8FNOSH6jDBtDWXfEBCvcU_pnUqO6PnuTNF8', '2025-06-12 17:27:36', '2024-01-10 14:40:57');
+INSERT INTO `sys_user_token` VALUES (2, 2, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ4NDMzNjU1LCJleHAiOjE3NDg0MzM2OTh9.D4KQC3nxHPL28HdkYgYFTUeMASoujPfGSN2HVH253EY', '2025-05-29 08:00:55', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsYW5hIiwiaWF0IjoxNzQ4NDMzNjU1LCJleHAiOjE3NDg0MzQ4NjR9.ycdsMOlZMk85cjIJjQzyLxyNyrmqgvs45-4db9mayMc', '2025-06-11 20:00:55', '2024-01-10 15:38:18');
 
 SET FOREIGN_KEY_CHECKS = 1;

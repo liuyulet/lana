@@ -30,7 +30,7 @@ public class SchedulerController {
     @PostMapping("/createJob")
     @Operation(summary = "新增定时任务")
     public LanaResult createJob(@RequestBody JobInfoEntity jobInfo) {
-        return LanaResult.ok( schedulerService.addCronJob(jobInfo.getJobName(), jobInfo.getCron(), QuartzEnum.JOB_CLASS_NAME.getValue()));
+        return LanaResult.ok( schedulerService.addCronJob(jobInfo.getJobName(), jobInfo.getCron(),jobInfo.getJobGroup(),jobInfo.getTriggerGroup(),  QuartzEnum.RULES_CLASS_NAME.getValue()));
     }
 
     @PostMapping("/deleteJob")
@@ -43,9 +43,21 @@ public class SchedulerController {
     @PostMapping("/executeImmediately")
     @Operation(summary = "立即执行定时任务")
     public LanaResult executeImmediately(@RequestBody JobInfoEntity jobInfo) {
-        schedulerService.executeImmediately(jobInfo.getJobName(), QuartzEnum.JOB_CLASS_NAME.getValue());
+        schedulerService.executeImmediately(jobInfo.getJobName(),jobInfo.getJobGroup(),jobInfo.getTriggerGroup(), QuartzEnum.RULES_CLASS_NAME.getValue());
         return LanaResult.ok();
     }
 
+
+    @PostMapping("/createLogJob")
+    @Operation(summary = "新增日志存储定时任务")
+    public LanaResult createLogJob(@RequestBody JobInfoEntity jobInfo) {
+        return LanaResult.ok( schedulerService.createLogJob(jobInfo.getJobName(), jobInfo.getCron(),jobInfo.getJobGroup(),jobInfo.getTriggerGroup(),  QuartzEnum.LOGS_CLASS_NAME.getValue()));
+    }
+
+    @PostMapping("/createDeviceJob")
+    @Operation(summary = "新增设备数据存储定时任务")
+    public LanaResult createDeviceJob(@RequestBody JobInfoEntity jobInfo) {
+        return LanaResult.ok( schedulerService.createDeviceJob(jobInfo.getJobName(), jobInfo.getCron(),jobInfo.getJobGroup(),jobInfo.getTriggerGroup(),  QuartzEnum.DEVICE_CLASS_NAME.getValue()));
+    }
 
 }
